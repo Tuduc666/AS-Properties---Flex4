@@ -47,13 +47,13 @@ public class OracleQueries {
 			+ "where property_id = ?";
 	
 	public final static String GETSHOWING = "select * from p_requestshowing " 
-			+ "where user_id = ? and property_id = ?";
+			+ "where email = ? and property_id = ?";
 	public final static String ADDSHOWING = "insert into p_requestshowing "
-			+ "(user_id,property_id,user_message, status) "
+			+ "(email,property_id,user_message, status) "
 			+ "values(?,?,?,'Active')";
 	public final static String UPDATESHOWING = "update p_requestshowing "
 			+ "set user_message = ?, status = ? "
-			+ "where show_id = ?";
+			+ "where email = ? and property_id = ?";
 	public final static String DELETESHOWING = "delete from p_requestshowing "
 			+ "where show_id = ?";
 	

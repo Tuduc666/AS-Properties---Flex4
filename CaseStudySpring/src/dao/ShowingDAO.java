@@ -11,7 +11,7 @@ import utils.OracleQueries;
 
 public class ShowingDAO {
 
-	public Showing getShowing(Integer user_id, Integer property_id) throws IOException, SQLException 	{
+	public Showing getShowing(String email, Integer property_id) throws IOException, SQLException 	{
 		Showing showing = null;
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -20,13 +20,13 @@ public class ShowingDAO {
 		try {
 			conn = OracleConnection.getConnection();
 			stmt = conn.prepareStatement(OracleQueries.GETSHOWING);
-			stmt.setInt(1, user_id);
+			stmt.setString(1, email);
 			stmt.setInt(2, property_id);
 			result = stmt.executeQuery();
 			if(result.next()) {
 				showing = new Showing();
 				showing.setShow_id(result.getInt(1));
-				showing.setUser_id(result.getInt(2));
+				showing.setEmail(result.getString(2));
 				showing.setProperty_id(result.getInt(3));
 				showing.setUser_message(result.getString(4));					
 				showing.setStatus(result.getString(5));					
@@ -51,7 +51,7 @@ public class ShowingDAO {
 		return showing;
 	}
 	
-	public Boolean addShowing(Integer user_id, Integer property_id, String user_message) throws IOException, SQLException {
+	public Boolean addShowing(String email, Integer property_id, String user_message) throws IOException, SQLException {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		Integer result = null;          
@@ -59,7 +59,7 @@ public class ShowingDAO {
 		try {
 			conn = OracleConnection.getConnection();
 			stmt = conn.prepareStatement(OracleQueries.ADDSHOWING);    
-			stmt.setInt(1, user_id);
+			stmt.setString(1, email);
 			stmt.setInt(2, property_id);
 			stmt.setString(3, user_message);
 			result = stmt.executeUpdate();					
@@ -78,7 +78,7 @@ public class ShowingDAO {
 	}
 
 	// use for updating user message and status
-	public Boolean updateShowing(Integer show_id, String user_message, String status) throws IOException, SQLException {
+	public Boolean updateShowing(String email, Integer property_id, String user_message, String status) throws IOException, SQLException {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		Integer result = null;           
@@ -88,7 +88,8 @@ public class ShowingDAO {
 			stmt = conn.prepareStatement(OracleQueries.UPDATESHOWING);    
 			stmt.setString(1, user_message);  
 			stmt.setString(2, status);  
-			stmt.setInt(3, show_id);                    // where clause
+			stmt.setString(3, email);                    
+			stmt.setInt(4, property_id);                    
 			result = stmt.executeUpdate();
 						
 		} catch (ClassNotFoundException e) {

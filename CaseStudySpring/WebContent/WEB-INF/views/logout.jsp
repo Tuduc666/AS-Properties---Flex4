@@ -11,7 +11,7 @@
 	</head>
 <%
 	session.invalidate();              // this invalidate the session, back button would no longer work
-	response.sendRedirect("reLogin");  // this send it back to the login page, 
+	response.sendRedirect("login");    // this send it back to the login page, 
                                        // otherwise it would just display the message below in the logout page
 
 %>	

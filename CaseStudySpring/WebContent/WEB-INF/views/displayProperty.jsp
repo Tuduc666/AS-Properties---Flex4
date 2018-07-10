@@ -35,7 +35,7 @@
 	<p>MLS Number: <%=p.getMls_number()%></p>
 	<p>Owner Asking Price: <%=p.getAsking_price()%></p>
 				
-	<p><a href="userDetailList?city=all&state=all&order=date" class="button">Back</a></p>
+	<p><a href="homePage?city=all&state=all&order=date" class="button">Back</a></p>
 
 	
 
