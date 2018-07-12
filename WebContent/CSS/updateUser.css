@@ -1,0 +1,31 @@
+body {
+    background-color: #FC9;  
+}
+
+h1 { 
+    text-align: center;
+    letter-spacing:1rem;       /* stretches out the h1 */
+    margin: 0;
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+    font-size: 5vw;
+}
+  
+form {
+	border: groove 1vw #360;  
+	width : 50%;    
+	padding : 1vw;
+	margin : 2vw;  
+}
+input {
+	display: block;         
+	padding: 0 1vw;
+	height: 2vw;
+	width: 10vw;   
+	margin-bottom: 1vw;
+border: 3px solid #eeeeee;
+} 
+
+body,html{
+	height: 100%;
+}
