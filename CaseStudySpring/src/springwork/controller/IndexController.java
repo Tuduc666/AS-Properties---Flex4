@@ -113,8 +113,7 @@ public class IndexController {
 //		String pass = u.getUser_password();
 //		userDAO.updateUser(3, "Bruce Lee", "404 Lex", "", "Rego Park", "NY", 
 //				"11374", "666-666-6666", "lee@gmail.com", "Customer", "leep");
-		userDAO.updateUser(u.getUser_id(), u.getUser_name(), u.getAddress1(), u.getAddress2(), u.getCity(), u.getState(), 
-				u.getZip(), u.getPhone(), u.getEmail(), u.getUser_type(), u.getUser_password());
+		userDAO.updateUser(u.getUser_id(), u.getUser_name(), u.getPhone(), u.getEmail(), u.getUser_type(), u.getUser_password());
 		
 		ModelAndView mav = new ModelAndView("homePage");
 		mav.addObject("user", u);          
@@ -127,8 +126,7 @@ public class IndexController {
 	@PostMapping("/adminUpdateSQL")      // called from userUpdateProfile view, update SQL, call homePage
 	public ModelAndView adminUpdateSQL(@ModelAttribute User u) throws IOException, SQLException {	
 		UserDAO userDAO = new UserDAO();
-		userDAO.updateUser(u.getUser_id(), u.getUser_name(), u.getAddress1(), u.getAddress2(), u.getCity(), u.getState(), 
-				u.getZip(), u.getPhone(), u.getEmail(), u.getUser_type(), u.getUser_password());
+		userDAO.updateUser(u.getUser_id(), u.getUser_name(), u.getPhone(), u.getEmail(), u.getUser_type(), u.getUser_password());
 		
 		ModelAndView mav = new ModelAndView("adminDetailList");
 		mav.addObject("user", u);          
@@ -314,8 +312,7 @@ public class IndexController {
 		UserDAO uDAO = new UserDAO();
 		User uNew = new User();
 		
-		Integer i  = uDAO.addUser(u.getUser_name(), u.getAddress1(), u.getAddress2(), u.getCity(), u.getState(), u.getZip(), u.getPhone(), 
-						u.getEmail(), "Customer", u.getUser_password());
+		Integer i  = uDAO.addUser(u.getUser_name(), u.getPhone(), u.getEmail(), "Customer", u.getUser_password());
 		uNew = uDAO.getUserById(i);
 		// sDAO.updateSalesperson(s.getId(), s.getName(), s.getPhone(), s.getEmail(), s.getComm());
 		

@@ -81,11 +81,10 @@ public class OracleQueries {
 			+ "where user_id = ?";
 	public final static String GETALLUSERS = "select * from p_user order by user_id";
 	public final static String ADDUSER = "insert into p_user "
-			+ "(user_name,address1,address2,city_name,state_code,zipcode,phone,email,user_type,user_password) "
-			+ "values(?,?,?,?,?,?,?,?,?,?)";
+			+ "(user_name,phone,email,user_type,user_password) "
+			+ "values(?,?,?,?,?)";
 	public final static String UPDATEUSER = "update p_user "
-			+ "set user_name=?, address1=?, address2=?, city_name=?, state_code=?, zipcode=?,"
-			+ "phone = ?, email = ?, user_type = ?, user_password = ? "
+			+ "set user_name=?, phone = ?, email = ?, user_type = ?, user_password = ? "
 			+ "where user_id = ?";
 	public final static String DELETEUSER = "delete from p_user "
 			+ "where user_id = ?";

@@ -29,7 +29,7 @@ public class UserDAOTest {
 
 	@Test
 	public void t1_testGetUserById() throws IOException, SQLException {
-		String expectedEmail = "TamD@yahoo.com";
+		String expectedEmail = "TomD@yahoo.com";
 		User u = uDAO.getUserById(1);
 		assertEquals(expectedEmail, u.getEmail());
 	}
@@ -45,7 +45,7 @@ public class UserDAOTest {
 //		System.out.println(l.get(3).getEmail());
 //		System.out.println(l.get(4).getEmail());
 		
-		assertEquals("TamD@yahoo.com", l.get(0).getEmail());
+		assertEquals("TomD@yahoo.com", l.get(0).getEmail());
 		assertEquals("AnnD@yahoo.com", l.get(1).getEmail());
 		assertEquals("lee@gmail.com", l.get(2).getEmail());	
 	}
@@ -53,7 +53,7 @@ public class UserDAOTest {
 	@Test
 	public void t3_testAddUser() throws IOException, SQLException {
 		String expectedEmail = "test@yahoo.com";
-		id = uDAO.addUser("tam", "111", "", "Bronx", "NY", "11111", "1111", expectedEmail, "Customer", "tt");
+		id = uDAO.addUser("tam", "1111", expectedEmail, "Customer", "tt");
 		User u = uDAO.getUserById(id);		
 		assertEquals(expectedEmail, u.getEmail());
 	}
@@ -61,7 +61,7 @@ public class UserDAOTest {
 	@Test
 	public void t4_testUpdateUser() throws IOException, SQLException {
 		String expectedEmail = "testupdate@yahoo.com";
-		Boolean updt = uDAO.updateUser(id, "tam", "111", "", "Bronx", "NY", "11111", "1111", expectedEmail, "Customer", "tt");
+		Boolean updt = uDAO.updateUser(id, "tam", "1111", expectedEmail, "Customer", "tt");
 		assertTrue(updt);
 		User u = uDAO.getUserById(id);		
 		assertEquals(expectedEmail, u.getEmail());
@@ -77,7 +77,7 @@ public class UserDAOTest {
 
 	@Test
 	public void t6_testIsValidUser() throws IOException, SQLException {
-		String expectedEmail = "TamD@yahoo.com";
+		String expectedEmail = "TomD@yahoo.com";
 		User u = uDAO.isValidUser(expectedEmail, "adminp");
 		assertEquals(expectedEmail, u.getEmail());
 		u = uDAO.isValidUser(expectedEmail, "tttt");
