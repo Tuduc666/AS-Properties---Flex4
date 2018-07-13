@@ -92,7 +92,13 @@
 	else {
 %>	
 <!-- login -->
-	    <li><a href="login">Login</a></li>
+	  	<li class="dropdown">
+		<a class="dropbtn" id="login">Login</a>
+		<div class="dropdown-content">
+			<a href="login">Customer Login</a>
+			<a href="adminLogin">Admin Login</a>
+		</div>
+	    </li>
 <%
 	}
 %>	

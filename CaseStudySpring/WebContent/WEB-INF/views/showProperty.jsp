@@ -27,6 +27,10 @@
 				<input type="email" id="email" name="email" value="<%=user_email%>" required />
 			</div>
 			<div class="sub_field">
+				<label>Phone</label>
+				<input type="text" id="phone" name="phone" />
+			</div>
+			<div class="sub_field">
 				<label>PropertyId (non-input)</label>
 				<input type="number" id="property_id" name="property_id" value="<%=p_id%>"  readonly />
 			</div>

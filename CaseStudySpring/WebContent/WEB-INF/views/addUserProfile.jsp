@@ -23,23 +23,15 @@
 				<input type="text" id="user_name" name="user_name"  />
 			</div>
 			<div class="sub_field">
-				<label>phone</label>
-				<input type="text" id="phone" name="phone"   />
-			</div>
-			<div class="sub_field">
 				<label>Email</label>
 				<input type="email" id="email" name="email" required />
-			</div>
-			<div class="sub_field">
-				<label>Password</label>
-				<input type="password" id="user_password" name="user_password" required />
 			</div>
 			
 			<div class="btn">
 				<input type="submit" name="submit"  value="Submit" />
 			</div>
 		</form>
-		<p>Important:  You must use only unique password that you don't use anywhere else.</p>
+		<!-- <p>Important:  You must use only unique password that you don't use anywhere else.</p> -->
 	</div>
 </body>
 </html>

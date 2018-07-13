@@ -78,9 +78,16 @@ public class UserDAOTest {
 	@Test
 	public void t6_testIsValidUser() throws IOException, SQLException {
 		String expectedEmail = "TomD@yahoo.com";
-		User u = uDAO.isValidUser(expectedEmail, "adminp");
+		User u = uDAO.isValidUser(expectedEmail);
 		assertEquals(expectedEmail, u.getEmail());
-		u = uDAO.isValidUser(expectedEmail, "tttt");
+	}
+	
+	@Test
+	public void t7_testIsValidAdmin() throws IOException, SQLException {
+		String expectedEmail = "TomD@yahoo.com";
+		User u = uDAO.isValidAdmin(expectedEmail, "adminp");
+		assertEquals(expectedEmail, u.getEmail());
+		u = uDAO.isValidAdmin(expectedEmail, "tttt");
 		assertNull(u);
 	}
 }

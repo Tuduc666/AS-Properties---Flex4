@@ -3,14 +3,11 @@ package springwork.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -53,8 +50,35 @@ public class IndexController {
 		return mav;
 	}
 	
-	// testdata - TamD@yahoo.com  adminp, lee@gmail.com  leep
-	@PostMapping("/validateLogin")      // called from login view, validate login, call detail list
+	@RequestMapping("adminLogin")      
+	public ModelAndView adminLogin() {
+		ModelAndView mav = new ModelAndView("adminLogin");
+		return mav;
+	}
+	
+	@PostMapping("/customerLogin")      // called from login view, validate login, call detail list
+	public ModelAndView user_info(
+			@RequestParam("email") String email) throws IOException, SQLException {
+		
+		String returnPage = "login";
+		ModelAndView mav = null;
+		
+		User u = null; u = new User();
+		UserDAO uDAO = null; uDAO = new UserDAO();
+		u = uDAO.isValidUser(email); 
+		
+		if(u==null) returnPage = "login";
+		else returnPage = "homePage";
+		
+		mav = new ModelAndView(returnPage);  
+		mav.addObject("user", u);           // the returnPage will make the user a session variable
+		mav.addObject("city", "all");           
+		mav.addObject("state", "all");           
+		mav.addObject("order", "date");           
+		return mav;
+	}
+	
+	@PostMapping("/adminLogin")      // called from login view, validate login, call detail list
 	public ModelAndView user_info(
 			@RequestParam("email") String email,
 			@RequestParam("password") String password) throws IOException, SQLException {
@@ -64,13 +88,11 @@ public class IndexController {
 		
 		User u = null; u = new User();
 		UserDAO uDAO = null; uDAO = new UserDAO();
-		u = uDAO.isValidUser(email, password); 
+		u = uDAO.isValidAdmin(email, password); 
 		
 		if(u==null) returnPage = "login";
-		else {
-			if(u.getUser_type().equals("Admin")) returnPage = "showingDetailList";
-			else returnPage = "homePage";
-		}
+		else if(u.getUser_type().equals("Admintandha")) returnPage = "showingDetailList";
+		else returnPage = "homePage";
 		
 		mav = new ModelAndView(returnPage);  
 		mav.addObject("user", u);           // the returnPage will make the user a session variable
@@ -113,7 +135,7 @@ public class IndexController {
 //		String pass = u.getUser_password();
 //		userDAO.updateUser(3, "Bruce Lee", "404 Lex", "", "Rego Park", "NY", 
 //				"11374", "666-666-6666", "lee@gmail.com", "Customer", "leep");
-		userDAO.updateUser(u.getUser_id(), u.getUser_name(), u.getPhone(), u.getEmail(), u.getUser_type(), u.getUser_password());
+		userDAO.updateUser(u.getUser_id(), u.getUser_name(), "111", u.getEmail(), u.getUser_type(), "Customer");
 		
 		ModelAndView mav = new ModelAndView("homePage");
 		mav.addObject("user", u);          
@@ -312,7 +334,7 @@ public class IndexController {
 		UserDAO uDAO = new UserDAO();
 		User uNew = new User();
 		
-		Integer i  = uDAO.addUser(u.getUser_name(), u.getPhone(), u.getEmail(), "Customer", u.getUser_password());
+		Integer i  = uDAO.addUser(u.getUser_name(), "111", u.getEmail(), "Customer", "Customer");
 		uNew = uDAO.getUserById(i);
 		// sDAO.updateSalesperson(s.getId(), s.getName(), s.getPhone(), s.getEmail(), s.getComm());
 		
@@ -338,8 +360,8 @@ public class IndexController {
 		ShowingDAO sDAO = new ShowingDAO();
 		
 		Showing old = sDAO.getShowing(s.getEmail(), s.getProperty_id());
-		if(old==null) sDAO.addShowing(s.getEmail(), s.getProperty_id(), s.getUser_message());
-		else sDAO.updateShowing(s.getEmail(), s.getProperty_id(), s.getUser_message(), "Active");
+		if(old==null) sDAO.addShowing(s.getEmail(), s.getProperty_id(), s.getUser_message(), s.getPhone());
+		else sDAO.updateShowing(s.getEmail(), s.getProperty_id(), s.getUser_message(), "Active", s.getPhone());
 		
 		ModelAndView mav = new ModelAndView("homePage");  
 		mav.addObject("city", "all");           

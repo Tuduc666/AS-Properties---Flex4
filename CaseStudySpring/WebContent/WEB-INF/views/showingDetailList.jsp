@@ -88,7 +88,7 @@
 	    <!------- li><a href="usersMaintenance.html">Users List Maintenance</a></li>                -->
 	    
 <!-- UPDATE PROFILE -->
-	    <li><a href="adminUpdateProfile">Update Profile</a></li>
+	  <!-- <li><a href="adminUpdateProfile">Update Profile</a></li> -->  
 	    
 <!-- logout -->
 	    <li><a href="logout">Logout</a></li>

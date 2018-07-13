@@ -49,10 +49,10 @@ public class OracleQueries {
 	public final static String GETSHOWING = "select * from p_requestshowing " 
 			+ "where email = ? and property_id = ?";
 	public final static String ADDSHOWING = "insert into p_requestshowing "
-			+ "(email,property_id,user_message, status) "
-			+ "values(?,?,?,'Active')";
+			+ "(email,property_id,user_message, status, phone) "
+			+ "values(?,?,?,'Active',?)";
 	public final static String UPDATESHOWING = "update p_requestshowing "
-			+ "set user_message = ?, status = ? "
+			+ "set user_message = ?, status = ?, phone = ? "
 			+ "where email = ? and property_id = ?";
 	public final static String DELETESHOWING = "delete from p_requestshowing "
 			+ "where show_id = ?";
@@ -89,6 +89,8 @@ public class OracleQueries {
 	public final static String DELETEUSER = "delete from p_user "
 			+ "where user_id = ?";
 	public final static String ISVALIDUSER = "select * from p_user " 
+			+ "where email = ? ";
+	public final static String ISVALIDADMIN = "select * from p_user " 
 			+ "where email = ? and user_password = ? ";
 	
 	public final static String GETALLSTATES = "select * from p_state order by code";

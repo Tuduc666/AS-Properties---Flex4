@@ -27,7 +27,7 @@ public class ShowingDAOTest {
 		String email = "test@t.com";
 		Integer property_id = 61;
 		String user_message = "test showing";
-		sDAO.addShowing(email, property_id, user_message);
+		sDAO.addShowing(email, property_id, user_message, "111");
 		Showing s = sDAO.getShowing(email, property_id);	
 		assertEquals(user_message, s.getUser_message());
 	}
@@ -48,7 +48,7 @@ public class ShowingDAOTest {
 		Integer property_id = 61;
 		String user_message = "new test showing";
 		String status = "Inactive";
-		Boolean updt = sDAO.updateShowing(email, property_id, user_message, status);
+		Boolean updt = sDAO.updateShowing(email, property_id, user_message, status, "111");
 		assertTrue(updt);
 		Showing s = sDAO.getShowing(email, property_id);	
 		assertEquals(user_message, s.getUser_message());

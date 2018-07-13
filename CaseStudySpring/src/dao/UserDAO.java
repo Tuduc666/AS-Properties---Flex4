@@ -188,7 +188,7 @@ public class UserDAO {
 		return result > 0;                    
 	}
 
-	public User isValidUser(String email, String password) throws IOException, SQLException 	{
+	public User isValidUser(String email) throws IOException, SQLException 	{
 		User user = null;
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -197,6 +197,46 @@ public class UserDAO {
 		try {
 			conn = OracleConnection.getConnection();
 			stmt = conn.prepareStatement(OracleQueries.ISVALIDUSER);
+			stmt.setString(1, email);          
+			result = stmt.executeQuery();
+			if(result.next()) {
+				user = new User();
+				user.setUser_id(result.getInt(1));
+				user.setUser_name(result.getString(2));
+				user.setPhone(result.getString(3));
+				user.setEmail(result.getString(4));		
+				user.setUser_type(result.getString(5));	
+				user.setUser_password(result.getString(6));	
+			}
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+
+			if(result != null) {
+				result.close();
+			}
+			if(stmt != null) {
+				stmt.close();
+			}
+			if(conn != null) {
+				conn.close();
+			}
+		}
+		
+		return user;
+	}
+	
+	public User isValidAdmin(String email, String password) throws IOException, SQLException 	{
+		User user = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+		
+		try {
+			conn = OracleConnection.getConnection();
+			stmt = conn.prepareStatement(OracleQueries.ISVALIDADMIN);
 			stmt.setString(1, email);          
 			stmt.setString(2, password); 
 			result = stmt.executeQuery();
@@ -214,7 +254,7 @@ public class UserDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-
+			
 			if(result != null) {
 				result.close();
 			}

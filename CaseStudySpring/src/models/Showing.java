@@ -3,6 +3,7 @@ package models;
 public class Showing {
 	private int show_id;
 	private String email;
+	private String phone;
 	private int property_id;
 	private String user_message;
 	private String status;
@@ -18,6 +19,12 @@ public class Showing {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	public int getProperty_id() {
 		return property_id;

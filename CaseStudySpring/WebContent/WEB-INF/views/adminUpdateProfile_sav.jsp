@@ -10,7 +10,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="<spring:url value="/CSS/updateUser.css" />">
-		<title>Update User Profile</title>
+		<title>adminUpdateProfile</title>
 	</head>
 <%
 	User u = (User) session.getAttribute("userkey"); // two different ways to retrieve the information
@@ -19,12 +19,12 @@
 	                 // should always go with method #2 to be sure
 %>                                                   
 <body>
-	<h1>ASP Update User Info</h1>
+	<h1>ASP Update Admin Info</h1>
 	<div class="container">
-		<form action="userUpdateSQL" method="post">	
+		<form action="adminUpdateSQL" method="post">	
 		
 			<div class="sub_field">
-				<label>(non-input)</label>
+				<label>User type (non-input)</label>
 				<input type="text" id="user_type" name="user_type" value="<%=u.getUser_type()%>" readonly />
 			</div>
 			<div class="sub_field">
@@ -36,15 +36,22 @@
 				<input type="text" id="user_name" name="user_name" value="<%=u.getUser_name()%>"  />
 			</div>
 			<div class="sub_field">
+				<label>phone</label>
+				<input type="text" id="phone" name="phone" value="<%=u.getPhone()%>"  />
+			</div>
+			<div class="sub_field">
 				<label>Email</label>
-				<input type="email" id="email" name="email" value="<%=u.getEmail()%>" required />
+				<input type="text" id="email" name="email" value="<%=u.getEmail()%>"  />
+			</div>
+			<div class="sub_field">
+				<label>Password</label>
+				<input type="password" id="user_password" name="user_password" value="<%=u.getUser_password()%>"  />
 			</div>
 			
 			<div class="btn">
 				<input type="submit" name="submit"  value="Update Info" />
 			</div>
 		</form>
-		<!-- <p>Important:  You must use only unique password that you don't use anywhere else.</p> -->
 	</div>
 </body>
 </html>
