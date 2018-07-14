@@ -78,6 +78,9 @@
 			<a href="homePage?city=<%=city%>&state=<%=state%>&order=price">Order by Price</a>
 		</div>
 	    </li>
+	    
+<!-- about -->
+	    <li><a href="about">About</a></li>
 
 <%
 	if(u != null) {
@@ -122,7 +125,9 @@
 		</div>
 		<div class="flexbutton">
 			<a href="displayProperty?id=<%=s.getProperty_id()%>" class="button">Detail</a>
-			<a href="showProperty?id=<%=s.getProperty_id()%>" class="button">Request</a>	
+			<a href="contact" class="button">Contact</a>	
+		<!-- ***** put the following back in when done with the admin home page to show list of requests -->		
+		<!-- ***** <a href="showProperty?id=<%=s.getProperty_id()%>" class="button">Request</a> -->		
 		</div>  
 	</div>
  <%	}  %>

@@ -369,4 +369,20 @@ public class IndexController {
 		mav.addObject("order", "date");   
 		return mav;
 	}
+	
+	// temporary replacing showProperty
+	@GetMapping("/contact")   // called from homePage detail line button, call displayProperty view
+	public ModelAndView contact() throws IOException, SQLException {
+		
+		ModelAndView mav = new ModelAndView("contact");
+		return mav;
+	}
+	
+	//---------- ABOUT -------------------------------
+	@GetMapping("/about")   // called from homePage detail line button, call displayProperty view
+	public ModelAndView about() throws IOException, SQLException {
+		
+		ModelAndView mav = new ModelAndView("about");
+		return mav;
+	}
 }
