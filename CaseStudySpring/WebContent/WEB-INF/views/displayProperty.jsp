@@ -18,7 +18,7 @@
 <body>   <!-- NOTE: names below must match names in model class, not names in SQL table -->
 	<h1>ASP Property Detail</h1>
 			
-	<img alt="<%=p.getPhoto_filename()%>" src="IMAGES/<%=p.getPhoto_filename()%>" style="float:left; margin-right:5vw">
+	<img alt="Photo coming soon" src="IMAGES/<%=p.getPhoto_filename()%>" style="float:left; margin-right:5vw">
 
 	<p>Id: ${property.getProperty_id() } </p>
 	<p>Address: <%=p.getAddress1()%> <%=p.getAddress2()%></p>

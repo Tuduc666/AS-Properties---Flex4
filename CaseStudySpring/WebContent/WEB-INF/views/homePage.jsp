@@ -116,7 +116,7 @@
  	pl = propertyDAO.getPropertyList(city, state, order, false);
  	for (Property s : pl){ %>
  		<div class="flexbox">
-		<img src="IMAGES/<%=s.getPhoto_filename()%>" alt="Property Photo">
+		<img src="IMAGES/<%=s.getPhoto_filename()%>" alt="Photo coming soon">
 		<div class="text">
 			<h2>Asking Price: $<%=s.getAsking_price()%></h2>
 			<p>(<%=s.getSales_type()%>)</p>
