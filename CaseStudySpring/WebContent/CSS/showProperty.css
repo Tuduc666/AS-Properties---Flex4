@@ -17,12 +17,20 @@ form {
 	padding : 1vw;
 	margin : 2vw;  
 }
-
 input {
 	display: block;         
 	padding: 0 1vw;
 	height: 2vw;
 	width: 10vw;   
+	margin-bottom: 1vw;
+	border: 3px solid #eeeeee;
+} 
+
+textarea {                
+	display: block;         
+	padding: 0 1vw;
+	height: 10vw;
+	width: 20vw;   
 	margin-bottom: 1vw;
 	border: 3px solid #eeeeee;
 } 

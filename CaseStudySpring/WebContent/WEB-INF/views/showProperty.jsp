@@ -9,7 +9,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="<spring:url value="/CSS/updateUser.css" />">
+		<link rel="stylesheet" href="<spring:url value="/CSS/showProperty.css" />">
 		<title>Property Detail</title>
 	</head>
 <%
@@ -34,9 +34,11 @@
 				<label>PropertyId (non-input)</label>
 				<input type="number" id="property_id" name="property_id" value="<%=p_id%>"  readonly />
 			</div>
-				<div class="sub_field">
+			<div class="sub_field">
 				<label>Message</label>
-				<input style="width:80%;" type="text" id="user_message" name="user_message"  />
+				<textarea name="user_message" rows="6" cols="30" wrap="soft"> </textarea>
+			<!-- the textarea above worked!!!!!!!!!!!!!!!!!!   -->	
+			<!-- <input style="width:80%;" type="text" id="user_message" name="user_message"  /> -->	
 			</div>
 			<div class="btn">
 				<input type="submit" name="submit"  value="Submit" />

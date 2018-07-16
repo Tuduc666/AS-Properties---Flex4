@@ -10,7 +10,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="<spring:url value="/CSS/ulist.css" />">
-		<title>Admin Detail List</title>
+		<title>Admin AS Properties NYC</title>
 	</head>
 <%
 	User u = (User) request.getAttribute("user");        // only pass in user from the login page
@@ -22,7 +22,7 @@
 	String order = (String) request.getAttribute("order");
 %>
 	<body>
-			<h1>AS Properties</h1>
+			<h1>AS Properties NYC</h1>
 			
 			<div class="background"></div>   
 

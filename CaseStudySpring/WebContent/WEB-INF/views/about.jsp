@@ -19,10 +19,10 @@
 	<p>Hi Everyone,</p><br>
 	
 	<p>My name is Ann Uduc.  I am a licensed real estate sales agent at Showcase Realty.  
-	I am specialized in selling and renting homes in Queens NY.  
+	I am specialized in sales and rentals in all of New York City, but especially in Queens NY.  
 	I have created this web page to put together a list my favorite properties currently available 
 	on the market that I have personally selected.  
-	The name of my website AS Properties stands for Ann&#39;s Selected Properties.</p><br>
+	The name of my website AS Properties NYC stands for Ann&#39;s Selected Properties of New York City.</p><br>
 	
 	<p>If you are interested in selling your home, please contact me and I will list your home in 
 	both the MLS and here on my personal AS Properties website to get you the best price and to get it 
@@ -45,7 +45,7 @@
 	you need to buy, sell, rent, or rent out a home.  My contact information is below. </p><br>
 	
 	Ann Uduc of Showcase Realty Inc<br>
-	(a licensed real estate sales agent)<br>
+	(licensed real estate sales agent)<br>
 	Phone:  347-564-2460<br>
 	Email: Ann@showcaserealtynyc.com<br><br><br>
 
