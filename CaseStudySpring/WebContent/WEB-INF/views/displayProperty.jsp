@@ -28,16 +28,15 @@
 	<p>Sale Type: <%=p.getSales_type()%></p>
 	<p>Property Type: <%=p.getProperty_type()%></p>
 	<p>Number of Bedrooms: <%=p.getBedrooms()%></p>
+	<p>Number of Bathrooms: <%=p.getBathrooms()%></p>
+	<p>Owner Asking Price: <%=p.getAsking_price()%></p>
 	<p>Salesperson Name: <%=p.getSalesperson_name()%></p>
 	<p>Salesperson Phone: <%=p.getSalesperson_phone()%></p>
 	<p>Salesperson Email: <%=p.getSalesperson_email()%></p>
 	<p>Posted Date: <%=p.getPosted_date()%></p>
-	<p>MLS Number: <%=p.getMls_number()%></p>
-	<p>Owner Asking Price: <%=p.getAsking_price()%></p>
-				
+	<p>Description: <br> <%=p.getDescription()%></p>
+					
 	<p><a href="homePage?city=all&state=all&order=date" class="button">Back</a></p>
-
-	
 
 </body>
 </html>

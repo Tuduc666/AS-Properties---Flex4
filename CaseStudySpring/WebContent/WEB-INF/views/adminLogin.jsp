@@ -12,7 +12,7 @@
 <body>
 	<h1>AS Properties Admin Login</h1>
 	<div class="container">
-		<form action="adminLogin" method="post">	
+		<form action="validateAdminLogin" method="post">	
 			<div class="sub_field">
 				<label>Email</label>
 				<input type="text" id="email" name="email"  />

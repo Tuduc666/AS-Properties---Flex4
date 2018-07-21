@@ -29,7 +29,8 @@
 	<nav>
 	<ul>
 <!-- HOME -->
-	    <li><a href="adminDetailList?city=all&state=all&order=date">Home</a></li>
+	    <li><a href="showingDetailList">Home</a></li>
+	    <!-- <li><a href="adminDetailList?city=all&state=all&order=date">Home</a></li> --> 
 		
 <!-- CITY -->
 <!-- Method 1 - one way of doing it, using out.print -->
@@ -100,12 +101,18 @@
 <%
  	PropertyDAO propertyDAO= new PropertyDAO();		
  	List<Property> pl = new ArrayList<Property>();
- 	Boolean admin = u.getUser_type().equals("Admin");
+ 	Boolean admin = u.getUser_type().equals("Admintandha");
  	pl = propertyDAO.getPropertyList(city, state, order, admin);
  	for (Property s : pl){ %>
- 		<div class="flexbox">
+		<% 
+		String bk = " ";
+		// if(s.getStatus().equals("Inactive")) bk = "style=\"background-color:#f4df42\" "; 
+		if(s.getStatus().equals("Inactive")) bk = "style=\"opacity:.1\" "; 
+		%>
+ 		<div class="flexbox"  <%=bk%> >
 		<img src="IMAGES/<%=s.getPhoto_filename()%>" alt="Photo coming soon">
-		<div class="text">
+		<div class="text" >
+			
 			<h2>Asking Price: $<%=s.getAsking_price()%></h2>
 			<p>(<%=s.getSales_type()%>)</p>
 			<p><%=s.getAddress1()%></p>

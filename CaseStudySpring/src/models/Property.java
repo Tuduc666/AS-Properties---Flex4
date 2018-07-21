@@ -9,22 +9,22 @@ public class Property {       // join P_Property with P_Salesperson
 	private String city;
 	private String state;
 	private String zip;
-	private String owner_name;
-	private String owner_phone;
 	private String sales_type;
 	private String property_type;
 	private int bedrooms;
 	private int salesperon_id;
+	private Date posted_date;       
+	private String status;
+	private String photo_filename;
+	private String mls_number;
+	private Float bathrooms;
+	private String description;
+	private String weblink;
+	private Double asking_price;
 	private String salesperson_name;      // display only
 	private String salesperson_phone;     // display only
 	private String salesperson_email;     // display only
 	private Float salesperson_comm;      // display only
-	private Date posted_date;       // Date datatype?????  import from java SQL?????
-	private String mls_number;
-	private Double asking_price;
-	private Double acceptance_price;
-	private String status;
-	private String photo_filename;
 	
 	public int getProperty_id() {
 		return property_id;
@@ -62,18 +62,6 @@ public class Property {       // join P_Property with P_Salesperson
 	public void setZip(String zip) {
 		this.zip = zip;
 	}
-	public String getOwner_name() {
-		return owner_name;
-	}
-	public void setOwner_name(String owner_name) {
-		this.owner_name = owner_name;
-	}
-	public String getOwner_phone() {
-		return owner_phone;
-	}
-	public void setOwner_phone(String owner_phone) {
-		this.owner_phone = owner_phone;
-	}
 	public String getSales_type() {
 		return sales_type;
 	}
@@ -91,6 +79,12 @@ public class Property {       // join P_Property with P_Salesperson
 	}
 	public void setBedrooms(int bedrooms) {
 		this.bedrooms = bedrooms;
+	}
+	public Float getBathrooms() {
+		return bathrooms;
+	}
+	public void setBathrooms(Float bathrooms) {
+		this.bathrooms = bathrooms;
 	}
 	public int getSalesperon_id() {
 		return salesperon_id;
@@ -140,12 +134,6 @@ public class Property {       // join P_Property with P_Salesperson
 	public void setAsking_price(Double asking_price) {
 		this.asking_price = asking_price;
 	}
-	public Double getAcceptance_price() {
-		return acceptance_price;
-	}
-	public void setAcceptance_price(Double acceptance_price) {
-		this.acceptance_price = acceptance_price;
-	}
 	public String getStatus() {
 		return status;
 	}
@@ -157,5 +145,17 @@ public class Property {       // join P_Property with P_Salesperson
 	}
 	public void setPhoto_filename(String photo_filename) {
 		this.photo_filename = photo_filename;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getWeblink() {
+		return weblink;
+	}
+	public void setWeblink(String weblink) {
+		this.weblink = weblink;
 	}
 }

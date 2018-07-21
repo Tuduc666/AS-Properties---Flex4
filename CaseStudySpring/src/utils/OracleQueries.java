@@ -33,13 +33,13 @@ public class OracleQueries {
 			+ "order by p.asking_price, p.property_id";
 	
 	public final static String ADDPROPERTY = "insert into p_property "
-			+ "(address1,address2,city_name,state_code,zipcode,owner_name,owner_phone,sales_type,property_type,"
-			+ "bedrooms,salesperson_id,posted_date,mls_number,asking_price,accepting_price,status,photo_filename) "
+			+ "(address1,address2,city_name,state_code,zipcode,sales_type,property_type,"
+			+ "bedrooms,salesperson_id,posted_date,status,photo_filename,mls_number,bathrooms,description,weblink,asking_price) "
 			+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	public final static String UPDATEPROPERTY = "update p_property "
-			+ "set address1 = ?, address2 = ?, city_name = ?, state_code = ?, zipcode = ?, owner_name = ?, "
-			+ "owner_phone = ?, sales_type = ?, property_type = ?, bedrooms = ?, salesperson_id = ?, "
-			+ "posted_date = ?, mls_number = ?, asking_price = ?, accepting_price = ?, status = ?, photo_filename = ? "
+			+ "set address1 = ?, address2 = ?, city_name = ?, state_code = ?, zipcode = ?, sales_type = ?, property_type = ?, "
+			+ "bedrooms = ?, salesperson_id = ?, posted_date = ?, status = ?, photo_filename = ?, mls_number = ?, "
+			+ "bathrooms = ?, description = ?, weblink = ?, asking_price = ? "
 			+ "where property_id = ?";
 	public final static String INACTIVATEPROPERTYBYID = "update p_property "
 			+ "set status = 'Inactive' where property_id = ?";

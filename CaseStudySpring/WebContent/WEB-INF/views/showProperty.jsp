@@ -36,9 +36,9 @@
 			</div>
 			<div class="sub_field">
 				<label>Message</label>
-				<textarea name="user_message" rows="6" cols="30" wrap="soft"> </textarea>
-			<!-- the textarea above worked!!!!!!!!!!!!!!!!!!   -->	
-			<!-- <input style="width:80%;" type="text" id="user_message" name="user_message"  /> -->	
+				<textarea name="user_message" rows="6" cols="30" placeholder="What day of the week will you be available to view the property?" wrap="soft" ></textarea>
+			<!-- the textarea above worked!!!!!!!!!!!!!!!!!!   -->		
+			<!-- <input style="width:80%;" type="text" id="user_message" name="user_message" placeholder="Enter your message here" /> --> 
 			</div>
 			<div class="btn">
 				<input type="submit" name="submit"  value="Submit" />

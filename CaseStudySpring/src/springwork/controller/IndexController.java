@@ -44,17 +44,12 @@ public class IndexController {
 		return mav;
 	}
 	
-	@RequestMapping("login")      
+	@RequestMapping("/login")      
 	public ModelAndView login() {
 		ModelAndView mav = new ModelAndView("login");
 		return mav;
 	}
 	
-	@RequestMapping("adminLogin")      
-	public ModelAndView adminLogin() {
-		ModelAndView mav = new ModelAndView("adminLogin");
-		return mav;
-	}
 	
 	@PostMapping("/customerLogin")      // called from login view, validate login, call detail list
 	public ModelAndView user_info(
@@ -78,8 +73,14 @@ public class IndexController {
 		return mav;
 	}
 	
-	@PostMapping("/adminLogin")      // called from login view, validate login, call detail list
-	public ModelAndView user_info(
+	@RequestMapping("/adminLogin")      
+	public ModelAndView adminLogin() {
+		ModelAndView mav = new ModelAndView("adminLogin");
+		return mav;
+	}
+	
+	@PostMapping("/validateAdminLogin")      // called from login view, validate login, call detail list
+	public ModelAndView validateAdminLogin(
 			@RequestParam("email") String email,
 			@RequestParam("password") String password) throws IOException, SQLException {
 		
@@ -96,9 +97,9 @@ public class IndexController {
 		
 		mav = new ModelAndView(returnPage);  
 		mav.addObject("user", u);           // the returnPage will make the user a session variable
-		mav.addObject("city", "all");           
-		mav.addObject("state", "all");           
-		mav.addObject("order", "date");           
+			mav.addObject("city", "all");           
+			mav.addObject("state", "all");           
+			mav.addObject("order", "date");           		
 		return mav;
 	}
 	
@@ -111,6 +112,12 @@ public class IndexController {
 		mav.addObject("city", city);           
 		mav.addObject("state", state);           
 		mav.addObject("order", order);  
+		return mav;
+	}
+	
+	@GetMapping("/showingDetailList")          // called from showingDetailList menu bar selection, call showingDetailList
+	public ModelAndView showingDetailList() {
+		ModelAndView mav = new ModelAndView("showingDetailList"); 
 		return mav;
 	}
 	
@@ -250,10 +257,9 @@ public class IndexController {
 //		String email = s.getEmail();
 //		Double comm = s.getComm();
 
-		pDAO.addProperty(p.getAddress1(), p.getAddress2(), p.getCity(), p.getState(), p.getZip(), p.getOwner_name(), 
-				          p.getOwner_phone(), p.getSales_type(), p.getProperty_type(), p.getBedrooms(), p.getSalesperon_id(), 
-				          p.getPosted_date(), p.getMls_number(), p.getAsking_price(), p.getAcceptance_price(), 
-				          p.getStatus(), p.getPhoto_filename());
+		pDAO.addProperty(p.getAddress1(), p.getAddress2(), p.getCity(), p.getState(), p.getZip(), p.getSales_type(), p.getProperty_type(), p.getBedrooms(), p.getSalesperon_id(), 
+				          p.getPosted_date(), p.getStatus(), p.getPhoto_filename(), p.getMls_number(), p.getBathrooms(), p.getDescription(), 
+				          p.getWeblink(), p.getAsking_price());
 		// pDAO.addSalesperson(s.getName(), s.getPhone(), s.getEmail(), s.getComm());
 		// sDAO.addSalesperson("aaa", "222", "aaa@gmail.com", (double) 2.25);
 		
@@ -285,11 +291,10 @@ public class IndexController {
 //		String email = s.getEmail();
 //		Double comm = s.getComm();
 
-		pDAO.updateProperty(p.getProperty_id(), p.getAddress1(), p.getAddress2(), p.getCity(), p.getState(), p.getZip(), p.getOwner_name(), 
-				          p.getOwner_phone(), p.getSales_type(), p.getProperty_type(), p.getBedrooms(), p.getSalesperon_id(), 
-				          p.getPosted_date(), p.getMls_number(), p.getAsking_price(), p.getAcceptance_price(), 
-				          p.getStatus(), p.getPhoto_filename());
-		// sDAO.updateSalesperson(s.getId(), s.getName(), s.getPhone(), s.getEmail(), s.getComm());
+		pDAO.updateProperty(p.getProperty_id(), p.getAddress1(), p.getAddress2(), p.getCity(), p.getState(), p.getZip(), p.getSales_type(), 
+				p.getProperty_type(), p.getBedrooms(), p.getSalesperon_id(), 
+		          p.getPosted_date(), p.getStatus(), p.getPhoto_filename(), p.getMls_number(), p.getBathrooms(), p.getDescription(), 
+		          p.getWeblink(), p.getAsking_price());
 		
 		ModelAndView mav = new ModelAndView("adminDetailList");  
 		mav.addObject("city", "all");           
@@ -323,7 +328,7 @@ public class IndexController {
 	}
 	
 //---------- ADD USER -------------------------------
-	@RequestMapping("addUserProfile")      // call login view to create new user
+	@RequestMapping("/addUserProfile")      // call login view to create new user
 	public ModelAndView addUserProfile() {
 		ModelAndView mav = new ModelAndView("addUserProfile");
 		return mav;
