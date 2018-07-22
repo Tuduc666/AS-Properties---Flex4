@@ -89,7 +89,7 @@ public class PropertyDAOTest {
 
 		String expectedAddr1 = "666 TestBroadway";
 		id = pDAO.addProperty(expectedAddr1, "", "Bronx", "NY", "11111", "Rental", "Condo", 1, 
-				1, sqlDate,  "Active", "P000001.jpg", "8778788", 2.5F, "nice", "link", 5000D);
+				1, sqlDate,  "Active", "P000001.jpg", "8778788", 2.5F, "nice", "link", 5000);
 		Property p = pDAO.getPropertyById(id);		
 		assertEquals(expectedAddr1, p.getAddress1());
 	}
@@ -102,7 +102,7 @@ public class PropertyDAOTest {
 		
 		String expectedAddr1 = "666 UpdatedBroadway";
 		Boolean updt = pDAO.updateProperty(id, expectedAddr1, "", "Bronx", "NY", "11111", "Rental", "Condo", 1, 
-				1, sqlDate,  "Active", "P000001.jpg", "8778788", 2.5F, "nice", "link", 5000D);
+				1, sqlDate,  "Active", "P000001.jpg", "8778788", 2.5F, "nice", "link", 5000);
 		assertTrue(updt);
 		Property p = pDAO.getPropertyById(id);		
 		assertEquals(expectedAddr1, p.getAddress1());

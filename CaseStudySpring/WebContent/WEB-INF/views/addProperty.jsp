@@ -54,7 +54,7 @@
 			</div>
 			<div class="sub_field">
 				<label>Number of Bathrooms</label>
-				<input type="number" id="bathrooms" name="bathrooms" required />
+				<input type="number" step="0.1" id="bathrooms" name="bathrooms" required />
 			</div>
 			<div class="sub_field">
 				<label>Salesperon Id (select one from p_salesperson table)</label>
@@ -70,7 +70,7 @@
 			</div>			
 			<div class="sub_field">
 				<label>Owner Asking Price</label>
-				<input type="number" step="0.01" id="asking_price" name="asking_price" required />
+				<input type="number" id="asking_price" name="asking_price" required />
 			</div>
 			<div class="sub_field">
 				<label>Active / Inactive</label>

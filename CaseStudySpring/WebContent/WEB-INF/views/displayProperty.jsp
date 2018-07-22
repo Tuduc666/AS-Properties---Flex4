@@ -5,6 +5,7 @@
 <%@ page import="models.*,dao.*" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.text.DecimalFormat" %>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -13,7 +14,8 @@
 		<title>Property Detail</title>
 	</head>
 <%
-	Property p = (Property) request.getAttribute("property");   
+	Property p = (Property) request.getAttribute("property"); 
+    DecimalFormat fmt = new DecimalFormat("###,###,###");   // format output of asking price
 %>                                                   
 <body>   <!-- NOTE: names below must match names in model class, not names in SQL table -->
 	<h1>ASP Property Detail</h1>
@@ -29,7 +31,7 @@
 	<p>Property Type: <%=p.getProperty_type()%></p>
 	<p>Number of Bedrooms: <%=p.getBedrooms()%></p>
 	<p>Number of Bathrooms: <%=p.getBathrooms()%></p>
-	<p>Owner Asking Price: <%=p.getAsking_price()%></p>
+	<p>Owner Asking Price: $<%=fmt.format(p.getAsking_price())%></p>
 	<p>Salesperson Name: <%=p.getSalesperson_name()%></p>
 	<p>Salesperson Phone: <%=p.getSalesperson_phone()%></p>
 	<p>Salesperson Email: <%=p.getSalesperson_email()%></p>

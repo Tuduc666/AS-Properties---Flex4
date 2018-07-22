@@ -30,7 +30,7 @@
 			</div>
 			<div class="sub_field">
 				<label>Address (line2)</label>
-				<input type="text" id="address2" name="address2" value="<%=p.getAddress2()%>" required />
+				<input type="text" id="address2" name="address2" value="<%=p.getAddress2()%>" />
 			</div>
 			<div class="sub_field">
 				<label>city</label>
@@ -58,7 +58,7 @@
 			</div>
 			<div class="sub_field">
 				<label>Number of Bathrooms</label>
-				<input type="number" id="bathrooms" name="bathrooms" value="<%=p.getBathrooms()%>" required />
+				<input type="number" step="0.1" id="bathrooms" name="bathrooms" value="<%=p.getBathrooms()%>" required />
 			</div>
 			<div class="sub_field">
 				<label>Salesperson Id (select one from p_salesperson table)</label>
@@ -90,7 +90,7 @@
 			</div>			
 			<div class="sub_field">
 				<label>Owner Asking Price</label>
-				<input type="number" step="0.01" id="asking_price" name="asking_price" value="<%=p.getAsking_price()%>" required />
+				<input type="number" id="asking_price" name="asking_price" value="<%=p.getAsking_price()%>" required />
 			</div>
 			<div class="sub_field">
 				<label>Active / Inactive</label>

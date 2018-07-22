@@ -20,7 +20,7 @@ public class Property {       // join P_Property with P_Salesperson
 	private Float bathrooms;
 	private String description;
 	private String weblink;
-	private Double asking_price;
+	private Integer asking_price;
 	private String salesperson_name;      // display only
 	private String salesperson_phone;     // display only
 	private String salesperson_email;     // display only
@@ -80,17 +80,59 @@ public class Property {       // join P_Property with P_Salesperson
 	public void setBedrooms(int bedrooms) {
 		this.bedrooms = bedrooms;
 	}
+	public int getSalesperon_id() {
+		return salesperon_id;
+	}
+	public void setSalesperon_id(int salesperon_id) {
+		this.salesperon_id = salesperon_id;
+	}
+	public Date getPosted_date() {
+		return posted_date;
+	}
+	public void setPosted_date(Date posted_date) {
+		this.posted_date = posted_date;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getPhoto_filename() {
+		return photo_filename;
+	}
+	public void setPhoto_filename(String photo_filename) {
+		this.photo_filename = photo_filename;
+	}
+	public String getMls_number() {
+		return mls_number;
+	}
+	public void setMls_number(String mls_number) {
+		this.mls_number = mls_number;
+	}
 	public Float getBathrooms() {
 		return bathrooms;
 	}
 	public void setBathrooms(Float bathrooms) {
 		this.bathrooms = bathrooms;
 	}
-	public int getSalesperon_id() {
-		return salesperon_id;
+	public String getDescription() {
+		return description;
 	}
-	public void setSalesperon_id(int salesperon_id) {
-		this.salesperon_id = salesperon_id;
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getWeblink() {
+		return weblink;
+	}
+	public void setWeblink(String weblink) {
+		this.weblink = weblink;
+	}
+	public Integer getAsking_price() {
+		return asking_price;
+	}
+	public void setAsking_price(Integer asking_price) {
+		this.asking_price = asking_price;
 	}
 	public String getSalesperson_name() {
 		return salesperson_name;
@@ -116,46 +158,6 @@ public class Property {       // join P_Property with P_Salesperson
 	public void setSalesperson_comm(Float salesperson_comm) {
 		this.salesperson_comm = salesperson_comm;
 	}
-	public Date getPosted_date() {
-		return posted_date;
-	}
-	public void setPosted_date(Date posted_date) {
-		this.posted_date = posted_date;
-	}
-	public String getMls_number() {
-		return mls_number;
-	}
-	public void setMls_number(String mls_number) {
-		this.mls_number = mls_number;
-	}
-	public Double getAsking_price() {
-		return asking_price;
-	}
-	public void setAsking_price(Double asking_price) {
-		this.asking_price = asking_price;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	public String getPhoto_filename() {
-		return photo_filename;
-	}
-	public void setPhoto_filename(String photo_filename) {
-		this.photo_filename = photo_filename;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public String getWeblink() {
-		return weblink;
-	}
-	public void setWeblink(String weblink) {
-		this.weblink = weblink;
-	}
+	
+	
 }

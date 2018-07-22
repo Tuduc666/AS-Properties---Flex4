@@ -5,6 +5,7 @@
 <%@ page import="models.*,dao.*" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.text.DecimalFormat" %>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -20,6 +21,8 @@
 	String city = (String) request.getAttribute("city");
 	String state = (String) request.getAttribute("state");
 	String order = (String) request.getAttribute("order");
+	
+    DecimalFormat fmt = new DecimalFormat("###,###,###");   // format output of asking price
 %>
 	<body>
 			<h1>AS Properties NYC</h1>
@@ -113,8 +116,7 @@
 		<img src="IMAGES/<%=s.getPhoto_filename()%>" alt="Photo coming soon">
 		<div class="text" >
 			
-			<h2>Asking Price: $<%=s.getAsking_price()%></h2>
-			<p>(<%=s.getSales_type()%>)</p>
+			<h2><%=s.getSales_type()%>: $<%=fmt.format(s.getAsking_price())%></h2> 
 			<p><%=s.getAddress1()%></p>
 			<p><%=s.getCity()%>,&nbsp<%=s.getState()%>&nbsp<%=s.getZip()%></p>
 		</div>
