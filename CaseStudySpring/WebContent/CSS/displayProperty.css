@@ -1,0 +1,36 @@
+body {
+    background-color: #FC9;   /* powderblue */
+    font-size: 1.2vw;
+}
+
+h1 { 
+    text-align: center;
+    letter-spacing: .6vw;                    /* stretches out the h1 */
+    margin: 0;
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+    font-size: 9vw;
+}
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: .7vw .7vw;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.2vw;
+    margin: 1.4vw 1vw 0 2vw;
+    cursor: pointer;
+    width: 4.5vw;
+    height: 1.2vw;
+}
+.button:hover {
+    background-color: #60C;
+}
+img {
+    width: 96%;
+    margin: 1vw 1vw; 
+    float: left;
+    border: groove 1px navy;
+}

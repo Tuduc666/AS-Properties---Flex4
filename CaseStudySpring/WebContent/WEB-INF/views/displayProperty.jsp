@@ -10,7 +10,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="<spring:url value="/CSS/ulist.css" />">
+		<link rel="stylesheet" href="<spring:url value="/CSS/displayProperty.css" />">
 		<title>Property Detail</title>
 	</head>
 <%
