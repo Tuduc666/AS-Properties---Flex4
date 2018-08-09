@@ -41,11 +41,8 @@
 				<input type="text" id="zip" name="zip" required />
 			</div>
 			<div class="sub_field">
-				<label>Sales type</label>
-				<select id="sales_type" name="sales_type" required />
-				  <option value="For Sale">For Sale</option>
-				  <option value="Rental">Rental</option>
-				</select>
+				<label>For Sale / Rental</label>
+				<input type="text" id="sales_type" name="sales_type" required />
 			</div>
 			<div class="sub_field">
 				<label>Single Family/Multi-Family/Condo/Coop/Rental Building/Rent Stabilized</label>

@@ -1,6 +1,5 @@
 body {
     background-color: #FC9;   /* powderblue */
-    font-size: 1.2vw;
 }
 
 .background{             /* the background is defined in a div so we can fade out the photo */
@@ -16,38 +15,40 @@ body {
 
 h1 { 
     text-align: center;
-    letter-spacing: .6vw;                    /* stretches out the h1 */
+    letter-spacing:5px;                    /* stretches out the h1 */
     margin: 0;
     color: white;
     text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
-    font-size: 9vw;
+    font-size: 7rem;
 }
 .flexbox {
 	display: flex;
-	width: 65%;
-    height: 14vw;
-	border: groove .4vw #360;        
-    padding: .5vw .5vw;
+	width: 60%;
+    height: 10rem;
+	border: groove 5px #360;        
+    padding: 1rem 2rem;
     background-color: #ccc;
-    margin: 1vw auto;
+    margin: 1rem auto;
 }
 .flexbox img {
-    width: 20vw;
-    height: 12vw;
-    margin: 1vw 1vw; 
+    width: 16rem;
+    height: 10rem;
+    margin: 0 1rem;
     float: left;
     border: groove 1px navy;
 }
 .text {
     background-color: #CCFFFF26;
-    width: 50%;
-    height: 12vw;
-    margin: 1vw .1vw;
-    padding: 0 .5vw;
+    width: 60%;
+    height: 10rem;
+    margin: 0 1rem;
+    padding: 0 1rem;
     float: left;
 }
 .flexbutton {
     display: flex;
+    width: 6rem;
+    height: 1rem;
     float: right;
     flex-direction: column;
 }
@@ -55,23 +56,20 @@ h1 {
     background-color: #4CAF50;
     border: none;
     color: white;
-    padding: .7vw .7vw;
+    padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 1.2vw;
-    margin: 1.4vw 1vw 0 2vw;
+    font-size: 16px;
+    margin: 4px 2px;
     cursor: pointer;
-    width: 4.5vw;
-    height: 1.2vw;
-}
-.button:hover {
-    background-color: #60C;
+    width: 3rem;
+    height: 1rem;
 }
 footer {
     position: fixed;
     bottom: 0;
-    right: 10vw;
+    right: 10rem;
     color: white;
     text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
     font-weight:700;

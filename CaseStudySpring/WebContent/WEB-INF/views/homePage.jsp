@@ -159,7 +159,7 @@
 //  	}  
  %>
 				
-	<footer>Copyright &copy; 2018 AS Properties.  All rights reserved.</footer>
+	<footer>Copyright &copy; 2018 AS Properties NYC.  All rights reserved.</footer>
 		
 	</body>
 </html>
