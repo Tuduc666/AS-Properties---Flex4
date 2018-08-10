@@ -113,7 +113,7 @@
 		if(s.getStatus().equals("Inactive")) bk = "style=\"opacity:.1\" "; 
 		%>
  		<div class="flexbox"  <%=bk%> >
-		<img src="IMAGES/<%=s.getPhoto_filename()%>" alt="Photo coming soon">
+		<a href="updateProperty?id=<%=s.getProperty_id()%>"><img src="IMAGES/<%=s.getPhoto_filename()%>" alt="Photo coming soon"></a>
 		<div class="text" >
 			
 			<h2><%=s.getSales_type()%>: $<%=fmt.format(s.getAsking_price())%></h2> 

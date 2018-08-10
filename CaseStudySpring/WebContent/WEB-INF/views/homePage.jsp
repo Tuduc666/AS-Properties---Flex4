@@ -9,9 +9,12 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<meta name="description" content="NYC Real Estate Website by Ann Uduc, a NYS Licensed Real Estate Agent.  Homes for sale, buy, and rent.">
+  		<meta name="keywords" content="NYC,Real Estate,Ann Uduc,Licensed Real Estate Agent,Homes,Houses,Apartments,Sale,Buy,Rent">
+  		<meta name="author" content="Ann Uduc">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="<spring:url value="/CSS/ulist.css" />">
-		<title>AS Properties NYC</title>
+		<title>AS Properties NYC - Homes for sale, buy, and rent in NYC - by Ann Uduc</title>
 	</head>
 <%
 	User u = (User) request.getAttribute("user");        // only pass in user from the login page
@@ -25,9 +28,10 @@
     DecimalFormat fmt = new DecimalFormat("###,###,###");   // format output of asking price
 %>
 	<body>
-			<h1>AS Properties NYC</h1>
-			
-			<div class="background"></div>   
+		<h1>AS Properties NYC</h1>
+		<h6>(Ann's Selected Properties NYC)</h6>
+		
+		<div class="background"></div>   
 
 	<nav>
 	<ul>
@@ -119,7 +123,7 @@
  	pl = propertyDAO.getPropertyList(city, state, order, false);
  	for (Property s : pl){ %>
  		<div class="flexbox">
-		<img src="IMAGES/<%=s.getPhoto_filename()%>" alt="Photo coming soon">
+		<a href="displayProperty?id=<%=s.getProperty_id()%>"><img src="IMAGES/<%=s.getPhoto_filename()%>" alt="Photo coming soon"></a>
 		<div class="text">
 			<h2><%=s.getSales_type()%>: $<%=fmt.format(s.getAsking_price())%></h2> 
 			<p><%=s.getAddress1()%></p>
@@ -159,7 +163,7 @@
 //  	}  
  %>
 				
-	<footer>Copyright &copy; 2018 AS Properties NYC.  All rights reserved.</footer>
+	<footer><a href="contact">Ann Uduc, NYS Licensed Real Estate Agent...  Copyright &copy; 2018 AS Properties NYC.  All rights reserved.</a></footer>
 		
 	</body>
 </html>
