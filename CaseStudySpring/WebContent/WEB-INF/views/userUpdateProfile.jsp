@@ -25,19 +25,23 @@
 		
 			<div class="sub_field">
 				<label>(non-input)</label>
-				<input type="text" id="user_type" name="user_type" value="<%=u.getUser_type()%>" readonly />
+				<input style="background-color:#ccc;" type="text" id="user_type" name="user_type" value="<%=u.getUser_type()%>" readonly />
 			</div>
 			<div class="sub_field">
 				<label>UserId (non-input)</label>
-				<input type="number" id="user_id" name="user_id" value=${userkey.getUser_id() } readonly />
+				<input style="background-color:#ccc;" type="number" id="user_id" name="user_id" value=${userkey.getUser_id() } readonly />
 			</div>
 			<div class="sub_field">
 				<label>Full Name</label>
-				<input type="text" id="user_name" name="user_name" value="<%=u.getUser_name()%>"  />
+				<input type="text" id="user_name" name="user_name" required />
 			</div>
 			<div class="sub_field">
 				<label>Email</label>
 				<input type="email" id="email" name="email" value="<%=u.getEmail()%>" required />
+			</div>
+			<div class="sub_field">
+				<label>Phone</label>
+				<input type="phone" id="phone" name="phone" required />
 			</div>
 			
 			<div class="btn">

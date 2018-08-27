@@ -131,9 +131,10 @@
 		</div>
 		<div class="flexbutton">
 			<a href="displayProperty?id=<%=s.getProperty_id()%>" class="button">Detail</a>
-			<a href="contact" class="button">Contact</a>	
-		<!-- ***** put the following back in when done with the admin home page to show list of requests -->		
-		<!-- ***** <a href="showProperty?id=<%=s.getProperty_id()%>" class="button">Request</a> -->			
+			<a href="showProperty?id=<%=s.getProperty_id()%>" class="button">Request</a>
+				
+		
+		<!-- ***** <a href="contact" class="button">Contact</a> -->			
 		 	        	
 		</div>  
 	</div>
@@ -163,7 +164,7 @@
 //  	}  
  %>
 				
-	<footer><a href="contact">Ann Uduc, NYS Licensed Real Estate Agent...  Copyright &copy; 2018 AS Properties NYC.  All rights reserved.</a></footer>
+	<footer><a href="contact">Ann Uduc, NYS Licensed Real Estate Agent. All listings deemed reliable but not guaranteed. Copyright &copy; 2018 AS Properties NYC.  All rights reserved.</a></footer>
 		
 	</body>
 </html>

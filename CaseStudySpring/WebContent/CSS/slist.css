@@ -34,7 +34,7 @@ h6 {
 .flexbox {
 	display: flex;
 	width: 65%;
-    height: 14vw;
+    height: 20vw;
 	border: groove .4vw #360;        
     padding: .5vw .5vw;
     background-color: #ccc;
@@ -43,7 +43,7 @@ h6 {
 }
 .flexbox img {
     width: 20vw;
-    height: 12vw;
+    height: 18vw;
     margin: 1vw 1vw; 
     float: left;
     border: groove 1px navy;
@@ -54,11 +54,12 @@ h6 {
 .text {
     background-color: #CCFFFF26;
     width: 50%;
-    height: 12vw;
+    height: 18vw;
     margin: 1vw .1vw;
     padding: 0 .5vw;
     float: left;
     color: #330;
+    font-size: 1.1vw;
 }
 .flexbutton {
     display: flex;

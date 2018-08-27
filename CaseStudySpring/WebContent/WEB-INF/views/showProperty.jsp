@@ -15,13 +15,22 @@
 <%
 	Integer p_id = (Integer) request.getAttribute("propertyid");   
 	User u = (User) session.getAttribute("userkey");
-	String user_email = "";
-	if (u != null) user_email = u.getEmail();
+	String user_email = ""; String user_name = "";
+	if (u != null) {
+		user_email = u.getEmail();
+		user_name = u.getUser_name();
+	}
 %>                                                   
 <body>   <!-- NOTE: names below must match names in model class, not names in SQL table -->
 	<h1>ASP Showing Request</h1>
 	<div class="container">
 		<form action="showingSQL" method="post">	
+		<p style="margin-top:1vw;">To request a showing, please contact Ann Uduc at 347-564-2460, email: Ann@showcaserealtynyc.com</p>
+		<p>Or simply fill in and submit your information below and we will contact you.</p>
+			<div class="sub_field">
+				<label>Full Name</label>
+				<input type="text" id="user_name" name="user_name" value="<%=user_name%>" required />
+			</div>
 			<div class="sub_field">
 				<label>Email</label>
 				<input type="email" id="email" name="email" value="<%=user_email%>" required />
@@ -32,11 +41,11 @@
 			</div>
 			<div class="sub_field">
 				<label>PropertyId (non-input)</label>
-				<input type="number" id="property_id" name="property_id" value="<%=p_id%>"  readonly />
+				<input style="background-color:#ccc;" type="number" id="property_id" name="property_id" value="<%=p_id%>"  readonly />
 			</div>
 			<div class="sub_field">
 				<label>Message</label>
-				<textarea name="user_message" rows="6" cols="30" placeholder="What day of the week will you be available to view the property?" wrap="soft" ></textarea>
+				<textarea name="user_message" rows="6" cols="30" placeholder="Message to the agent..." wrap="soft" ></textarea>
 			<!-- the textarea above worked!!!!!!!!!!!!!!!!!!   -->		
 			<!-- <input style="width:80%;" type="text" id="user_message" name="user_message" placeholder="Enter your message here" /> --> 
 			</div>

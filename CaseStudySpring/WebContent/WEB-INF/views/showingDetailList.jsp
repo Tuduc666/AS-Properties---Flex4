@@ -9,7 +9,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="<spring:url value="/CSS/ulist.css" />">
+		<link rel="stylesheet" href="<spring:url value="/CSS/slist.css" />">
 		<title>Showing Detail List</title>
 	</head>
 <%
@@ -22,7 +22,7 @@
 // 	String order = (String) request.getAttribute("order");
 %>
 	<body>
-			<h1>ASP Showing Requests</h1>
+			<h1>Showing Requests</h1>
 			
 			<div class="background"></div>   
 
@@ -49,22 +49,21 @@
 <!-- DETAIL LIST -->
 <!-- HERE!!!! Need to change to show showing requests list instead!!!!!!!!! -->
 <%
- 	PropertyDAO propertyDAO= new PropertyDAO();		
- 	List<Property> pl = new ArrayList<Property>();
- 	Boolean admin = u.getUser_type().equals("Admin");
- 	pl = propertyDAO.getPropertyList("all", "all", "date", admin);
- 	for (Property s : pl){ %>
+ 	ShowingDetailDAO ShowingDetailDAO= new ShowingDetailDAO();		
+ 	List<ShowingDetail> dl = new ArrayList<ShowingDetail>();
+ 	dl = ShowingDetailDAO.getShowingDetailList();
+ 	for (ShowingDetail s : dl){ %>
  		<div class="flexbox">
 		<img src="IMAGES/<%=s.getPhoto_filename()%>" alt="Photo coming soon">
 		<div class="text">
-			<h2>Asking Price: $<%=s.getAsking_price()%></h2>
-			<p>(<%=s.getSales_type()%>)</p>
-			<p><%=s.getAddress1()%></p>
-			<p><%=s.getCity()%>,&nbsp<%=s.getState()%>&nbsp<%=s.getZip()%></p>
+			<h4>(id=<%=s.getProperty_id()%>)&nbsp<%=s.getAddress1()%>&nbsp<%=s.getCity()%>,&nbsp<%=s.getState()%>&nbsp<%=s.getZip()%></h4>
+			<p style="margin-top:-1vw;">User: <%=s.getUser_name()%></p>
+			<p style="margin-top:-1vw;">Email: <%=s.getEmail()%></p>
+			<p style="margin-top:-1vw;">Phone: <%=s.getPhone()%></p>
+			<p style="margin-top:-1vw;"><%=s.getUser_message()%></p>
 		</div>
 		<div class="flexbutton">
-			<a href="updateProperty?id=<%=s.getProperty_id()%>" class="button">Update</a>
-			<a href="inactivateProperty?id=<%=s.getProperty_id()%>" class="button">Inactivate</a>		
+			<a href="dismissShowing?id=<%=s.getProperty_id()%>&email=<%=s.getEmail()%>" class="button">Dismiss</a>		
 		</div>  
 	</div>
  <%	}  %>

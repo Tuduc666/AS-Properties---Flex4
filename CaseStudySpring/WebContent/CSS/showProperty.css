@@ -17,11 +17,11 @@ form {
 	padding : 1vw;
 	margin : 2vw;  
 }
-input {
+input, select{
 	display: block;         
 	padding: 0 1vw;
 	height: 2vw;
-	width: 20vw;   
+	width: 25vw;   
 	margin-bottom: 1vw;
 	border: 3px solid #eeeeee;
 } 
@@ -34,6 +34,11 @@ textarea {
 	margin-bottom: 1vw;
 	border: 3px solid #eeeeee;
 } 
+
+div p {
+	margin-top : -1vw;  
+	font-size: 1.1vw;
+}
 
 body,html{
 	height: 100%;

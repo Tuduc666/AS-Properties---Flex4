@@ -29,55 +29,65 @@
 				<input type="text" id="address2" name="address2"  />
 			</div>
 			<div class="sub_field">
-				<label>city</label>
+				<label>City</label>
 				<input type="text" id="city" name="city" required />
 			</div>
 			<div class="sub_field">
-				<label>state</label>
+				<label>State</label>
 				<input type="text" id="state" name="state" value="NY" required />
 			</div>
 			<div class="sub_field">
-				<label>zip</label>
+				<label>Zip</label>
 				<input type="text" id="zip" name="zip" required />
 			</div>
 			<div class="sub_field">
 				<label>Sales type</label>
 				<select id="sales_type" name="sales_type" required />
 				  <option value="For Sale">For Sale</option>
-				  <option value="Rental">Rental</option>
+				  <option value="Rental" selected="selected">Rental</option>
 				</select>
 			</div>
 			<div class="sub_field">
-				<label>Single Family/Multi-Family/Condo/Coop/Rental Building/Rent Stabilized</label>
-				<input type="text" id="property_type" name="property_type" required />
+				<label>Property type</label>
+				<select id="property_type" name="property_type" required />
+				  <option value="Single Family">Single Family</option>
+				  <option value="Multi-Family">Multi-Family</option>
+				  <option value="Condo">Condo</option>
+				  <option value="Coop" selected="selected">Coop</option>
+				  <option value="Rental Building">Rental Building</option>
+				  <option value="Rent Stabilized">Rent Stabilized</option>
+				</select>
 			</div>
 			<div class="sub_field">
-				<label>Number of Bedrooms</label>
+				<label>Number of bedrooms</label>
 				<input type="number" id="bedrooms" name="bedrooms" required />
 			</div>
 			<div class="sub_field">
-				<label>Number of Bathrooms</label>
+				<label>Number of bathrooms</label>
 				<input type="number" step="0.1" id="bathrooms" name="bathrooms" required />
 			</div>
 			<div class="sub_field">
-				<label>Salesperon Id (select one from p_salesperson table)</label>
+				<label>Salesperon id (select one from p_salesperson table)</label>
 				<input type="number" id="salesperon_id" name="salesperon_id" value=1 />
 			</div>
 			<div class="sub_field">
-				<label>Posted Date</label>
+				<label>Posted date</label>
 				<input type="date" id="posted_date" name="posted_date" required />
 			</div>
 			<div class="sub_field">
-				<label>MLS Number</label>
+				<label>MLS number</label>
 				<input type="text" id="mls_number" name="mls_number"  />
 			</div>			
 			<div class="sub_field">
-				<label>Owner Asking Price</label>
+				<label>Owner asking price</label>
 				<input type="number" id="asking_price" name="asking_price" required />
 			</div>
 			<div class="sub_field">
-				<label>Active / Inactive</label>
-				<input type="text" id="status" name="status" required />
+				<label>Status</label>
+				<select id="status" name="status" required />
+				  <option value="Active">Active</option>
+				  <option value="Inactive">Inactive</option>
+				</select>
 			</div>			
 			<div class="sub_field">
 				<label>PhotoFilename.jpg (from WebContent/IMAGES)</label>

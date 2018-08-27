@@ -20,11 +20,15 @@
 		
 			<div class="sub_field">
 				<label>Full Name</label>
-				<input type="text" id="user_name" name="user_name"  />
+				<input type="text" id="user_name" name="user_name" required />
 			</div>
 			<div class="sub_field">
 				<label>Email</label>
 				<input type="email" id="email" name="email" required />
+			</div>
+			<div class="sub_field">
+				<label>Phone</label>
+				<input type="phone" id="phone" name="phone" />
 			</div>
 			
 			<div class="btn">
