@@ -52,7 +52,8 @@ public class ShowingDAO {
 		return showing;
 	}
 	
-	public Boolean addShowing(String email, Integer property_id, String user_message, String phone) throws IOException, SQLException {
+	public Boolean addShowing(String email, Integer property_id, String user_message, String phone, 
+			                                        String user_name) throws IOException, SQLException {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		Integer result = null;          
@@ -64,6 +65,7 @@ public class ShowingDAO {
 			stmt.setInt(2, property_id);
 			stmt.setString(3, user_message);
 			stmt.setString(4, phone);
+			stmt.setString(5, user_name);
 			result = stmt.executeUpdate();					
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -121,6 +123,32 @@ public class ShowingDAO {
 			conn = OracleConnection.getConnection();
 			stmt = conn.prepareStatement(OracleQueries.DELETESHOWING);    
 			stmt.setInt(1, show_id);       
+			result = stmt.executeUpdate();
+						
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if(stmt != null) {
+				stmt.close();
+			}
+			if(conn != null) {
+				conn.close();
+			}
+		}
+		return result > 0;                    
+	}
+	
+	public boolean dismissShowing(Integer property_id, String email) throws IOException, SQLException {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		Integer result = null;           
+		
+		try {
+			conn = OracleConnection.getConnection();
+			stmt = conn.prepareStatement(OracleQueries.DISMISSSHOWING);    
+			stmt.setInt(1, property_id);          
+			stmt.setString(2, email);          
 			result = stmt.executeUpdate();
 						
 		} catch (ClassNotFoundException e) {

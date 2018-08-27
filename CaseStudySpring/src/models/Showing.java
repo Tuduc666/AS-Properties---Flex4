@@ -7,7 +7,7 @@ public class Showing {
 	private int property_id;
 	private String user_message;
 	private String status;
-	
+	private String user_name;
 	public int getShow_id() {
 		return show_id;
 	}
@@ -43,5 +43,11 @@ public class Showing {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public String getUser_name() {
+		return user_name;
+	}
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
 }

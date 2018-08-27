@@ -142,7 +142,7 @@ public class IndexController {
 //		String pass = u.getUser_password();
 //		userDAO.updateUser(3, "Bruce Lee", "404 Lex", "", "Rego Park", "NY", 
 //				"11374", "666-666-6666", "lee@gmail.com", "Customer", "leep");
-		userDAO.updateUser(u.getUser_id(), u.getUser_name(), "111", u.getEmail(), u.getUser_type(), "Customer");
+		userDAO.updateUser(u.getUser_id(), u.getUser_name(), u.getPhone(), u.getEmail(), u.getUser_type(), "Customer");
 		
 		ModelAndView mav = new ModelAndView("homePage");
 		mav.addObject("user", u);          
@@ -339,9 +339,14 @@ public class IndexController {
 		UserDAO uDAO = new UserDAO();
 		User uNew = new User();
 		
-		Integer i  = uDAO.addUser(u.getUser_name(), "111", u.getEmail(), "Customer", "Customer");
-		uNew = uDAO.getUserById(i);
-		// sDAO.updateSalesperson(s.getId(), s.getName(), s.getPhone(), s.getEmail(), s.getComm());
+		// check if user already exist.  Insert SQL record would crash because of duplicate record.
+		// if uNew is not null, then just pass it back to homePage below
+		uNew = uDAO.isValidUser(u.getEmail());  
+		
+		if(uNew==null) {
+			Integer i  = uDAO.addUser(u.getUser_name(), u.getPhone(), u.getEmail(), "Customer", "Customer");
+			uNew = uDAO.getUserById(i);
+		}
 		
 		ModelAndView mav = new ModelAndView("homePage");  
 		mav.addObject("user", uNew); 
@@ -365,13 +370,30 @@ public class IndexController {
 		ShowingDAO sDAO = new ShowingDAO();
 		
 		Showing old = sDAO.getShowing(s.getEmail(), s.getProperty_id());
-		if(old==null) sDAO.addShowing(s.getEmail(), s.getProperty_id(), s.getUser_message(), s.getPhone());
+		if(old==null) sDAO.addShowing(s.getEmail(), s.getProperty_id(), s.getUser_message(), 
+				                                                  s.getPhone(), s.getUser_name());
 		else sDAO.updateShowing(s.getEmail(), s.getProperty_id(), s.getUser_message(), "Active", s.getPhone());
+		
+		// check if user does already exist, then add user
+		UserDAO uDAO = new UserDAO();
+		User uNew = uDAO.isValidUser(s.getEmail());  
+		if(uNew==null) uDAO.addUser(s.getUser_name(), s.getPhone(), s.getEmail(), "Customer", "Customer");
 		
 		ModelAndView mav = new ModelAndView("homePage");  
 		mav.addObject("city", "all");           
 		mav.addObject("state", "all");           
 		mav.addObject("order", "date");   
+		return mav;
+	}
+	
+	@GetMapping("/dismissShowing")      // called from showingDetailList detail line, inactivate a showing record, return to showingDetailList
+	public ModelAndView inactivateProperty(@RequestParam("id") Integer id,
+			                           @RequestParam("email") String email) throws IOException, SQLException {	
+		
+		ShowingDAO sDAO = new ShowingDAO();	
+		sDAO.dismissShowing(id, email);
+		
+		ModelAndView mav = new ModelAndView("showingDetailList");    
 		return mav;
 	}
 	

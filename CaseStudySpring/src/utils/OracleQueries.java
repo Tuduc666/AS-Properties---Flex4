@@ -49,21 +49,22 @@ public class OracleQueries {
 	public final static String GETSHOWING = "select * from p_requestshowing " 
 			+ "where email = ? and property_id = ?";
 	public final static String ADDSHOWING = "insert into p_requestshowing "
-			+ "(email,property_id,user_message, status, phone) "
-			+ "values(?,?,?,'Active',?)";
+			+ "(email,property_id,user_message, status, phone, user_name) "
+			+ "values(?,?,?,'Active',?,?)";
 	public final static String UPDATESHOWING = "update p_requestshowing "
 			+ "set user_message = ?, status = ?, phone = ? "
 			+ "where email = ? and property_id = ?";
 	public final static String DELETESHOWING = "delete from p_requestshowing "
 			+ "where show_id = ?";
+	public final static String DISMISSSHOWING = "update p_requestshowing "
+			+ "set status = 'Inactive' where property_id = ? and email = ?";
 	
-	public final static String GETSHOWINGDETAILLIST = "select s.user_id, u.user_name, "
-			+ "u.email, u.phone, s.user_message, s.property_id, p.address1, p.city_name, "
-			+ "p.state_code, p.zipcode, p.photo_filename from p_requestshowing s "
-			+ "join p_user u on s.user_id = u.user_id "  
+	public final static String GETSHOWINGDETAILLIST = "select s.user_name, "
+			+ "s.email, s.phone, s.user_message, s.property_id, p.address1, p.city_name, "
+			+ "p.state_code, p.zipcode, p.photo_filename from p_requestshowing s "  
 			+ "join p_property p on s.property_id = p.property_id "  
 			+ "where s.status = 'Active' "
-			+ "order by s.show_id";
+			+ "order by s.show_id desc";
 	
 	public final static String GETSALESPERSONBYID = "select * from p_salesperson " 
 			+ "where salesperson_id = ?";
