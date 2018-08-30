@@ -35,7 +35,7 @@ h6 {
 	display: flex;
 	width: 65%;
     height: 14vw;
-	border: groove .4vw #360;        
+	border: groove .2vw #360;        
     padding: .5vw .5vw;
     background-color: #ccc;
     margin: 1vw auto;
@@ -46,7 +46,7 @@ h6 {
     height: 12vw;
     margin: 1vw 1vw; 
     float: left;
-    border: groove 1px navy;
+    border: groove .1vw navy;
 }
 .flexbox img:hover {
     opacity: .5;
@@ -111,7 +111,7 @@ li a, .dropbtn {
     display: inline-block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 1vw 2vw;
     text-decoration: none;
 }
     
@@ -130,7 +130,7 @@ li.dropdown {
     display: none;
     position: absolute;
     background-color: #e6ffff;
-    min-width: 160px;
+    min-width: 15vw;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
@@ -138,7 +138,7 @@ li.dropdown {
 /* this is each cell in the dropdown list */
 .dropdown-content a {
     color: purple;
-    padding: 8px 16px;
+    padding: .5vw .8vw;
     text-decoration: none;
     display: block;
     text-align: left;

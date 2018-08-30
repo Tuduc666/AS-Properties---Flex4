@@ -62,7 +62,7 @@ public class IndexController {
 		UserDAO uDAO = null; uDAO = new UserDAO();
 		u = uDAO.isValidUser(email); 
 		
-		if(u==null) returnPage = "login";
+		if(u==null || !u.getUser_type().equals("Customer")) returnPage = "login";
 		else returnPage = "homePage";
 		
 		mav = new ModelAndView(returnPage);  

@@ -28,7 +28,7 @@
     DecimalFormat fmt = new DecimalFormat("###,###,###");   // format output of asking price
 %>
 	<body>
-		<h1>AS Properties NYC</h1>
+		<h1  onclick="showDropdown('cleardrop')">AS Properties NYC</h1>
 		<h6>(Ann's Selected Properties NYC)</h6>
 		
 		<div class="background"></div>   
@@ -38,11 +38,12 @@
 <!-- HOME -->
 	    <li><a href="homePage?city=all&state=all&order=date">Home</a></li>
 		
-<!-- CITY -->
+<!-- CITY -->  <!-- added JavaScript onclick to solve the IOS hover issue on mobile devices -->
 <!-- Method 1 - one way of doing it, using out.print -->
 	    <li class="dropdown">
-		<a class="dropbtn" style="color:yellow;" id="selectCity">City:<%=city%></a>
-		<div class="dropdown-content">
+		<a class="dropbtn" style="color:yellow;" id="selectCity" 
+		   onclick="showDropdown('selectCitydrop')">City:<%=city%></a>
+		<div class="dropdown-content" id="selectCitydrop" >
 			<a href="homePage?city=all&state=<%=state%>&order=<%=order%>">City:All</a>
 			<%
 				CityDAO cityDAO= new CityDAO();		
@@ -58,11 +59,12 @@
 		</div>
 	    </li>
 
-<!-- STATE -->
+<!-- STATE -->  <!-- added JavaScript onclick to solve the IOS hover issue on mobile devices -->
 <!-- Method 2 - another way of doing it, using expression function -->
 	    <li class="dropdown">
-		<a class="dropbtn" style="color:yellow;" id="selectState">State:<%=state%></a>
-		<div class="dropdown-content">
+		<a class="dropbtn" style="color:yellow;" id="selectState" 
+		   onclick="showDropdown('selectStatedrop')">State:<%=state%></a>
+		<div class="dropdown-content" id="selectStatedrop">
 			<a href="homePage?city=<%=city%>&state=all&order=<%=order%>">State:All</a>
 			<%
 				StateDAO stateDAO= new StateDAO();		
@@ -77,10 +79,11 @@
 		</div>
 	    </li>
 
-<!-- ORDER BY -->
+<!-- ORDER BY -->  <!-- added JavaScript onclick to solve the IOS hover issue on mobile devices -->
 	  	<li class="dropdown">
-		<a class="dropbtn" style="color:powderblue;" id="orderBy">Order by:<%=order%></a>
-		<div class="dropdown-content">
+		<a class="dropbtn" style="color:powderblue;" id="orderBy" 
+		   onclick="showDropdown('orderBydrop')">Order by:<%=order%></a>
+		<div class="dropdown-content" id="orderBydrop">
 			<a href="homePage?city=<%=city%>&state=<%=state%>&order=date">Order by Posted Date</a>
 			<a href="homePage?city=<%=city%>&state=<%=state%>&order=price">Order by Price</a>
 		</div>
@@ -101,10 +104,10 @@
 	}
 	else {
 %>	
-<!-- login -->
+<!-- login -->  <!-- added JavaScript onclick to solve the IOS hover issue on mobile devices -->
 	  	<li class="dropdown">
-		<a class="dropbtn" id="login">Login</a>
-		<div class="dropdown-content">
+		<a class="dropbtn" id="login" onclick="showDropdown('logindrop')">Login</a>
+		<div class="dropdown-content" id="logindrop">
 			<a href="login">Customer Login</a>
 			<a href="adminLogin">Admin Login</a>
 		</div>
@@ -122,7 +125,7 @@
  	List<Property> pl = new ArrayList<Property>();
  	pl = propertyDAO.getPropertyList(city, state, order, false);
  	for (Property s : pl){ %>
- 		<div class="flexbox">
+ 		<div class="flexbox" onclick="showDropdown('cleardrop')">
 		<a href="displayProperty?id=<%=s.getProperty_id()%>"><img src="IMAGES/<%=s.getPhoto_filename()%>" alt="Photo coming soon"></a>
 		<div class="text">
 			<h2><%=s.getSales_type()%>: $<%=fmt.format(s.getAsking_price())%></h2> 
@@ -165,6 +168,9 @@
  %>
 				
 	<footer><a href="contact">Ann Uduc, NYS Licensed Real Estate Agent. All listings deemed reliable but not guaranteed. Copyright &copy; 2018 AS Properties NYC.  All rights reserved.</a></footer>
-		
+	
+    <script src="<spring:url value="/SCRIPT/homePage.js" />"></script>     
+	<noscript>Sorry, your browser does not support JavaScript!</noscript>
+
 	</body>
 </html>
