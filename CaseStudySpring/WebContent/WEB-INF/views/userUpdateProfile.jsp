@@ -24,31 +24,54 @@
 		<form action="userUpdateSQL" method="post">	
 		
 			<div class="sub_field">
-				<label>(non-input)</label>
-				<input style="background-color:#ccc;" type="text" id="user_type" name="user_type" value="<%=u.getUser_type()%>" readonly />
+				<label>User type (non-input)</label>
+				<input type="text" id="user_type" name="user_type" value="<%=u.getUser_type()%>" readonly />
 			</div>
 			<div class="sub_field">
 				<label>UserId (non-input)</label>
-				<input style="background-color:#ccc;" type="number" id="user_id" name="user_id" value=${userkey.getUser_id() } readonly />
+				<input type="number" id="user_id" name="user_id" value=${userkey.getUser_id() } readonly />
 			</div>
 			<div class="sub_field">
 				<label>Full Name</label>
-				<input type="text" id="user_name" name="user_name" required />
+				<input type="text" id="user_name" name="user_name" value="<%=u.getUser_name()%>"  />
+			</div>
+			<div class="sub_field">
+				<label>Address</label>
+				<input type="text" id="address1" name="address1" value="<%=u.getAddress1()%>"  />
+			</div>
+			<div class="sub_field">
+				<label>Address (line2)</label>
+				<input type="text" id="address2" name="address2" value="<%=u.getAddress2()%>"  />
+			</div>
+			<div class="sub_field">
+				<label>city</label>
+				<input type="text" id="city" name="city" value="<%=u.getCity()%>"  />
+			</div>
+			<div class="sub_field">
+				<label>state</label>
+				<input type="text" id="state" name="state" value=${userkey.getState() }  />
+			</div>
+			<div class="sub_field">
+				<label>zip</label>
+				<input type="text" id="zip" name="zip" value="<%=u.getZip()%>" />
+			</div>
+			<div class="sub_field">
+				<label>phone</label>
+				<input type="text" id="phone" name="phone" value="<%=u.getPhone()%>"  />
 			</div>
 			<div class="sub_field">
 				<label>Email</label>
-				<input type="email" id="email" name="email" value="<%=u.getEmail()%>" required />
+				<input type="text" id="email" name="email" value="<%=u.getEmail()%>"  />
 			</div>
 			<div class="sub_field">
-				<label>Phone</label>
-				<input type="phone" id="phone" name="phone" required />
+				<label>Password</label>
+				<input type="password" id="user_password" name="user_password" value="<%=u.getUser_password()%>"  />
 			</div>
 			
 			<div class="btn">
 				<input type="submit" name="submit"  value="Update Info" />
 			</div>
 		</form>
-		<!-- <p>Important:  You must use only unique password that you don't use anywhere else.</p> -->
 	</div>
 </body>
 </html>

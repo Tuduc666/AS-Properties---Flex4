@@ -1,4 +1,3 @@
-package springwork.controller;
 //package springwork.controller;
 //
 //import java.io.IOException;
@@ -25,7 +24,7 @@ package springwork.controller;
 //import models.User;
 //
 //@Controller
-//public class IndexController {
+//public class IndexController_saved {
 //
 //	@RequestMapping("/")      // call login view at the beginning
 //	public ModelAndView index() {
@@ -50,7 +49,7 @@ package springwork.controller;
 //		
 //		User u = null; u = new User();
 //		UserDAO uDAO = null; uDAO = new UserDAO();
-////		u = uDAO.isValidUser(email, password); 
+//		u = uDAO.isValidUser(email, password); 
 //		
 //		if(u==null) returnPage = "login";
 //		else {

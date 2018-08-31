@@ -21,7 +21,7 @@
 	<nav>
 	<ul>
 <!-- HOME -->
-	    <li><a href="showingDetailList">Home</a></li>
+	    <li><a href="adminDetailList?city=all&state=all&order=date">Home</a></li>
 
 <!-- Add Salesperson -->
 	    <li><a href="addSalesperson">Add Salesperson</a></li>

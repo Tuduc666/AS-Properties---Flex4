@@ -5,13 +5,12 @@
 <%@ page import="models.*,dao.*" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.text.DecimalFormat" %>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="<spring:url value="/CSS/ulist.css" />">
-		<title>Admin AS Properties NYC</title>
+		<title>Admin Detail List</title>
 	</head>
 <%
 	User u = (User) request.getAttribute("user");        // only pass in user from the login page
@@ -21,26 +20,22 @@
 	String city = (String) request.getAttribute("city");
 	String state = (String) request.getAttribute("state");
 	String order = (String) request.getAttribute("order");
-	
-    DecimalFormat fmt = new DecimalFormat("###,###,###");   // format output of asking price
 %>
 	<body>
-			<h1>AS Properties NYC</h1>
+			<h1>AS Properties</h1>
 			
 			<div class="background"></div>   
 
 	<nav>
 	<ul>
 <!-- HOME -->
-	    <li><a href="showingDetailList">Home</a></li>
-	    <!-- <li><a href="adminDetailList?city=all&state=all&order=date">Home</a></li> --> 
+	    <li><a href="adminDetailList?city=all&state=all&order=date">Home</a></li>
 		
-<!-- CITY -->  <!-- added JavaScript onclick to solve the IOS hover issue on mobile devices -->
+<!-- CITY -->
 <!-- Method 1 - one way of doing it, using out.print -->
 	    <li class="dropdown">
-		<a class="dropbtn" style="color:yellow;" id="selectCity" 
-		   onclick="showDropdown('selectCitydrop')">City:<%=city%></a>
-		<div class="dropdown-content" id="selectCitydrop" >
+		<a class="dropbtn" style="color:yellow;" id="selectCity">City:<%=city%></a>
+		<div class="dropdown-content">
 			<a href="adminDetailList?city=all&state=<%=state%>&order=<%=order%>">City:All</a>
 			<%
 				CityDAO cityDAO= new CityDAO();		
@@ -56,12 +51,11 @@
 		</div>
 	    </li>
 
-<!-- STATE -->  <!-- added JavaScript onclick to solve the IOS hover issue on mobile devices -->
+<!-- STATE -->
 <!-- Method 2 - another way of doing it, using expression function -->
 	    <li class="dropdown">
-		<a class="dropbtn" style="color:yellow;" id="selectState" 
-		   onclick="showDropdown('selectStatedrop')">State:<%=state%></a>
-		<div class="dropdown-content" id="selectStatedrop">
+		<a class="dropbtn" style="color:yellow;" id="selectState">State:<%=state%></a>
+		<div class="dropdown-content">
 			<a href="adminDetailList?city=<%=city%>&state=all&order=<%=order%>">State:All</a>
 			<%
 				StateDAO stateDAO= new StateDAO();		
@@ -76,11 +70,10 @@
 		</div>
 	    </li>
 
-<!-- ORDER BY -->  <!-- added JavaScript onclick to solve the IOS hover issue on mobile devices -->
+<!-- ORDER BY -->
 	  	<li class="dropdown">
-		<a class="dropbtn" style="color:powderblue;" id="orderBy" 
-		   onclick="showDropdown('orderBydrop')">Order by:<%=order%></a>
-		<div class="dropdown-content" id="orderBydrop">
+		<a class="dropbtn" style="color:powderblue;" id="orderBy">Order by:<%=order%></a>
+		<div class="dropdown-content">
 			<a href="adminDetailList?city=<%=city%>&state=<%=state%>&order=date">Order by Posted Date</a>
 			<a href="adminDetailList?city=<%=city%>&state=<%=state%>&order=price">Order by Price</a>
 		</div>
@@ -95,7 +88,7 @@
 	    <!------- li><a href="usersMaintenance.html">Users List Maintenance</a></li>                -->
 	    
 <!-- UPDATE PROFILE -->
-	    <!-- <li><a href="adminUpdateProfile">Update Profile</a></li> -->
+	    <li><a href="adminUpdateProfile">Update Profile</a></li>
 	    
 <!-- logout -->
 	    <li><a href="logout">Logout</a></li>
@@ -107,19 +100,14 @@
 <%
  	PropertyDAO propertyDAO= new PropertyDAO();		
  	List<Property> pl = new ArrayList<Property>();
- 	Boolean admin = u.getUser_type().equals("Admintandha");
+ 	Boolean admin = u.getUser_type().equals("Admin");
  	pl = propertyDAO.getPropertyList(city, state, order, admin);
  	for (Property s : pl){ %>
-		<% 
-		String bk = " ";
-		// if(s.getStatus().equals("Inactive")) bk = "style=\"background-color:#f4df42\" "; 
-		if(s.getStatus().equals("Inactive")) bk = "style=\"opacity:.1\" "; 
-		%>
- 		<div class="flexbox" onclick="showDropdown('cleardrop')" <%=bk%> >
-		<a href="updateProperty?id=<%=s.getProperty_id()%>"><img src="IMAGES/<%=s.getPhoto_filename()%>" alt="Photo coming soon"></a>
-		<div class="text" >
-			
-			<h2><%=s.getSales_type()%>: $<%=fmt.format(s.getAsking_price())%></h2> 
+ 		<div class="flexbox">
+		<img src="IMAGES/<%=s.getPhoto_filename()%>" alt="Property Photo">
+		<div class="text">
+			<h2>Asking Price: $<%=s.getAsking_price()%></h2>
+			<p>(<%=s.getSales_type()%>)</p>
 			<p><%=s.getAddress1()%></p>
 			<p><%=s.getCity()%>,&nbsp<%=s.getState()%>&nbsp<%=s.getZip()%></p>
 		</div>
@@ -155,9 +143,6 @@
  %>
 				
 	<footer>Copyright &copy; 2018 AS Properties.  All rights reserved.</footer>
-	
-    <script src="<spring:url value="/SCRIPT/homePage.js" />"></script>     
-	<noscript>Sorry, your browser does not support JavaScript!</noscript>
 		
 	</body>
 </html>

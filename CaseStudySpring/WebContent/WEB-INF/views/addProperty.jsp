@@ -9,7 +9,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="<spring:url value="/CSS/showProperty.css" />">
+		<link rel="stylesheet" href="<spring:url value="/CSS/updateUser.css" />">
 		<title>Add Property</title>
 	</head>
 <%
@@ -22,84 +22,71 @@
 			
 			<div class="sub_field">
 				<label>Address</label>
-				<input type="text" id="address1" name="address1" required />
+				<input type="text" id="address1" name="address1"  />
 			</div>
 			<div class="sub_field">
 				<label>Address (line2)</label>
 				<input type="text" id="address2" name="address2"  />
 			</div>
 			<div class="sub_field">
-				<label>City</label>
-				<input type="text" id="city" name="city" required />
+				<label>city</label>
+				<input type="text" id="city" name="city"  />
 			</div>
 			<div class="sub_field">
-				<label>State</label>
-				<input type="text" id="state" name="state" value="NY" required />
+				<label>state</label>
+				<input type="text" id="state" name="state"  />
 			</div>
 			<div class="sub_field">
-				<label>Zip</label>
-				<input type="text" id="zip" name="zip" required />
+				<label>zip</label>
+				<input type="text" id="zip" name="zip"  />
 			</div>
 			<div class="sub_field">
-				<label>Sales type</label>
-				<select id="sales_type" name="sales_type" required />
-				  <option value="For Sale">For Sale</option>
-				  <option value="Rental" selected="selected">Rental</option>
-				</select>
+				<label>Owner Name</label>
+				<input type="text" id="owner_name" name="owner_name" />
 			</div>
 			<div class="sub_field">
-				<label>Property type</label>
-				<select id="property_type" name="property_type" required />
-				  <option value="Single Family">Single Family</option>
-				  <option value="Multi-Family">Multi-Family</option>
-				  <option value="Condo">Condo</option>
-				  <option value="Coop" selected="selected">Coop</option>
-				  <option value="Rental Building">Rental Building</option>
-				  <option value="Rent Stabilized">Rent Stabilized</option>
-				</select>
+				<label>Owner Phone</label>
+				<input type="text" id="owner_phone" name="owner_phone"  />
 			</div>
 			<div class="sub_field">
-				<label>Number of bedrooms</label>
-				<input type="number" id="bedrooms" name="bedrooms" required />
+				<label>For Sale / Rental</label>
+				<input type="text" id="sales_type" name="sales_type"  />
 			</div>
 			<div class="sub_field">
-				<label>Number of bathrooms</label>
-				<input type="number" step="0.1" id="bathrooms" name="bathrooms" required />
+				<label>Single Family,Multi-Family,Condo,Coop</label>
+				<input type="text" id="property_type" name="property_type"  />
 			</div>
 			<div class="sub_field">
-				<label>Salesperon id (select one from p_salesperson table)</label>
-				<input type="number" id="salesperon_id" name="salesperon_id" value=1 />
+				<label>Number of Bedrooms</label>
+				<input type="number" id="bedrooms" name="bedrooms"  />
 			</div>
 			<div class="sub_field">
-				<label>Posted date</label>
-				<input type="date" id="posted_date" name="posted_date" required />
+				<label>Salesperon Id (select one from p_salesperson table)</label>
+				<input type="number" id="salesperon_id" name="salesperon_id"  />
 			</div>
 			<div class="sub_field">
-				<label>MLS number</label>
+				<label>Posted Date</label>
+				<input type="date" id="posted_date" name="posted_date"  />
+			</div>
+			<div class="sub_field">
+				<label>MLS Number</label>
 				<input type="text" id="mls_number" name="mls_number"  />
 			</div>			
 			<div class="sub_field">
-				<label>Owner asking price</label>
-				<input type="number" id="asking_price" name="asking_price" required />
+				<label>Owner Asking Price</label>
+				<input type="number" step="0.01" id="asking_price" name="asking_price"  />
 			</div>
 			<div class="sub_field">
-				<label>Status</label>
-				<select id="status" name="status" required />
-				  <option value="Active">Active</option>
-				  <option value="Inactive">Inactive</option>
-				</select>
+				<label>Owner Acceptance Price</label>
+				<input type="number" step="0.01" id="acceptance_price" name="acceptance_price"  />
+			</div>
+			<div class="sub_field">
+				<label>Active / Inactive</label>
+				<input type="text" id="status" name="status"  />
 			</div>			
 			<div class="sub_field">
 				<label>PhotoFilename.jpg (from WebContent/IMAGES)</label>
 				<input type="text" id="photo_filename" name="photo_filename"  />
-			</div>
-			<div class="sub_field">
-				<label>Description</label>
-				<textarea name="description" rows="8" cols="40" placeholder="Enter property description" wrap="soft" ></textarea>
-			</div>			
-			<div class="sub_field">
-				<label>Weblink</label>
-				<input type="text" id="weblink" name="weblink"  />
 			</div>			
 		
 			<div class="btn">

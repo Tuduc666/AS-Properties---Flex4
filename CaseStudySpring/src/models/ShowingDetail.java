@@ -1,6 +1,7 @@
 package models;
 
 public class ShowingDetail {
+	private int user_id;
 	private String user_name;
 	private String email; 
 	private String phone;
@@ -12,6 +13,12 @@ public class ShowingDetail {
 	private String zip;
 	private String photo_filename;
 	
+	public int getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
+	}
 	public String getUser_name() {
 		return user_name;
 	}
