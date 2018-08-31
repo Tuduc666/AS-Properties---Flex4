@@ -3,14 +3,11 @@ package springwork.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -47,15 +44,43 @@ public class IndexController {
 		return mav;
 	}
 	
-	@RequestMapping("login")      
+	@RequestMapping("/login")      
 	public ModelAndView login() {
 		ModelAndView mav = new ModelAndView("login");
 		return mav;
 	}
 	
-	// testdata - TamD@yahoo.com  adminp, lee@gmail.com  leep
-	@PostMapping("/validateLogin")      // called from login view, validate login, call detail list
+	
+	@PostMapping("/customerLogin")      // called from login view, validate login, call detail list
 	public ModelAndView user_info(
+			@RequestParam("email") String email) throws IOException, SQLException {
+		
+		String returnPage = "login";
+		ModelAndView mav = null;
+		
+		User u = null; u = new User();
+		UserDAO uDAO = null; uDAO = new UserDAO();
+		u = uDAO.isValidUser(email); 
+		
+		if(u==null || !u.getUser_type().equals("Customer")) returnPage = "login";
+		else returnPage = "homePage";
+		
+		mav = new ModelAndView(returnPage);  
+		mav.addObject("user", u);           // the returnPage will make the user a session variable
+		mav.addObject("city", "all");           
+		mav.addObject("state", "all");           
+		mav.addObject("order", "date");           
+		return mav;
+	}
+	
+	@RequestMapping("/adminLogin")      
+	public ModelAndView adminLogin() {
+		ModelAndView mav = new ModelAndView("adminLogin");
+		return mav;
+	}
+	
+	@PostMapping("/validateAdminLogin")      // called from login view, validate login, call detail list
+	public ModelAndView validateAdminLogin(
 			@RequestParam("email") String email,
 			@RequestParam("password") String password) throws IOException, SQLException {
 		
@@ -64,19 +89,17 @@ public class IndexController {
 		
 		User u = null; u = new User();
 		UserDAO uDAO = null; uDAO = new UserDAO();
-		u = uDAO.isValidUser(email, password); 
+		u = uDAO.isValidAdmin(email, password); 
 		
 		if(u==null) returnPage = "login";
-		else {
-			if(u.getUser_type().equals("Admin")) returnPage = "showingDetailList";
-			else returnPage = "homePage";
-		}
+		else if(u.getUser_type().equals("Admintandha")) returnPage = "showingDetailList";
+		else returnPage = "homePage";
 		
 		mav = new ModelAndView(returnPage);  
 		mav.addObject("user", u);           // the returnPage will make the user a session variable
-		mav.addObject("city", "all");           
-		mav.addObject("state", "all");           
-		mav.addObject("order", "date");           
+			mav.addObject("city", "all");           
+			mav.addObject("state", "all");           
+			mav.addObject("order", "date");           		
 		return mav;
 	}
 	
@@ -89,6 +112,12 @@ public class IndexController {
 		mav.addObject("city", city);           
 		mav.addObject("state", state);           
 		mav.addObject("order", order);  
+		return mav;
+	}
+	
+	@GetMapping("/showingDetailList")          // called from showingDetailList menu bar selection, call showingDetailList
+	public ModelAndView showingDetailList() {
+		ModelAndView mav = new ModelAndView("showingDetailList"); 
 		return mav;
 	}
 	
@@ -113,8 +142,7 @@ public class IndexController {
 //		String pass = u.getUser_password();
 //		userDAO.updateUser(3, "Bruce Lee", "404 Lex", "", "Rego Park", "NY", 
 //				"11374", "666-666-6666", "lee@gmail.com", "Customer", "leep");
-		userDAO.updateUser(u.getUser_id(), u.getUser_name(), u.getAddress1(), u.getAddress2(), u.getCity(), u.getState(), 
-				u.getZip(), u.getPhone(), u.getEmail(), u.getUser_type(), u.getUser_password());
+		userDAO.updateUser(u.getUser_id(), u.getUser_name(), u.getPhone(), u.getEmail(), u.getUser_type(), "Customer");
 		
 		ModelAndView mav = new ModelAndView("homePage");
 		mav.addObject("user", u);          
@@ -127,8 +155,7 @@ public class IndexController {
 	@PostMapping("/adminUpdateSQL")      // called from userUpdateProfile view, update SQL, call homePage
 	public ModelAndView adminUpdateSQL(@ModelAttribute User u) throws IOException, SQLException {	
 		UserDAO userDAO = new UserDAO();
-		userDAO.updateUser(u.getUser_id(), u.getUser_name(), u.getAddress1(), u.getAddress2(), u.getCity(), u.getState(), 
-				u.getZip(), u.getPhone(), u.getEmail(), u.getUser_type(), u.getUser_password());
+		userDAO.updateUser(u.getUser_id(), u.getUser_name(), u.getPhone(), u.getEmail(), u.getUser_type(), u.getUser_password());
 		
 		ModelAndView mav = new ModelAndView("adminDetailList");
 		mav.addObject("user", u);          
@@ -230,10 +257,9 @@ public class IndexController {
 //		String email = s.getEmail();
 //		Double comm = s.getComm();
 
-		pDAO.addProperty(p.getAddress1(), p.getAddress2(), p.getCity(), p.getState(), p.getZip(), p.getOwner_name(), 
-				          p.getOwner_phone(), p.getSales_type(), p.getProperty_type(), p.getBedrooms(), p.getSalesperon_id(), 
-				          p.getPosted_date(), p.getMls_number(), p.getAsking_price(), p.getAcceptance_price(), 
-				          p.getStatus(), p.getPhoto_filename());
+		pDAO.addProperty(p.getAddress1(), p.getAddress2(), p.getCity(), p.getState(), p.getZip(), p.getSales_type(), p.getProperty_type(), p.getBedrooms(), p.getSalesperon_id(), 
+				          p.getPosted_date(), p.getStatus(), p.getPhoto_filename(), p.getMls_number(), p.getBathrooms(), p.getDescription(), 
+				          p.getWeblink(), p.getAsking_price());
 		// pDAO.addSalesperson(s.getName(), s.getPhone(), s.getEmail(), s.getComm());
 		// sDAO.addSalesperson("aaa", "222", "aaa@gmail.com", (double) 2.25);
 		
@@ -265,11 +291,10 @@ public class IndexController {
 //		String email = s.getEmail();
 //		Double comm = s.getComm();
 
-		pDAO.updateProperty(p.getProperty_id(), p.getAddress1(), p.getAddress2(), p.getCity(), p.getState(), p.getZip(), p.getOwner_name(), 
-				          p.getOwner_phone(), p.getSales_type(), p.getProperty_type(), p.getBedrooms(), p.getSalesperon_id(), 
-				          p.getPosted_date(), p.getMls_number(), p.getAsking_price(), p.getAcceptance_price(), 
-				          p.getStatus(), p.getPhoto_filename());
-		// sDAO.updateSalesperson(s.getId(), s.getName(), s.getPhone(), s.getEmail(), s.getComm());
+		pDAO.updateProperty(p.getProperty_id(), p.getAddress1(), p.getAddress2(), p.getCity(), p.getState(), p.getZip(), p.getSales_type(), 
+				p.getProperty_type(), p.getBedrooms(), p.getSalesperon_id(), 
+		          p.getPosted_date(), p.getStatus(), p.getPhoto_filename(), p.getMls_number(), p.getBathrooms(), p.getDescription(), 
+		          p.getWeblink(), p.getAsking_price());
 		
 		ModelAndView mav = new ModelAndView("adminDetailList");  
 		mav.addObject("city", "all");           
@@ -303,7 +328,7 @@ public class IndexController {
 	}
 	
 //---------- ADD USER -------------------------------
-	@RequestMapping("addUserProfile")      // call login view to create new user
+	@RequestMapping("/addUserProfile")      // call login view to create new user
 	public ModelAndView addUserProfile() {
 		ModelAndView mav = new ModelAndView("addUserProfile");
 		return mav;
@@ -314,10 +339,14 @@ public class IndexController {
 		UserDAO uDAO = new UserDAO();
 		User uNew = new User();
 		
-		Integer i  = uDAO.addUser(u.getUser_name(), u.getAddress1(), u.getAddress2(), u.getCity(), u.getState(), u.getZip(), u.getPhone(), 
-						u.getEmail(), "Customer", u.getUser_password());
-		uNew = uDAO.getUserById(i);
-		// sDAO.updateSalesperson(s.getId(), s.getName(), s.getPhone(), s.getEmail(), s.getComm());
+		// check if user already exist.  Insert SQL record would crash because of duplicate record.
+		// if uNew is not null, then just pass it back to homePage below
+		uNew = uDAO.isValidUser(u.getEmail());  
+		
+		if(uNew==null) {
+			Integer i  = uDAO.addUser(u.getUser_name(), u.getPhone(), u.getEmail(), "Customer", "Customer");
+			uNew = uDAO.getUserById(i);
+		}
 		
 		ModelAndView mav = new ModelAndView("homePage");  
 		mav.addObject("user", uNew); 
@@ -341,13 +370,46 @@ public class IndexController {
 		ShowingDAO sDAO = new ShowingDAO();
 		
 		Showing old = sDAO.getShowing(s.getEmail(), s.getProperty_id());
-		if(old==null) sDAO.addShowing(s.getEmail(), s.getProperty_id(), s.getUser_message());
-		else sDAO.updateShowing(s.getEmail(), s.getProperty_id(), s.getUser_message(), "Active");
+		if(old==null) sDAO.addShowing(s.getEmail(), s.getProperty_id(), s.getUser_message(), 
+				                                                  s.getPhone(), s.getUser_name());
+		else sDAO.updateShowing(s.getEmail(), s.getProperty_id(), s.getUser_message(), "Active", s.getPhone());
+		
+		// check if user does already exist, then add user
+		UserDAO uDAO = new UserDAO();
+		User uNew = uDAO.isValidUser(s.getEmail());  
+		if(uNew==null) uDAO.addUser(s.getUser_name(), s.getPhone(), s.getEmail(), "Customer", "Customer");
 		
 		ModelAndView mav = new ModelAndView("homePage");  
 		mav.addObject("city", "all");           
 		mav.addObject("state", "all");           
 		mav.addObject("order", "date");   
+		return mav;
+	}
+	
+	@GetMapping("/dismissShowing")      // called from showingDetailList detail line, inactivate a showing record, return to showingDetailList
+	public ModelAndView inactivateProperty(@RequestParam("id") Integer id,
+			                           @RequestParam("email") String email) throws IOException, SQLException {	
+		
+		ShowingDAO sDAO = new ShowingDAO();	
+		sDAO.dismissShowing(id, email);
+		
+		ModelAndView mav = new ModelAndView("showingDetailList");    
+		return mav;
+	}
+	
+	// temporary replacing showProperty
+	@GetMapping("/contact")   // called from homePage detail line button, call displayProperty view
+	public ModelAndView contact() throws IOException, SQLException {
+		
+		ModelAndView mav = new ModelAndView("contact");
+		return mav;
+	}
+	
+	//---------- ABOUT -------------------------------
+	@GetMapping("/about")   // called from homePage detail line button, call displayProperty view
+	public ModelAndView about() throws IOException, SQLException {
+		
+		ModelAndView mav = new ModelAndView("about");
 		return mav;
 	}
 }

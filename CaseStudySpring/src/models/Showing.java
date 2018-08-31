@@ -3,10 +3,11 @@ package models;
 public class Showing {
 	private int show_id;
 	private String email;
+	private String phone;
 	private int property_id;
 	private String user_message;
 	private String status;
-	
+	private String user_name;
 	public int getShow_id() {
 		return show_id;
 	}
@@ -18,6 +19,12 @@ public class Showing {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	public int getProperty_id() {
 		return property_id;
@@ -36,5 +43,11 @@ public class Showing {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public String getUser_name() {
+		return user_name;
+	}
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
 }

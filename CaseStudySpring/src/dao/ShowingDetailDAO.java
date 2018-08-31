@@ -22,22 +22,21 @@ public class ShowingDetailDAO {
 		
 		try {
 			conn = OracleConnection.getConnection();
-			stmt = conn.prepareStatement(OracleQueries.GETSHOWINGDETAILLIST);
+			stmt = conn.prepareStatement(OracleQueries.GETSHOWINGDETAILLIST);  // returns only active showing requests
 			
 			result = stmt.executeQuery();
 			while(result.next()) {
 				sd = new ShowingDetail();
-				sd.setUser_id(result.getInt(1));
-				sd.setUser_name(result.getString(2));
-				sd.setEmail(result.getString(3));
-				sd.setPhone(result.getString(4));
-				sd.setUser_message(result.getString(5));
-				sd.setProperty_id(result.getInt(6));
-				sd.setAddress1(result.getString(7));
-				sd.setCity(result.getString(8));
-				sd.setState(result.getString(9));
-				sd.setZip(result.getString(10));
-				sd.setPhoto_filename(result.getString(11));		
+				sd.setUser_name(result.getString(1));
+				sd.setEmail(result.getString(2));
+				sd.setPhone(result.getString(3));
+				sd.setUser_message(result.getString(4));
+				sd.setProperty_id(result.getInt(5));
+				sd.setAddress1(result.getString(6));
+				sd.setCity(result.getString(7));
+				sd.setState(result.getString(8));
+				sd.setZip(result.getString(9));
+				sd.setPhoto_filename(result.getString(10));		
 				
 				l.add(sd);
 			}
@@ -60,5 +59,4 @@ public class ShowingDetailDAO {
 		
 		return l;
 	}
-	
 }

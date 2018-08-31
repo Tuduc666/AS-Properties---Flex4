@@ -1,5 +1,6 @@
 body {
     background-color: #FC9;   /* powderblue */
+    font-size: 1.2vw;
 }
 
 .background{             /* the background is defined in a div so we can fade out the photo */
@@ -15,64 +16,87 @@ body {
 
 h1 { 
     text-align: center;
-    letter-spacing:5px;                    /* stretches out the h1 */
+    letter-spacing: .6vw;                    /* stretches out the h1 */
     margin: 0;
     color: white;
     text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
-    font-size: 7rem;
+    font-size: 9vw;
+}
+h6 { 
+	position: relative;
+	left: 10vw;
+    letter-spacing: .1vw;                    /* stretches out the h1 */
+    margin-top: -1vw;
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 2px blue, 0 0 2px darkblue;
+    font-size: .8vw;
 }
 .flexbox {
 	display: flex;
-	width: 60%;
-    height: 10rem;
-	border: groove 5px #360;        
-    padding: 1rem 2rem;
+	width: 65%;
+    height: 14vw;
+	border: groove .2vw #360;        
+    padding: .5vw .5vw;
     background-color: #ccc;
-    margin: 1rem auto;
+    margin: 1vw auto;
+    border-radius: 3vw;
 }
 .flexbox img {
-    width: 16rem;
-    height: 10rem;
-    margin: 0 1rem;
+    width: 20vw;
+    height: 12vw;
+    margin: 1vw 1vw; 
     float: left;
-    border: groove 1px navy;
+    border: groove .1vw navy;
+}
+.flexbox img:hover {
+    opacity: .5;
 }
 .text {
     background-color: #CCFFFF26;
-    width: 60%;
-    height: 10rem;
-    margin: 0 1rem;
-    padding: 0 1rem;
+    width: 50%;
+    height: 12vw;
+    margin: 1vw .1vw;
+    padding: 0 .5vw;
     float: left;
+    color: #330;
 }
 .flexbutton {
     display: flex;
-    width: 6rem;
-    height: 1rem;
     float: right;
     flex-direction: column;
 }
 .button {
     background-color: #4CAF50;
-    border: none;
+    border: groove .1vw #360; 
+    border-radius: 1vw;
     color: white;
-    padding: 10px 20px;
+    padding: .7vw .7vw;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
+    font-size: 1.2vw;
+    margin: 1.4vw 1vw 0 2vw;
     cursor: pointer;
-    width: 3rem;
-    height: 1rem;
+    width: 4.5vw;
+    height: 1.2vw;
+}
+.button:hover {
+    opacity: .5;
 }
 footer {
     position: fixed;
     bottom: 0;
-    right: 10rem;
+    right: 10vw;
     color: white;
     text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
     font-weight:700;
+    font-size: 1vw;
+}
+footer a {           /* this is needed because we wrap the <a> tag around the footer's text */
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+    font-weight:700;
+    font-size: 1vw;
 }
 
 /*  ---------------------------  Navigation Bar  --------------------------------------*/
@@ -87,7 +111,7 @@ li a, .dropbtn {
     display: inline-block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 1vw 2vw;
     text-decoration: none;
 }
     
@@ -106,7 +130,7 @@ li.dropdown {
     display: none;
     position: absolute;
     background-color: #e6ffff;
-    min-width: 160px;
+    min-width: 15vw;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
@@ -114,7 +138,7 @@ li.dropdown {
 /* this is each cell in the dropdown list */
 .dropdown-content a {
     color: purple;
-    padding: 8px 16px;
+    padding: .5vw .8vw;
     text-decoration: none;
     display: block;
     text-align: left;

@@ -33,13 +33,13 @@ public class OracleQueries {
 			+ "order by p.asking_price, p.property_id";
 	
 	public final static String ADDPROPERTY = "insert into p_property "
-			+ "(address1,address2,city_name,state_code,zipcode,owner_name,owner_phone,sales_type,property_type,"
-			+ "bedrooms,salesperson_id,posted_date,mls_number,asking_price,accepting_price,status,photo_filename) "
+			+ "(address1,address2,city_name,state_code,zipcode,sales_type,property_type,"
+			+ "bedrooms,salesperson_id,posted_date,status,photo_filename,mls_number,bathrooms,description,weblink,asking_price) "
 			+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	public final static String UPDATEPROPERTY = "update p_property "
-			+ "set address1 = ?, address2 = ?, city_name = ?, state_code = ?, zipcode = ?, owner_name = ?, "
-			+ "owner_phone = ?, sales_type = ?, property_type = ?, bedrooms = ?, salesperson_id = ?, "
-			+ "posted_date = ?, mls_number = ?, asking_price = ?, accepting_price = ?, status = ?, photo_filename = ? "
+			+ "set address1 = ?, address2 = ?, city_name = ?, state_code = ?, zipcode = ?, sales_type = ?, property_type = ?, "
+			+ "bedrooms = ?, salesperson_id = ?, posted_date = ?, status = ?, photo_filename = ?, mls_number = ?, "
+			+ "bathrooms = ?, description = ?, weblink = ?, asking_price = ? "
 			+ "where property_id = ?";
 	public final static String INACTIVATEPROPERTYBYID = "update p_property "
 			+ "set status = 'Inactive' where property_id = ?";
@@ -49,21 +49,22 @@ public class OracleQueries {
 	public final static String GETSHOWING = "select * from p_requestshowing " 
 			+ "where email = ? and property_id = ?";
 	public final static String ADDSHOWING = "insert into p_requestshowing "
-			+ "(email,property_id,user_message, status) "
-			+ "values(?,?,?,'Active')";
+			+ "(email,property_id,user_message, status, phone, user_name) "
+			+ "values(?,?,?,'Active',?,?)";
 	public final static String UPDATESHOWING = "update p_requestshowing "
-			+ "set user_message = ?, status = ? "
+			+ "set user_message = ?, status = ?, phone = ? "
 			+ "where email = ? and property_id = ?";
 	public final static String DELETESHOWING = "delete from p_requestshowing "
 			+ "where show_id = ?";
+	public final static String DISMISSSHOWING = "update p_requestshowing "
+			+ "set status = 'Inactive' where property_id = ? and email = ?";
 	
-	public final static String GETSHOWINGDETAILLIST = "select s.user_id, u.user_name, "
-			+ "u.email, u.phone, s.user_message, s.property_id, p.address1, p.city_name, "
-			+ "p.state_code, p.zipcode, p.photo_filename from p_requestshowing s "
-			+ "join p_user u on s.user_id = u.user_id "  
+	public final static String GETSHOWINGDETAILLIST = "select s.user_name, "
+			+ "s.email, s.phone, s.user_message, s.property_id, p.address1, p.city_name, "
+			+ "p.state_code, p.zipcode, p.photo_filename from p_requestshowing s "  
 			+ "join p_property p on s.property_id = p.property_id "  
 			+ "where s.status = 'Active' "
-			+ "order by s.show_id";
+			+ "order by s.show_id desc";
 	
 	public final static String GETSALESPERSONBYID = "select * from p_salesperson " 
 			+ "where salesperson_id = ?";
@@ -81,15 +82,16 @@ public class OracleQueries {
 			+ "where user_id = ?";
 	public final static String GETALLUSERS = "select * from p_user order by user_id";
 	public final static String ADDUSER = "insert into p_user "
-			+ "(user_name,address1,address2,city_name,state_code,zipcode,phone,email,user_type,user_password) "
-			+ "values(?,?,?,?,?,?,?,?,?,?)";
+			+ "(user_name,phone,email,user_type,user_password) "
+			+ "values(?,?,?,?,?)";
 	public final static String UPDATEUSER = "update p_user "
-			+ "set user_name=?, address1=?, address2=?, city_name=?, state_code=?, zipcode=?,"
-			+ "phone = ?, email = ?, user_type = ?, user_password = ? "
+			+ "set user_name=?, phone = ?, email = ?, user_type = ?, user_password = ? "
 			+ "where user_id = ?";
 	public final static String DELETEUSER = "delete from p_user "
 			+ "where user_id = ?";
 	public final static String ISVALIDUSER = "select * from p_user " 
+			+ "where email = ? ";
+	public final static String ISVALIDADMIN = "select * from p_user " 
 			+ "where email = ? and user_password = ? ";
 	
 	public final static String GETALLSTATES = "select * from p_state order by code";

@@ -28,15 +28,10 @@ public class UserDAO {
 				user = new User();
 				user.setUser_id(result.getInt(1));
 				user.setUser_name(result.getString(2));
-				user.setAddress1(result.getString(3));
-				user.setAddress2(result.getString(4));
-				user.setCity(result.getString(5));
-				user.setState(result.getString(6));
-				user.setZip(result.getString(7));
-				user.setPhone(result.getString(8));
-				user.setEmail(result.getString(9));		
-				user.setUser_type(result.getString(10));		
-				user.setUser_password(result.getString(11));		
+				user.setPhone(result.getString(3));
+				user.setEmail(result.getString(4));		
+				user.setUser_type(result.getString(5));		
+				user.setUser_password(result.getString(6));		
 			}
 			
 		} catch (ClassNotFoundException e) {
@@ -73,14 +68,10 @@ public class UserDAO {
 				user = new User();
 				user.setUser_id(result.getInt(1));
 				user.setUser_name(result.getString(2));
-				user.setAddress1(result.getString(3));
-				user.setAddress2(result.getString(4));
-				user.setCity(result.getString(5));
-				user.setState(result.getString(6));
-				user.setZip(result.getString(7));
-				user.setPhone(result.getString(8));
-				user.setEmail(result.getString(9));		
-				user.setUser_type(result.getString(10));
+				user.setPhone(result.getString(3));
+				user.setEmail(result.getString(4));		
+				user.setUser_type(result.getString(5));		
+				user.setUser_password(result.getString(6));		
 				l.add(user);
 			}
 			
@@ -103,8 +94,8 @@ public class UserDAO {
 		return l;
 	}
 	
-	public int addUser(String user_name, String address1, String address2, String city, String state, String zip,
-			String phone, String email, String user_type, String password) throws IOException, SQLException {
+	public int addUser(String user_name, String phone, String email, String user_type, 
+			                                               String password) throws IOException, SQLException {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		String[] COL = {"user_id"};        // use to get automatic sequence number for field "attending_id"   
@@ -115,15 +106,10 @@ public class UserDAO {
 			conn = OracleConnection.getConnection();
 			stmt = conn.prepareStatement(OracleQueries.ADDUSER, COL);    // use COL to get value of generated key
 			stmt.setString(1, user_name);
-			stmt.setString(2, address1);
-			stmt.setString(3, address2);
-			stmt.setString(4, city);
-			stmt.setString(5, state);
-			stmt.setString(6, zip);
-			stmt.setString(7, phone);
-			stmt.setString(8, email);
-			stmt.setString(9, user_type);
-			stmt.setString(10, password);
+			stmt.setString(2, phone);
+			stmt.setString(3, email.toUpperCase());
+			stmt.setString(4, user_type);
+			stmt.setString(5, password);
 			stmt.executeUpdate();
 			// get the value of generated key
 			result = stmt.getGeneratedKeys();
@@ -145,8 +131,8 @@ public class UserDAO {
 		return new_id;                    // new_id is needed for j-unit testing
 	}
 
-	public boolean updateUser(Integer user_id, String user_name, String address1, String address2, String city, String state, String zip,
-			String phone, String email, String user_type, String password) throws IOException, SQLException {
+	public boolean updateUser(Integer user_id, String user_name, String phone, 
+			                   String email, String user_type, String password) throws IOException, SQLException {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		Integer result = null;           
@@ -155,16 +141,11 @@ public class UserDAO {
 			conn = OracleConnection.getConnection();
 			stmt = conn.prepareStatement(OracleQueries.UPDATEUSER);    
 			stmt.setString(1, user_name);
-			stmt.setString(2, address1);
-			stmt.setString(3, address2);
-			stmt.setString(4, city);
-			stmt.setString(5, state);
-			stmt.setString(6, zip);
-			stmt.setString(7, phone);
-			stmt.setString(8, email);
-			stmt.setString(9, user_type);
-			stmt.setString(10, password);
-			stmt.setInt(11, user_id);          
+			stmt.setString(2, phone);
+			stmt.setString(3, email.toUpperCase());
+			stmt.setString(4, user_type);
+			stmt.setString(5, password);
+			stmt.setInt(6, user_id);          
 			result = stmt.executeUpdate();
 						
 		} catch (ClassNotFoundException e) {
@@ -207,31 +188,26 @@ public class UserDAO {
 		return result > 0;                    
 	}
 
-	public User isValidUser(String email, String password) throws IOException, SQLException 	{
+	public User isValidUser(String email) throws IOException, SQLException 	{
 		User user = null;
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet result = null;
 		
 		try {
+
 			conn = OracleConnection.getConnection();
 			stmt = conn.prepareStatement(OracleQueries.ISVALIDUSER);
-			stmt.setString(1, email);          
-			stmt.setString(2, password); 
+			stmt.setString(1, email.toUpperCase());          
 			result = stmt.executeQuery();
 			if(result.next()) {
 				user = new User();
 				user.setUser_id(result.getInt(1));
 				user.setUser_name(result.getString(2));
-				user.setAddress1(result.getString(3));
-				user.setAddress2(result.getString(4));
-				user.setCity(result.getString(5));
-				user.setState(result.getString(6));
-				user.setZip(result.getString(7));
-				user.setPhone(result.getString(8));
-				user.setEmail(result.getString(9));		
-				user.setUser_type(result.getString(10));	
-				user.setUser_password(result.getString(11));	
+				user.setPhone(result.getString(3));
+				user.setEmail(result.getString(4));		
+				user.setUser_type(result.getString(5));	
+				user.setUser_password(result.getString(6));	
 			}
 			
 		} catch (ClassNotFoundException e) {
@@ -239,6 +215,47 @@ public class UserDAO {
 			e.printStackTrace();
 		} finally {
 
+			if(result != null) {
+				result.close();
+			}
+			if(stmt != null) {
+				stmt.close();
+			}
+			if(conn != null) {
+				conn.close();
+			}
+		}
+		
+		return user;
+	}
+	
+	public User isValidAdmin(String email, String password) throws IOException, SQLException 	{
+		User user = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+		
+		try {
+			conn = OracleConnection.getConnection();
+			stmt = conn.prepareStatement(OracleQueries.ISVALIDADMIN);
+			stmt.setString(1, email.toUpperCase());          
+			stmt.setString(2, password); 
+			result = stmt.executeQuery();
+			if(result.next()) {
+				user = new User();
+				user.setUser_id(result.getInt(1));
+				user.setUser_name(result.getString(2));
+				user.setPhone(result.getString(3));
+				user.setEmail(result.getString(4));		
+				user.setUser_type(result.getString(5));	
+				user.setUser_password(result.getString(6));	
+			}
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			
 			if(result != null) {
 				result.close();
 			}

@@ -33,18 +33,18 @@ public class PropertyDAO {
 				property.setCity(result.getString(4));
 				property.setState(result.getString(5));
 				property.setZip(result.getString(6));
-				property.setOwner_name(result.getString(7));
-				property.setOwner_phone(result.getString(8));
-				property.setSales_type(result.getString(9));
-				property.setProperty_type(result.getString(10));
-				property.setBedrooms(result.getInt(11));
-				property.setSalesperon_id(result.getInt(12));
-				property.setPosted_date(result.getDate(13));         // what does get date return??????
+				property.setSales_type(result.getString(7));
+				property.setProperty_type(result.getString(8));
+				property.setBedrooms(result.getInt(9));
+				property.setSalesperon_id(result.getInt(10));
+				property.setPosted_date(result.getDate(11));         // what does get date return??????
+				property.setStatus(result.getString(12));
+				property.setPhoto_filename(result.getString(13));
 				property.setMls_number(result.getString(14));
-				property.setAsking_price(result.getDouble(15));
-				property.setAcceptance_price(result.getDouble(16));
-				property.setStatus(result.getString(17));
-				property.setPhoto_filename(result.getString(18));
+				property.setBathrooms(result.getFloat(15));
+				property.setDescription(result.getString(16));
+				property.setWeblink(result.getString(17));
+				property.setAsking_price(result.getInt(18));
 				// property.setSalesperon_id(result.getInt(19));    // skipping salesperson_id from p_salesperson file
 				property.setSalesperson_name(result.getString(20));
 				property.setSalesperson_phone(result.getString(21));
@@ -121,23 +121,23 @@ public class PropertyDAO {
 				property.setCity(result.getString(4));
 				property.setState(result.getString(5));
 				property.setZip(result.getString(6));
-				property.setOwner_name(result.getString(7));
-				property.setOwner_phone(result.getString(8));
-				property.setSales_type(result.getString(9));
-				property.setProperty_type(result.getString(10));
-				property.setBedrooms(result.getInt(11));
-				property.setSalesperon_id(result.getInt(12));
-				property.setPosted_date(result.getDate(13));         // what does get date return??????
+				property.setSales_type(result.getString(7));
+				property.setProperty_type(result.getString(8));
+				property.setBedrooms(result.getInt(9));
+				property.setSalesperon_id(result.getInt(10));
+				property.setPosted_date(result.getDate(11));         // what does get date return??????
+				property.setStatus(result.getString(12));
+				property.setPhoto_filename(result.getString(13));
 				property.setMls_number(result.getString(14));
-				property.setAsking_price(result.getDouble(15));
-				property.setAcceptance_price(result.getDouble(16));
-				property.setStatus(result.getString(17));
-				property.setPhoto_filename(result.getString(18));
+				property.setBathrooms(result.getFloat(15));
+				property.setDescription(result.getString(16));
+				property.setWeblink(result.getString(17));
+				property.setAsking_price(result.getInt(18));
 				// property.setSalesperon_id(result.getInt(19));    // skipping salesperson_id from p_salesperson file
 				property.setSalesperson_name(result.getString(20));
 				property.setSalesperson_phone(result.getString(21));
 				property.setSalesperson_email(result.getString(22));
-				property.setSalesperson_comm(result.getFloat(23));		
+				property.setSalesperson_comm(result.getFloat(23));	
 				
 				if(!city.equals("all") && !state.equals("all")) {    // selecting both city and state
 					if(state.equals(property.getState())) l.add(property);
@@ -165,9 +165,9 @@ public class PropertyDAO {
 	}
 	
 	public int addProperty(String address1, String address2, String city_name, String state_code, String zipcode,
-			String owner_name, String owner_phone, String sales_type, String property_type,
-			Integer bedrooms, Integer salesperson_id, Date posted_date, String mls_number,
-			Double asking_price, Double acceptance_price, String status, String filename) throws IOException, SQLException {
+			String sales_type, String property_type,Integer bedrooms, Integer salesperson_id, Date posted_date, 
+			String status, String filename, String mls_number, Float bathrooms, String description, String weblink,
+			Integer asking_price) throws IOException, SQLException {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		String[] COL = {"property_id"};    // use to get automatic sequence number for field "attending_id"   
@@ -182,18 +182,18 @@ public class PropertyDAO {
 			stmt.setString(3, city_name);
 			stmt.setString(4, state_code);
 			stmt.setString(5, zipcode);
-			stmt.setString(6, owner_name);
-			stmt.setString(7, owner_phone);
-			stmt.setString(8, sales_type);
-			stmt.setString(9, property_type);
-			stmt.setInt(10, bedrooms);
-			stmt.setInt(11, salesperson_id);
-			stmt.setDate(12, posted_date);
+			stmt.setString(6, sales_type);
+			stmt.setString(7, property_type);
+			stmt.setInt(8, bedrooms);
+			stmt.setInt(9, salesperson_id);
+			stmt.setDate(10, posted_date);
+			stmt.setString(11, status);
+			stmt.setString(12, filename);
 			stmt.setString(13, mls_number);
-			stmt.setDouble(14, asking_price);
-			stmt.setDouble(15, acceptance_price);
-			stmt.setString(16, status);
-			stmt.setString(17, filename);
+			stmt.setFloat(14, bathrooms);
+			stmt.setString(15, description);
+			stmt.setString(16, weblink);
+			stmt.setInt(17, asking_price);
 			stmt.executeUpdate();
 			// get the value of generated key
 			result = stmt.getGeneratedKeys();
@@ -215,10 +215,10 @@ public class PropertyDAO {
 		return new_id;                    // new_id is needed for j-unit testing
 	}
 
-	public boolean updateProperty(Integer property_id, String address1, String address2, String city_name, String state_code, String zipcode,
-			String owner_name, String owner_phone, String sales_type, String property_type,
-			Integer bedrooms, Integer salesperson_id, Date posted_date, String mls_number,
-			Double asking_price, Double acceptance_price, String status, String filename) throws IOException, SQLException {
+	public boolean updateProperty(Integer property_id, String address1, String address2, String city_name, String state_code, 
+			String zipcode, String sales_type, String property_type,Integer bedrooms, Integer salesperson_id, Date posted_date, 
+			String status, String filename, String mls_number, Float bathrooms, String description, String weblink,
+			Integer asking_price) throws IOException, SQLException {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		Integer result = null;           
@@ -231,18 +231,18 @@ public class PropertyDAO {
 			stmt.setString(3, city_name);
 			stmt.setString(4, state_code);
 			stmt.setString(5, zipcode);
-			stmt.setString(6, owner_name);
-			stmt.setString(7, owner_phone);
-			stmt.setString(8, sales_type);
-			stmt.setString(9, property_type);
-			stmt.setInt(10, bedrooms);
-			stmt.setInt(11, salesperson_id);
-			stmt.setDate(12, posted_date);               // date updated correctly?????
+			stmt.setString(6, sales_type);
+			stmt.setString(7, property_type);
+			stmt.setInt(8, bedrooms);
+			stmt.setInt(9, salesperson_id);
+			stmt.setDate(10, posted_date);
+			stmt.setString(11, status);
+			stmt.setString(12, filename);
 			stmt.setString(13, mls_number);
-			stmt.setDouble(14, asking_price);
-			stmt.setDouble(15, acceptance_price);
-			stmt.setString(16, status);
-			stmt.setString(17, filename);
+			stmt.setFloat(14, bathrooms);
+			stmt.setString(15, description);
+			stmt.setString(16, weblink);
+			stmt.setInt(17, asking_price);
 			stmt.setInt(18, property_id);          
 			result = stmt.executeUpdate();
 						

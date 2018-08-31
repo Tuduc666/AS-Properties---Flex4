@@ -1,10 +1,11 @@
 body {
     background-color: #FC9;  
+    font-size: 1.2vw;
 }
 
 h1 { 
     text-align: center;
-    letter-spacing:1rem;       /* stretches out the h1 */
+    letter-spacing:.6vw;       /* stretches out the h1 */
     margin: 0;
     color: white;
     text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
@@ -12,18 +13,20 @@ h1 {
 }
   
 form {
-	border: groove 1vw #360;  
+	border: groove .2vw #360;  
 	width : 50%;    
 	padding : 1vw;
 	margin : 2vw;  
 }
+
 input {
 	display: block;         
 	padding: 0 1vw;
 	height: 2vw;
-	width: 10vw;   
+	width: 25vw;   
 	margin-bottom: 1vw;
-border: 3px solid #eeeeee;
+	border: .2vw solid #eeeeee;
+    font-size: 1.1vw;
 } 
 
 body,html{

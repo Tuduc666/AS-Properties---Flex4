@@ -9,7 +9,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="<spring:url value="/CSS/updateUser.css" />">
+		<link rel="stylesheet" href="<spring:url value="/CSS/showProperty.css" />">
 		<title>Update Property</title>
 	</head>
 <%
@@ -26,7 +26,7 @@
 			</div>
 			<div class="sub_field">
 				<label>Address</label>
-				<input type="text" id="address1" name="address1" value="<%=p.getAddress1()%>" />
+				<input type="text" id="address1" name="address1" value="<%=p.getAddress1()%>" required />
 			</div>
 			<div class="sub_field">
 				<label>Address (line2)</label>
@@ -34,39 +34,35 @@
 			</div>
 			<div class="sub_field">
 				<label>city</label>
-				<input type="text" id="city" name="city" value="<%=p.getCity()%>" />
+				<input type="text" id="city" name="city" value="<%=p.getCity()%>" required />
 			</div>
 			<div class="sub_field">
 				<label>state</label>
-				<input type="text" id="state" name="state" value="<%=p.getState()%>" />
+				<input type="text" id="state" name="state" value="<%=p.getState()%>" required />
 			</div>
 			<div class="sub_field">
 				<label>zip</label>
-				<input type="text" id="zip" name="zip" value="<%=p.getZip()%>" />
-			</div>
-			<div class="sub_field">
-				<label>Owner Name</label>
-				<input type="text" id="owner_name" name="owner_name" value="<%=p.getOwner_name()%>" />
-			</div>
-			<div class="sub_field">
-				<label>Owner Phone</label>
-				<input type="text" id="owner_phone" name="owner_phone" value="<%=p.getOwner_phone()%>" />
+				<input type="text" id="zip" name="zip" value="<%=p.getZip()%>" required />
 			</div>
 			<div class="sub_field">
 				<label>For Sale / Rental</label>
-				<input type="text" id="sales_type" name="sales_type" value="<%=p.getSales_type()%>" />
+				<input type="text" id="sales_type" name="sales_type" value="<%=p.getSales_type()%>" required />
 			</div>
 			<div class="sub_field">
-				<label>Single Family,Multi-Family,Condo,Coop</label>
-				<input type="text" id="property_type" name="property_type" value="<%=p.getProperty_type()%>" />
+				<label>Single Family/Multi-Family/Condo/Coop/Rental Building/Rent Stabilized</label>
+				<input type="text" id="property_type" name="property_type" value="<%=p.getProperty_type()%>" required />
 			</div>
 			<div class="sub_field">
 				<label>Number of Bedrooms</label>
-				<input type="number" id="bedrooms" name="bedrooms" value="<%=p.getBedrooms()%>" />
+				<input type="number" id="bedrooms" name="bedrooms" value="<%=p.getBedrooms()%>" required />
+			</div>
+			<div class="sub_field">
+				<label>Number of Bathrooms</label>
+				<input type="number" step="0.1" id="bathrooms" name="bathrooms" value="<%=p.getBathrooms()%>" required />
 			</div>
 			<div class="sub_field">
 				<label>Salesperson Id (select one from p_salesperson table)</label>
-				<input type="number" id="salesperon_id" name="salesperon_id" value="<%=p.getSalesperon_id()%>" />
+				<input type="number" id="salesperon_id" name="salesperon_id" value="<%=p.getSalesperon_id()%>" required />
 			</div>
 			<div class="sub_field">
 				<label>Salesperson Name (non-input)</label>
@@ -86,7 +82,7 @@
 			</div>
 			<div class="sub_field">
 				<label>Posted Date</label>
-				<input type="date" id="posted_date" name="posted_date" value="<%=p.getPosted_date()%>" />
+				<input type="date" id="posted_date" name="posted_date" value="<%=p.getPosted_date()%>" required />
 			</div>
 			<div class="sub_field">
 				<label>MLS Number</label>
@@ -94,20 +90,24 @@
 			</div>			
 			<div class="sub_field">
 				<label>Owner Asking Price</label>
-				<input type="number" step="0.01" id="asking_price" name="asking_price" value="<%=p.getAsking_price()%>" />
-			</div>
-			<div class="sub_field">
-				<label>Owner Acceptance Price</label>
-				<input type="number" step="0.01" id="acceptance_price" name="acceptance_price" value="<%=p.getAcceptance_price()%>" />
+				<input type="number" id="asking_price" name="asking_price" value="<%=p.getAsking_price()%>" required />
 			</div>
 			<div class="sub_field">
 				<label>Active / Inactive</label>
-				<input type="text" id="status" name="status" value="<%=p.getStatus()%>"  />
+				<input type="text" id="status" name="status" value="<%=p.getStatus()%>" required />
 			</div>			
 			<div class="sub_field">
 				<label>PhotoFilename.jpg (from WebContent/IMAGES)</label>
 				<input type="text" id="photo_filename" name="photo_filename" value="<%=p.getPhoto_filename()%>" />
+			</div>		
+			<div class="sub_field">
+				<label>Description</label>
+				<textarea name="description" rows="8" cols="40" placeholder="Enter property description" wrap="soft" ><%=p.getDescription()%></textarea>
 			</div>			
+			<div class="sub_field">
+				<label>Weblink</label>
+				<input type="text" id="weblink" name="weblink"  />
+			</div>		
 		
 			<div class="btn">
 				<input type="submit" name="submit"  value="Update" />
