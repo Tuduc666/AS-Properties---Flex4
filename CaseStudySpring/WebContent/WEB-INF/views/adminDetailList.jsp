@@ -35,11 +35,12 @@
 	    <li><a href="showingDetailList">Home</a></li>
 	    <!-- <li><a href="adminDetailList?city=all&state=all&order=date">Home</a></li> --> 
 		
-<!-- CITY -->
+<!-- CITY -->  <!-- added JavaScript onclick to solve the IOS hover issue on mobile devices -->
 <!-- Method 1 - one way of doing it, using out.print -->
 	    <li class="dropdown">
-		<a class="dropbtn" style="color:yellow;" id="selectCity">City:<%=city%></a>
-		<div class="dropdown-content">
+		<a class="dropbtn" style="color:yellow;" id="selectCity" 
+		   onclick="showDropdown('selectCitydrop')">City:<%=city%></a>
+		<div class="dropdown-content" id="selectCitydrop" >
 			<a href="adminDetailList?city=all&state=<%=state%>&order=<%=order%>">City:All</a>
 			<%
 				CityDAO cityDAO= new CityDAO();		
@@ -55,11 +56,12 @@
 		</div>
 	    </li>
 
-<!-- STATE -->
+<!-- STATE -->  <!-- added JavaScript onclick to solve the IOS hover issue on mobile devices -->
 <!-- Method 2 - another way of doing it, using expression function -->
 	    <li class="dropdown">
-		<a class="dropbtn" style="color:yellow;" id="selectState">State:<%=state%></a>
-		<div class="dropdown-content">
+		<a class="dropbtn" style="color:yellow;" id="selectState" 
+		   onclick="showDropdown('selectStatedrop')">State:<%=state%></a>
+		<div class="dropdown-content" id="selectStatedrop">
 			<a href="adminDetailList?city=<%=city%>&state=all&order=<%=order%>">State:All</a>
 			<%
 				StateDAO stateDAO= new StateDAO();		
@@ -74,10 +76,11 @@
 		</div>
 	    </li>
 
-<!-- ORDER BY -->
+<!-- ORDER BY -->  <!-- added JavaScript onclick to solve the IOS hover issue on mobile devices -->
 	  	<li class="dropdown">
-		<a class="dropbtn" style="color:powderblue;" id="orderBy">Order by:<%=order%></a>
-		<div class="dropdown-content">
+		<a class="dropbtn" style="color:powderblue;" id="orderBy" 
+		   onclick="showDropdown('orderBydrop')">Order by:<%=order%></a>
+		<div class="dropdown-content" id="orderBydrop">
 			<a href="adminDetailList?city=<%=city%>&state=<%=state%>&order=date">Order by Posted Date</a>
 			<a href="adminDetailList?city=<%=city%>&state=<%=state%>&order=price">Order by Price</a>
 		</div>
@@ -112,7 +115,7 @@
 		// if(s.getStatus().equals("Inactive")) bk = "style=\"background-color:#f4df42\" "; 
 		if(s.getStatus().equals("Inactive")) bk = "style=\"opacity:.1\" "; 
 		%>
- 		<div class="flexbox"  <%=bk%> >
+ 		<div class="flexbox" onclick="showDropdown('cleardrop')" <%=bk%> >
 		<a href="updateProperty?id=<%=s.getProperty_id()%>"><img src="IMAGES/<%=s.getPhoto_filename()%>" alt="Photo coming soon"></a>
 		<div class="text" >
 			
@@ -152,6 +155,9 @@
  %>
 				
 	<footer>Copyright &copy; 2018 AS Properties.  All rights reserved.</footer>
+	
+    <script src="<spring:url value="/SCRIPT/homePage.js" />"></script>     
+	<noscript>Sorry, your browser does not support JavaScript!</noscript>
 		
 	</body>
 </html>
