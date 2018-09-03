@@ -21,10 +21,13 @@ public class Property {       // join P_Property with P_Salesperson
 	private String description;
 	private String weblink;
 	private Integer asking_price;
+	private String special;          // special text
+	private String specialo;         // other special text
+	private String speciald;         // special text display method
 	private String salesperson_name;      // display only
 	private String salesperson_phone;     // display only
 	private String salesperson_email;     // display only
-	private Float salesperson_comm;      // display only
+	private Float salesperson_comm;       // display only
 	
 	public int getProperty_id() {
 		return property_id;
@@ -134,6 +137,24 @@ public class Property {       // join P_Property with P_Salesperson
 	public void setAsking_price(Integer asking_price) {
 		this.asking_price = asking_price;
 	}
+	public String getSpecial() {
+		return special;
+	}
+	public void setSpecial(String special) {
+		this.special = special;
+	}
+	public String getSpecialo() {
+		return specialo;
+	}
+	public void setSpecialo(String specialo) {
+		this.specialo = specialo;
+	}
+	public String getSpeciald() {
+		return speciald;
+	}
+	public void setSpeciald(String speciald) {
+		this.speciald = speciald;
+	}
 	public String getSalesperson_name() {
 		return salesperson_name;
 	}
@@ -158,6 +179,5 @@ public class Property {       // join P_Property with P_Salesperson
 	public void setSalesperson_comm(Float salesperson_comm) {
 		this.salesperson_comm = salesperson_comm;
 	}
-	
 	
 }

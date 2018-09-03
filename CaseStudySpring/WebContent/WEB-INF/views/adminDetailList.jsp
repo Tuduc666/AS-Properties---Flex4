@@ -109,7 +109,15 @@
  	List<Property> pl = new ArrayList<Property>();
  	Boolean admin = u.getUser_type().equals("Admintandha");
  	pl = propertyDAO.getPropertyList(city, state, order, admin);
- 	for (Property s : pl){ %>
+ 	for (Property s : pl){ 
+        String special_text = "";   
+        if(s.getSpeciald() != null && s.getSpeciald() != "" && !s.getSpeciald().equals("none")){
+	        if(s.getSpecial() != null) {
+		        if(!s.getSpecial().equals("Other")) special_text = s.getSpecial();   
+		        else if(s.getSpecialo() != null) special_text = s.getSpecialo();   
+	        }
+        }
+ %>
 		<% 
 		String bk = " ";
 		// if(s.getStatus().equals("Inactive")) bk = "style=\"background-color:#f4df42\" "; 
@@ -119,7 +127,7 @@
 		<a href="updateProperty?id=<%=s.getProperty_id()%>"><img src="IMAGES/<%=s.getPhoto_filename()%>" alt="Photo coming soon"></a>
 		<div class="text" >
 			
-			<h2><%=s.getSales_type()%>: $<%=fmt.format(s.getAsking_price())%></h2> 
+			<h2><%=s.getSales_type()%>: $<%=fmt.format(s.getAsking_price())%> <span class="<%=s.getSpeciald()%>"><%=special_text%></span></h2> 
 			<p><%=s.getAddress1()%></p>
 			<p><%=s.getCity()%>,&nbsp<%=s.getState()%>&nbsp<%=s.getZip()%></p>
 		</div>

@@ -19,10 +19,19 @@
 <%
 	Property p = (Property) request.getAttribute("property"); 
     DecimalFormat fmt = new DecimalFormat("###,###,###");   // format output of asking price
+    
+    String special_text = "";   
+    if(p.getSpeciald() != null && p.getSpeciald() != "" && !p.getSpeciald().equals("none")){
+        if(p.getSpecial() != null) {
+	        if(!p.getSpecial().equals("Other")) special_text = p.getSpecial();   
+	        else if(p.getSpecialo() != null) special_text = p.getSpecialo();   
+        }
+    }
 %>                                                   
 <body>   <!-- NOTE: names below must match names in model class, not names in SQL table -->
 	<h1>ASP Property Detail</h1>
-			
+	
+	<span class="<%=p.getSpeciald()%>"><%=special_text%></span>		
 	<img alt="Photo coming soon" src="IMAGES/<%=p.getPhoto_filename()%>" style="float:left; margin-right:5vw">
 
 	<p>Id: ${property.getProperty_id() } </p>

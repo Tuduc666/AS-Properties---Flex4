@@ -259,7 +259,7 @@ public class IndexController {
 
 		pDAO.addProperty(p.getAddress1(), p.getAddress2(), p.getCity(), p.getState(), p.getZip(), p.getSales_type(), p.getProperty_type(), p.getBedrooms(), p.getSalesperon_id(), 
 				          p.getPosted_date(), p.getStatus(), p.getPhoto_filename(), p.getMls_number(), p.getBathrooms(), p.getDescription(), 
-				          p.getWeblink(), p.getAsking_price());
+				          p.getWeblink(), p.getAsking_price(), p.getSpecial(), p.getSpecialo(), p.getSpeciald());
 		// pDAO.addSalesperson(s.getName(), s.getPhone(), s.getEmail(), s.getComm());
 		// sDAO.addSalesperson("aaa", "222", "aaa@gmail.com", (double) 2.25);
 		
@@ -294,7 +294,7 @@ public class IndexController {
 		pDAO.updateProperty(p.getProperty_id(), p.getAddress1(), p.getAddress2(), p.getCity(), p.getState(), p.getZip(), p.getSales_type(), 
 				p.getProperty_type(), p.getBedrooms(), p.getSalesperon_id(), 
 		          p.getPosted_date(), p.getStatus(), p.getPhoto_filename(), p.getMls_number(), p.getBathrooms(), p.getDescription(), 
-		          p.getWeblink(), p.getAsking_price());
+		          p.getWeblink(), p.getAsking_price(), p.getSpecial(), p.getSpecialo(), p.getSpeciald());
 		
 		ModelAndView mav = new ModelAndView("adminDetailList");  
 		mav.addObject("city", "all");           

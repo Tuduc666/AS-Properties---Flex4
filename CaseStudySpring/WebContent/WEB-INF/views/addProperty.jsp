@@ -96,7 +96,36 @@
 			<div class="sub_field">
 				<label>Description</label>
 				<textarea name="description" rows="8" cols="40" placeholder="Enter property description" wrap="soft" ></textarea>
+			</div>	
+			<div class="sub_field">
+				<label>Special text</label>
+				<select id="special" name="special" required />
+				  <option value="New Listing" selected="selected">New Listing</option>
+				  <option value="with Terrace">with Terrace</option>
+				  <option value="with Balcony">with Balcony</option>
+				  <option value="Rented">Rented</option>
+				  <option value="Rented in 2 days">Rented in 2 days</option>
+				  <option value="Fireproof Building">Fireproof Building</option>
+				  <option value="Sold">Sold</option>
+				  <option value="Other">Other</option>
+				  <option value="No Fee!!!">No Fee!!!</option>
+				  <option value="No Broker Fee!!!">No Broker Fee</option>
+				  <option value="Won't Last!!!">Won't Last!!!</option>
+				  <option value="Ann's Pick!!!">Ann's Pick!!!</option>
+				</select>
 			</div>			
+			<div class="sub_field">
+				<label>Other special text</label>
+				<input type="text" id="specialo" name="specialo"  />
+			</div>			
+			<div class="sub_field">
+				<label>Display special text</label>
+				<select id="speciald" name="speciald" required />
+				  <option value="highlighted" selected="selected">highlighted</option>
+				  <option value="blinking">blinking</option>
+				  <option value="none">none</option>
+				</select>
+			</div>		
 			<div class="sub_field">
 				<label>Weblink</label>
 				<input type="text" id="weblink" name="weblink"  />

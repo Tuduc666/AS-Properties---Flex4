@@ -22,15 +22,15 @@ public class ShowingDAOTest {
 		sDAO = new ShowingDAO();	
 	}
 	
-	@Test
-	public void t1_testAddShowing() throws IOException, SQLException {
-		String email = "test@t.com";
-		Integer property_id = 61;
-		String user_message = "test showing";
-		sDAO.addShowing(email, property_id, user_message, "111");
-		Showing s = sDAO.getShowing(email, property_id);	
-		assertEquals(user_message, s.getUser_message());
-	}
+//	@Test
+//	public void t1_testAddShowing() throws IOException, SQLException {
+//		String email = "test@t.com";
+//		Integer property_id = 61;
+//		String user_message = "test showing";
+//		sDAO.addShowing(email, property_id, user_message, "111");
+//		Showing s = sDAO.getShowing(email, property_id);	
+//		assertEquals(user_message, s.getUser_message());
+//	}
 	
 	@Test
 	public void t2_testGetShowing() throws IOException, SQLException {

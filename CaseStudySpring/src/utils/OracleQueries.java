@@ -34,12 +34,13 @@ public class OracleQueries {
 	
 	public final static String ADDPROPERTY = "insert into p_property "
 			+ "(address1,address2,city_name,state_code,zipcode,sales_type,property_type,"
-			+ "bedrooms,salesperson_id,posted_date,status,photo_filename,mls_number,bathrooms,description,weblink,asking_price) "
-			+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			+ "bedrooms,salesperson_id,posted_date,status,photo_filename,mls_number,bathrooms,description,weblink,"
+			+ "asking_price, special, specialo, speciald) "
+			+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	public final static String UPDATEPROPERTY = "update p_property "
 			+ "set address1 = ?, address2 = ?, city_name = ?, state_code = ?, zipcode = ?, sales_type = ?, property_type = ?, "
 			+ "bedrooms = ?, salesperson_id = ?, posted_date = ?, status = ?, photo_filename = ?, mls_number = ?, "
-			+ "bathrooms = ?, description = ?, weblink = ?, asking_price = ? "
+			+ "bathrooms = ?, description = ?, weblink = ?, asking_price = ?, special=?, specialo=?, speciald=? "
 			+ "where property_id = ?";
 	public final static String INACTIVATEPROPERTYBYID = "update p_property "
 			+ "set status = 'Inactive' where property_id = ?";

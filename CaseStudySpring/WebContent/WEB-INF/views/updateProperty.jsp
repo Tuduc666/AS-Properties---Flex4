@@ -103,7 +103,19 @@
 			<div class="sub_field">
 				<label>Description</label>
 				<textarea name="description" rows="8" cols="40" placeholder="Enter property description" wrap="soft" ><%=p.getDescription()%></textarea>
-			</div>			
+			</div>		
+			<div class="sub_field">
+				<label>Special text</label>
+				<input type="text" id="special" name="special" value="<%=p.getSpecial()%>" />
+			</div>		
+			<div class="sub_field">
+				<label>Other special text</label>
+				<input type="text" id="specialo" name="specialo" value="<%=p.getSpecialo()%>" />
+			</div>		
+			<div class="sub_field">
+				<label>Display special text</label>
+				<input type="text" id="speciald" name="speciald" value="<%=p.getSpeciald()%>" />
+			</div>		
 			<div class="sub_field">
 				<label>Weblink</label>
 				<input type="text" id="weblink" name="weblink"  />

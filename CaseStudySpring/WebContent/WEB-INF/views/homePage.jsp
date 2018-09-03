@@ -124,11 +124,19 @@
  	PropertyDAO propertyDAO= new PropertyDAO();		
  	List<Property> pl = new ArrayList<Property>();
  	pl = propertyDAO.getPropertyList(city, state, order, false);
- 	for (Property s : pl){ %>
+ 	for (Property s : pl){ 
+        String special_text = "";   
+        if(s.getSpeciald() != null && s.getSpeciald() != "" && !s.getSpeciald().equals("none")){
+	        if(s.getSpecial() != null) {
+		        if(!s.getSpecial().equals("Other")) special_text = s.getSpecial();   
+		        else if(s.getSpecialo() != null) special_text = s.getSpecialo();   
+	        }
+        }
+ %>
  		<div class="flexbox" onclick="showDropdown('cleardrop')">
 		<a href="displayProperty?id=<%=s.getProperty_id()%>"><img src="IMAGES/<%=s.getPhoto_filename()%>" alt="Photo coming soon"></a>
 		<div class="text">
-			<h2><%=s.getSales_type()%>: $<%=fmt.format(s.getAsking_price())%></h2> 
+			<h2><%=s.getSales_type()%>: $<%=fmt.format(s.getAsking_price())%> <span class="<%=s.getSpeciald()%>"><%=special_text%></span></h2> 
 			<p><%=s.getAddress1()%></p>
 			<p><%=s.getCity()%>,&nbsp<%=s.getState()%>&nbsp<%=s.getZip()%></p>
 		</div>

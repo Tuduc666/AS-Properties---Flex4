@@ -34,3 +34,43 @@ img {
     float: left;
     border: groove 1px navy;
 }
+
+/*  ---------------------------  Blinking text  --------------------------------------*/
+/*  -----------      <span class="blinking">Won't Last!!!</span>     ---------------------------*/
+.blinking{
+    animation:blinkingText 5s infinite;
+    padding: .8vw 1.2vw;
+    border-radius: 3vw;
+    z-index: 1;
+    font-size: 2.6vw;
+    position: absolute;
+    top: 25%;
+    left: 75%;
+}
+@keyframes blinkingText{
+    0%{     color: red; background-color: yellow;   }
+    35%{    color: red; background-color: yellow;   }
+    40%{    color: red; opacity:.7; }
+    43%{    color: red; opacity:.3; }
+    45%{    color: red; opacity:.1; }
+    50%{    color: transparent; }
+    55%{    color: red; opacity:.1; }
+    57%{    color: red; opacity:.3; }
+    60%{    color: red; opacity:.7; }
+    65%{    color: red; background-color: yellow;  }
+    100%{   color: red; background-color: yellow;  }
+}
+
+/*  ---------------------------  Highlighted text  --------------------------------------*/
+/*  -----------      <span class="highlighted">with Balcony 20 char</span>     ---------------------------*/
+.highlighted{
+    color: yellow; 
+    background-color: #99f; 
+	padding: .3vw .8vw;
+    border-radius: 3vw;
+    z-index: 1;
+    font-size: 2vw;
+    position: absolute;
+    top: 25%;
+    left: 75%;
+}

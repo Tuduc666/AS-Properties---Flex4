@@ -45,11 +45,14 @@ public class PropertyDAO {
 				property.setDescription(result.getString(16));
 				property.setWeblink(result.getString(17));
 				property.setAsking_price(result.getInt(18));
-				// property.setSalesperon_id(result.getInt(19));    // skipping salesperson_id from p_salesperson file
-				property.setSalesperson_name(result.getString(20));
-				property.setSalesperson_phone(result.getString(21));
-				property.setSalesperson_email(result.getString(22));
-				property.setSalesperson_comm(result.getFloat(23));			
+				property.setSpecial(result.getString(19));
+				property.setSpecialo(result.getString(20));
+				property.setSpeciald(result.getString(21));
+				// property.setSalesperon_id(result.getInt(22));    // skipping salesperson_id from p_salesperson file
+				property.setSalesperson_name(result.getString(23));
+				property.setSalesperson_phone(result.getString(24));
+				property.setSalesperson_email(result.getString(25));
+				property.setSalesperson_comm(result.getFloat(26));			
 			}
 			
 		} catch (ClassNotFoundException e) {
@@ -133,11 +136,14 @@ public class PropertyDAO {
 				property.setDescription(result.getString(16));
 				property.setWeblink(result.getString(17));
 				property.setAsking_price(result.getInt(18));
-				// property.setSalesperon_id(result.getInt(19));    // skipping salesperson_id from p_salesperson file
-				property.setSalesperson_name(result.getString(20));
-				property.setSalesperson_phone(result.getString(21));
-				property.setSalesperson_email(result.getString(22));
-				property.setSalesperson_comm(result.getFloat(23));	
+				property.setSpecial(result.getString(19));
+				property.setSpecialo(result.getString(20));
+				property.setSpeciald(result.getString(21));
+				// property.setSalesperon_id(result.getInt(22));    // skipping salesperson_id from p_salesperson file
+				property.setSalesperson_name(result.getString(23));
+				property.setSalesperson_phone(result.getString(24));
+				property.setSalesperson_email(result.getString(25));
+				property.setSalesperson_comm(result.getFloat(26));	
 				
 				if(!city.equals("all") && !state.equals("all")) {    // selecting both city and state
 					if(state.equals(property.getState())) l.add(property);
@@ -167,7 +173,7 @@ public class PropertyDAO {
 	public int addProperty(String address1, String address2, String city_name, String state_code, String zipcode,
 			String sales_type, String property_type,Integer bedrooms, Integer salesperson_id, Date posted_date, 
 			String status, String filename, String mls_number, Float bathrooms, String description, String weblink,
-			Integer asking_price) throws IOException, SQLException {
+			Integer asking_price, String special, String specialo, String speciald) throws IOException, SQLException {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		String[] COL = {"property_id"};    // use to get automatic sequence number for field "attending_id"   
@@ -194,6 +200,9 @@ public class PropertyDAO {
 			stmt.setString(15, description);
 			stmt.setString(16, weblink);
 			stmt.setInt(17, asking_price);
+			stmt.setString(18, special);
+			stmt.setString(19, specialo);
+			stmt.setString(20, speciald);
 			stmt.executeUpdate();
 			// get the value of generated key
 			result = stmt.getGeneratedKeys();
@@ -218,7 +227,7 @@ public class PropertyDAO {
 	public boolean updateProperty(Integer property_id, String address1, String address2, String city_name, String state_code, 
 			String zipcode, String sales_type, String property_type,Integer bedrooms, Integer salesperson_id, Date posted_date, 
 			String status, String filename, String mls_number, Float bathrooms, String description, String weblink,
-			Integer asking_price) throws IOException, SQLException {
+			Integer asking_price, String special, String specialo, String speciald) throws IOException, SQLException {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		Integer result = null;           
@@ -243,7 +252,10 @@ public class PropertyDAO {
 			stmt.setString(15, description);
 			stmt.setString(16, weblink);
 			stmt.setInt(17, asking_price);
-			stmt.setInt(18, property_id);          
+			stmt.setString(18, special);
+			stmt.setString(19, specialo);
+			stmt.setString(20, speciald);
+			stmt.setInt(21, property_id);      
 			result = stmt.executeUpdate();
 						
 		} catch (ClassNotFoundException e) {
