@@ -2,24 +2,35 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>   
 <!DOCTYPE html>
+<%@ page errorPage="errorPage.jsp" %>
 <%@ page import="models.*,dao.*" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<meta name="description" content="NYC Real Estate by Ann Uduc, a NYS Licensed Real Estate Agent.  Homes for sale and rental in Forest Hills Queens and New York City area.">
+  		<meta name="keywords" content="NYC,Real Estate,Ann Uduc,Licensed Real Estate Agent,Homes,Houses,Apartments,Sell,Buy,Rent">
+  		<meta name="author" content="Ann Uduc">		
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="<spring:url value="/CSS/showProperty.css" />">
-		<title>Property Detail</title>
+		<title>Showing Request</title>
 	</head>
 <%
-	Integer p_id = (Integer) request.getAttribute("propertyid");   
-	User u = (User) session.getAttribute("userkey");
-	String user_email = ""; String user_name = "";
+Integer p_id = null;   
+User u = null;
+String user_email = ""; String user_name = "";
+try {
+	p_id = (Integer) request.getAttribute("propertyid");   
+	u = (User) session.getAttribute("userkey");
 	if (u != null) {
 		user_email = u.getEmail();
 		user_name = u.getUser_name();
 	}
+}
+catch(Exception e) {  
+	throw new Exception("Ooops. Something went wrong when the system was trying to display Showing Request page.");
+}
 %>                                                   
 <body>   <!-- NOTE: names below must match names in model class, not names in SQL table -->
 	<h1>ASP Showing Request</h1>

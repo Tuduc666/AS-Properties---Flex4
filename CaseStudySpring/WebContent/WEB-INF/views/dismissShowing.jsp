@@ -10,14 +10,16 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="<spring:url value="/CSS/updateUser.css" />">
-		<title>Update Salesperson</title>
+		<link rel="stylesheet" href="<spring:url value="/CSS/showProperty.css" />">
+		<title>Dismiss Showing</title>
 	</head>
 <%
-User u = null; UserDAO uDAO = null; 
-Salesperson s = null;   
+User u = null; UserDAO uDAO = null;  
+Integer id = null; 
+String email = null; 
 try {
-	s = (Salesperson) request.getAttribute("salesperson");  
+	id = (Integer) request.getAttribute("id");   
+	email = (String) request.getAttribute("email");   
 	u = (User) session.getAttribute("userkey");	
 	uDAO = new UserDAO();
 	u = uDAO.isValidAdmin(u.getEmail(), u.getUser_password());        // only admin is allowed to access this page
@@ -30,33 +32,21 @@ catch(Exception e) {
 }	
 %>                                                   
 <body>   <!-- NOTE: names below must match names in model class, not names in SQL table -->
-	<h1>ASP Update Salesperson</h1>
+	<h1>ASP Dismiss Showing</h1>
 	<div class="container">
-		<form action="updateSalesSQL" method="post">	
+		<form action="dismissShowingSQL" method="post">	
 		
 			<div class="sub_field">
-				<label>Id (non-input)</label>
-				<input type="number" id="id" name="id" value=${salesperson.getId() } readonly />
+				<label>Property Id (non-input)</label>
+				<input type="number" id="property_id" name="property_id" value=${id } readonly />
 			</div>
 			<div class="sub_field">
-				<label>Full Name</label>
-				<input type="text" id="name" name="name" value="<%=s.getName()%>"  />
+				<label>Email (non-input)</label>
+				<input type="text" id="email" name="email" value=${email } readonly />
 			</div>
-			<div class="sub_field">
-				<label>Phone</label>
-				<input type="text" id="phone" name="phone" value="<%=s.getPhone()%>" />
-			</div>
-			<div class="sub_field">
-				<label>Email</label>
-				<input type="email" id="email" name="email" value="<%=s.getEmail()%>" />
-			</div>
-			<div class="sub_field">
-				<label>Commission Percentage</label>
-				<input type="number" step="0.01" id="comm" name="comm" value="<%=s.getComm()%>" />  
-			</div>
-			
+		
 			<div class="btn">
-				<input type="submit" name="submit"  value="Update" />
+				<input type="submit" name="submit"  value="Dismiss" />
 			</div>
 		</form>
 	</div>

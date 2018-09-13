@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>   
 <!DOCTYPE html>
+<%@ page errorPage="errorPage.jsp" %>
 <%@ page import="models.*,dao.*" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
@@ -9,24 +10,33 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<meta name="description" content="NYC Real Estate Website by Ann Uduc, a NYS Licensed Real Estate Agent.  Homes for sale, buy, and rent.">
-  		<meta name="keywords" content="NYC,Real Estate,Ann Uduc,Licensed Real Estate Agent,Homes,Houses,Apartments,Sale,Buy,Rent">
+		<meta name="description" content="NYC Real Estate by Ann Uduc, a NYS Licensed Real Estate Agent.  Homes for sale and rental in Forest Hills Queens and New York City area.">
+  		<meta name="keywords" content="NYC,Real Estate,Ann Uduc,Licensed Real Estate Agent,Homes,Houses,Apartments,Sell,Buy,Rent">
   		<meta name="author" content="Ann Uduc">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="<spring:url value="/CSS/displayProperty.css" />">
 		<title>Property Detail</title>
 	</head>
 <%
-	Property p = (Property) request.getAttribute("property"); 
+// check data entered.  No need to check each field as done above.  try-catch will catch all exceptions.
+// note: variable declarations need to be done outside the try-catch clause
+	Property p = null; 
     DecimalFormat fmt = new DecimalFormat("###,###,###");   // format output of asking price
+    String special_text = "";  
+
+try {
+	p = (Property) request.getAttribute("property"); 
     
-    String special_text = "";   
     if(p.getSpeciald() != null && p.getSpeciald() != "" && !p.getSpeciald().equals("none")){
         if(p.getSpecial() != null) {
 	        if(!p.getSpecial().equals("Other")) special_text = p.getSpecial();   
 	        else if(p.getSpecialo() != null) special_text = p.getSpecialo();   
         }
     }
+}
+catch(Exception e) {  
+	throw new Exception("Ooops. Something went wrong when the system was trying to display the property details.");
+}
 %>                                                   
 <body>   <!-- NOTE: names below must match names in model class, not names in SQL table -->
 	<h1>ASP Property Detail</h1>

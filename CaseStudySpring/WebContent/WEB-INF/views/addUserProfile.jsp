@@ -10,7 +10,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="<spring:url value="/CSS/updateUser.css" />">
-		<title>Update User Profile</title>
+		<title>Create User Profile</title>
 	</head>
                               
 <body>       <!-- NOTE: names below must match names in model class, not names in SQL table -->

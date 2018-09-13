@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>  
 <!DOCTYPE html>
+<%@ page errorPage="errorPage.jsp" %>
 <%@ page import="models.*,dao.*" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
@@ -13,13 +14,21 @@
 		<title>Showing Detail List</title>
 	</head>
 <%
-	User u = (User) request.getAttribute("user");        // only pass in user from the login page
+User u = null; UserDAO uDAO = null;        
+try {
+	u = (User) request.getAttribute("user");             // only pass in user from the login page
 	if(u != null) session.setAttribute("userkey", u);    // if user is not passes in, then use userkey
 	u = (User) session.getAttribute("userkey");
+
+	uDAO = new UserDAO();
+	u = uDAO.isValidAdmin(u.getEmail(), u.getUser_password());        // only admin is allowed to access this page
 	
-// 	String city = (String) request.getAttribute("city");
-// 	String state = (String) request.getAttribute("state");
-// 	String order = (String) request.getAttribute("order");
+	if(u==null) 
+		throw new Exception("You need admin credentials to access this page.");
+}
+catch(Exception e) {  
+	throw new Exception("You need admin credentials to access this page.");
+}	
 %>
 	<body>
 			<h1>Showing Requests</h1>
@@ -49,8 +58,11 @@
 <!-- DETAIL LIST -->
 <!-- HERE!!!! Need to change to show showing requests list instead!!!!!!!!! -->
 <%
- 	ShowingDetailDAO ShowingDetailDAO= new ShowingDetailDAO();		
- 	List<ShowingDetail> dl = new ArrayList<ShowingDetail>();
+ShowingDetailDAO ShowingDetailDAO= null;		
+List<ShowingDetail> dl = null;
+try {
+ 	ShowingDetailDAO= new ShowingDetailDAO();		
+ 	dl = new ArrayList<ShowingDetail>();
  	dl = ShowingDetailDAO.getShowingDetailList();
  	for (ShowingDetail s : dl){ %>
  		<div class="flexbox">
@@ -66,7 +78,12 @@
 			<a href="dismissShowing?id=<%=s.getProperty_id()%>&email=<%=s.getEmail()%>" class="button">Dismiss</a>		
 		</div>  
 	</div>
- <%	}  %>
+ <%	}  
+}
+catch(Exception e) {  
+	throw new Exception("Ooops. Something went wrong when the system was trying to display the showing detail list page.");
+}
+ %>
 
 	
 	<!-- ************* this is how to go to the home page ************** -->

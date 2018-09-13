@@ -58,7 +58,7 @@ public class OracleQueries {
 	public final static String DELETESHOWING = "delete from p_requestshowing "
 			+ "where show_id = ?";
 	public final static String DISMISSSHOWING = "update p_requestshowing "
-			+ "set status = 'Inactive' where property_id = ? and email = ?";
+			+ "set status = 'Inactive' where property_id=? and email=?";
 	
 	public final static String GETSHOWINGDETAILLIST = "select s.user_name, "
 			+ "s.email, s.phone, s.user_message, s.property_id, p.address1, p.city_name, "
@@ -93,7 +93,7 @@ public class OracleQueries {
 	public final static String ISVALIDUSER = "select * from p_user " 
 			+ "where email = ? ";
 	public final static String ISVALIDADMIN = "select * from p_user " 
-			+ "where email = ? and user_password = ? ";
+			+ "where user_type='Admintandha' and email = ? and user_password = ? ";
 	
 	public final static String GETALLSTATES = "select * from p_state order by code";
 	

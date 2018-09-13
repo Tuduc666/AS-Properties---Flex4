@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>   
 <!DOCTYPE html>
+<%@ page errorPage="errorPage.jsp" %>
 <%@ page import="models.*,dao.*" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
@@ -13,8 +14,19 @@
 		<title>Add Salesperson</title>
 	</head>
 <%
-
-%>                                                   
+	User u = null; UserDAO uDAO = null;      
+	try {
+		u = (User) session.getAttribute("userkey");	
+		uDAO = new UserDAO();
+		u = uDAO.isValidAdmin(u.getEmail(), u.getUser_password());        // only admin is allowed to access this page
+		
+		if(u==null) 
+			throw new Exception("You need admin credentials to access this page.");
+	}
+	catch(Exception e) {  
+		throw new Exception("You need admin credentials to access this page.");
+	}	
+%>                                              
 <body>   <!-- NOTE: names below must match names in model class, not names in SQL table -->
 	<h1>ASP Add Salesperson</h1>
 	<div class="container">

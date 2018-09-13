@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>  
 <!DOCTYPE html>
+<%@ page errorPage="errorPage.jsp" %>
 <%@ page import="models.*,dao.*" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
@@ -14,15 +15,27 @@
 		<title>Admin AS Properties NYC</title>
 	</head>
 <%
-	User u = (User) request.getAttribute("user");        // only pass in user from the login page
-	if(u != null) session.setAttribute("userkey", u);    // if user is not passes in, then use userkey
+	User u = null; UserDAO uDAO = null;       
+	String city = null;
+	String state = null;
+	String order = null;
+	DecimalFormat fmt = new DecimalFormat("###,###,###");   // format output of asking price   
+try {
 	u = (User) session.getAttribute("userkey");
 	
-	String city = (String) request.getAttribute("city");
-	String state = (String) request.getAttribute("state");
-	String order = (String) request.getAttribute("order");
+	city = (String) request.getAttribute("city");
+	state = (String) request.getAttribute("state");
+	order = (String) request.getAttribute("order");
 	
-    DecimalFormat fmt = new DecimalFormat("###,###,###");   // format output of asking price
+	uDAO = new UserDAO();
+	u = uDAO.isValidAdmin(u.getEmail(), u.getUser_password());        // only admin is allowed to access this page
+	
+	if(u==null) 
+		throw new Exception("You need admin credentials to access this page.");
+}
+catch(Exception e) {  
+	throw new Exception("You need admin credentials to access this page.");
+}	
 %>
 	<body>
 			<h1>AS Properties NYC</h1>
@@ -33,7 +46,6 @@
 	<ul>
 <!-- HOME -->
 	    <li><a href="showingDetailList">Home</a></li>
-	    <!-- <li><a href="adminDetailList?city=all&state=all&order=date">Home</a></li> --> 
 		
 <!-- CITY -->  <!-- added JavaScript onclick to solve the IOS hover issue on mobile devices -->
 <!-- Method 1 - one way of doing it, using out.print -->
@@ -43,14 +55,24 @@
 		<div class="dropdown-content" id="selectCitydrop" >
 			<a href="adminDetailList?city=all&state=<%=state%>&order=<%=order%>">City:All</a>
 			<%
-				CityDAO cityDAO= new CityDAO();		
-				List<City> lc = new ArrayList<City>();
+			CityDAO cityDAO= null;		
+			List<City> lc = null;
+			try {
+				cityDAO= new CityDAO();		
+				lc = new ArrayList<City>();
 				lc = cityDAO.getCityList();
+				
 				for (City c : lc){
 					out.print("<a href=\"adminDetailList?city=" + c.getName() + "&state="); %><%=state%>		
 				<% 	out.print("&order="); %><%=order%>		
 				<% 	out.print("\">" + c.getName() + "</a>"); %>
-				<% 	}  %> 
+			<% 	
+				}  
+			}
+			catch(Exception e) {  
+				throw new Exception("Ooops. Something went wrong when the system was trying to do city selection in the admin detail list page.");
+			}					
+			%> 
 			<!-- ***************  This is the string we're building above    **************************     -->		
 			<!-- ***************  <a href="adminDetailList?city=Bronx&state=<%=state%>&order=<%=order%>">Bronx</a>   -->
 		</div>
@@ -64,13 +86,22 @@
 		<div class="dropdown-content" id="selectStatedrop">
 			<a href="adminDetailList?city=<%=city%>&state=all&order=<%=order%>">State:All</a>
 			<%
-				StateDAO stateDAO= new StateDAO();		
-				List<State> l = new ArrayList<State>();
+			StateDAO stateDAO= null;		
+			List<State> l = null;
+			try {
+				stateDAO= new StateDAO();		
+				l = new ArrayList<State>();
 				l = stateDAO.getStateList();
 				for (State s : l){ %>
 					<a href="adminDetailList?city=<%=city%>&state=<%=s.getCode()%>
 					&order=<%=order%>"><%=s.getCode()%></a>
-			<% 	}  %> 
+			<% 	
+				}  
+			}
+			catch(Exception e) {  
+				throw new Exception("Ooops. Something went wrong when the system was trying to do state selection in the admin detail list page.");
+			}
+			%> 
 			<!-- ***************  This is the string we're building above    **************************     -->				
 			<!-- ***************  <a href="adminDetailList?city=<%=city%>&state=CA&order=<%=order%>">CA</a>   -->				
 		</div>
@@ -105,9 +136,14 @@
 
 <!-- DETAIL LIST -->
 <%
- 	PropertyDAO propertyDAO= new PropertyDAO();		
- 	List<Property> pl = new ArrayList<Property>();
- 	Boolean admin = u.getUser_type().equals("Admintandha");
+PropertyDAO propertyDAO= null;		
+List<Property> pl = null;
+try {
+ 	propertyDAO= new PropertyDAO();		
+ 	pl = new ArrayList<Property>();
+ 	Boolean admin = u.getUser_type().equals("Admintandha");   // determine whether to display inactive properties or not
+	if(!admin) 
+		throw new Exception("You need admin credentials to access this page.");
  	pl = propertyDAO.getPropertyList(city, state, order, admin);
  	for (Property s : pl){ 
         String special_text = "";   
@@ -120,13 +156,11 @@
  %>
 		<% 
 		String bk = " ";
-		// if(s.getStatus().equals("Inactive")) bk = "style=\"background-color:#f4df42\" "; 
 		if(s.getStatus().equals("Inactive")) bk = "style=\"opacity:.1\" "; 
 		%>
  		<div class="flexbox" onclick="showDropdown('cleardrop')" <%=bk%> >
 		<a href="updateProperty?id=<%=s.getProperty_id()%>"><img src="IMAGES/<%=s.getPhoto_filename()%>" alt="Photo coming soon"></a>
-		<div class="text" >
-			
+		<div class="text" >			
 			<h2><%=s.getSales_type()%>: $<%=fmt.format(s.getAsking_price())%> <span class="<%=s.getSpeciald()%>"><%=special_text%></span></h2> 
 			<p><%=s.getAddress1()%></p>
 			<p><%=s.getCity()%>,&nbsp<%=s.getState()%>&nbsp<%=s.getZip()%></p>
@@ -136,7 +170,12 @@
 			<a href="inactivateProperty?id=<%=s.getProperty_id()%>" class="button">Inactivate</a>		
 		</div>  
 	</div>
- <%	}  %>
+ <%	}  
+}
+catch(Exception e) {  
+	throw new Exception("Ooops. Something went wrong when the system was trying to display the property list in the admin detail list page.");
+}
+ %>
 
 	
 	<!-- ************* this is how to go to the login page ************** -->

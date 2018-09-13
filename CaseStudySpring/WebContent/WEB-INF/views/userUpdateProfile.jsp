@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>   
 <!DOCTYPE html>
+<%@ page errorPage="errorPage.jsp" %>
 <%@ page import="models.*,dao.*" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
@@ -13,10 +14,12 @@
 		<title>Update User Profile</title>
 	</head>
 <%
-	User u = (User) session.getAttribute("userkey"); // two different ways to retrieve the information
+User u = null;
+try {
+	u = (User) session.getAttribute("userkey"); // two different ways to retrieve the information
 	                 // method #1 - value=${userkey.getUser_id() only returns 1st word in a string and "/" if blank
 	                 // method #2 -  u.getUser_name() returns the full string
-	                 // should always go with method #2 to be sure
+	                 // should always go with method #2 to be sure   
 %>                                                   
 <body>
 	<h1>ASP Update User Info</h1>
@@ -50,5 +53,13 @@
 		</form>
 		<!-- <p>Important:  You must use only unique password that you don't use anywhere else.</p> -->
 	</div>
+	
+<%
+}
+catch(Exception e) {  
+	throw new Exception("Ooops. Something went wrong when the system was trying to update user profile.");
+}	                 
+%> 
+	
 </body>
 </html>

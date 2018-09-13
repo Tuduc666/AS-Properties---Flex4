@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>  
 <!DOCTYPE html>
+<%@ page errorPage="errorPage.jsp" %>
 <%@ page import="models.*,dao.*" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
@@ -9,23 +10,33 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<meta name="description" content="NYC Real Estate Website by Ann Uduc, a NYS Licensed Real Estate Agent.  Homes for sale, buy, and rent.">
-  		<meta name="keywords" content="NYC,Real Estate,Ann Uduc,Licensed Real Estate Agent,Homes,Houses,Apartments,Sale,Buy,Rent">
+		<meta name="description" content="NYC Real Estate by Ann Uduc, a NYS Licensed Real Estate Agent.  Homes for sale and rental in Forest Hills Queens and New York City area.">
+  		<meta name="keywords" content="NYC,Real Estate,Ann Uduc,Licensed Real Estate Agent,Homes,Houses,Apartments,Sell,Buy,Rent">
   		<meta name="author" content="Ann Uduc">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="<spring:url value="/CSS/ulist.css" />">
-		<title>AS Properties NYC - Homes for sale, buy, and rent in NYC - by Ann Uduc</title>
+		<title>AS Properties NYC - Homes for sale and rental in New York City - by Ann Uduc</title>
 	</head>
 <%
-	User u = (User) request.getAttribute("user");        // only pass in user from the login page
+//check data entered.  No need to check each field as done above.  try-catch will catch all exceptions.
+//note: variable declarations need to be done outside the try-catch clause
+	User u = null;       
+	String city = null;
+	String state = null;
+	String order = null;
+    DecimalFormat fmt = new DecimalFormat("###,###,###");   // format output of asking price   
+try {
+	u = (User) request.getAttribute("user");        // only pass in user from the login page
 	if(u != null) session.setAttribute("userkey", u);    // if user is not passes in, then use userkey
 	u = (User) session.getAttribute("userkey");
 	
-	String city = (String) request.getAttribute("city");
-	String state = (String) request.getAttribute("state");
-	String order = (String) request.getAttribute("order");
-	
-    DecimalFormat fmt = new DecimalFormat("###,###,###");   // format output of asking price
+	city = (String) request.getAttribute("city");
+	state = (String) request.getAttribute("state");
+	order = (String) request.getAttribute("order");
+}
+catch(Exception e) {  
+	throw new Exception("Ooops. Something went wrong when the system was trying to display the home page.");
+}
 %>
 	<body>
 		<h1  onclick="showDropdown('cleardrop')">AS Properties NYC</h1>
@@ -46,14 +57,24 @@
 		<div class="dropdown-content" id="selectCitydrop" >
 			<a href="homePage?city=all&state=<%=state%>&order=<%=order%>">City:All</a>
 			<%
-				CityDAO cityDAO= new CityDAO();		
-				List<City> lc = new ArrayList<City>();
+			CityDAO cityDAO= null;		
+			List<City> lc = null;
+			try {
+				cityDAO= new CityDAO();		
+				lc = new ArrayList<City>();
 				lc = cityDAO.getCityList();
+
 				for (City c : lc){
 					out.print("<a href=\"homePage?city=" + c.getName() + "&state="); %><%=state%>		
 				<% 	out.print("&order="); %><%=order%>		
 				<% 	out.print("\">" + c.getName() + "</a>"); %>
-				<% 	}  %> 
+			<% 	
+				} 
+			}
+			catch(Exception e) {  
+				throw new Exception("Ooops. Something went wrong when the system was trying to do city selection in the home page.");
+			}				
+			%> 
 			<!-- ***************  This is the string we're building above    **************************     -->		
 			<!-- ***************  <a href="homePage?city=Bronx&state=<%=state%>&order=<%=order%>">Bronx</a>   -->
 		</div>
@@ -67,13 +88,22 @@
 		<div class="dropdown-content" id="selectStatedrop">
 			<a href="homePage?city=<%=city%>&state=all&order=<%=order%>">State:All</a>
 			<%
-				StateDAO stateDAO= new StateDAO();		
-				List<State> l = new ArrayList<State>();
+			StateDAO stateDAO= null;		
+			List<State> l = null;
+			try {
+				stateDAO= new StateDAO();		
+				l = new ArrayList<State>();
 				l = stateDAO.getStateList();
 				for (State s : l){ %>
 					<a href="homePage?city=<%=city%>&state=<%=s.getCode()%>
 					&order=<%=order%>"><%=s.getCode()%></a>
-			<% 	}  %> 
+			<% 	
+				}  
+			}
+			catch(Exception e) {  
+				throw new Exception("Ooops. Something went wrong when the system was trying to do state selection in the home page.");
+			}
+			%> 
 			<!-- ***************  This is the string we're building above    **************************     -->				
 			<!-- ***************  <a href="homePage?city=<%=city%>&state=CA&order=<%=order%>">CA</a>   -->				
 		</div>
@@ -121,8 +151,11 @@
 
 <!-- DETAIL LIST -->
 <%
- 	PropertyDAO propertyDAO= new PropertyDAO();		
- 	List<Property> pl = new ArrayList<Property>();
+PropertyDAO propertyDAO= null;		
+List<Property> pl = null;
+try {
+ 	propertyDAO= new PropertyDAO();		
+ 	pl = new ArrayList<Property>();
  	pl = propertyDAO.getPropertyList(city, state, order, false);
  	for (Property s : pl){ 
         String special_text = "";   
@@ -149,7 +182,12 @@
 		 	        	
 		</div>  
 	</div>
- <%	}  %>
+ <%	}  
+}
+catch(Exception e) {  
+	throw new Exception("Ooops. Something went wrong when the system was trying to display the property list in the home page.");
+}
+ %>
 
 	
 	<!-- ************* this is how to go to the login page ************** -->
@@ -175,7 +213,7 @@
 //  	}  
  %>
 				
-	<footer><a href="contact">Ann Uduc, NYS Licensed Real Estate Agent. All listings deemed reliable but not guaranteed. Copyright &copy; 2018 AS Properties NYC.  All rights reserved.</a></footer>
+	<footer><a href="contact">Ann Uduc of Showcase Realty Inc, NYS Licensed Real Estate Agent. All listings deemed reliable but not guaranteed. Copyright &copy; 2018 AS Properties NYC.  All rights reserved.</a></footer>
 	
     <script src="<spring:url value="/SCRIPT/homePage.js" />"></script>     
 	<noscript>Sorry, your browser does not support JavaScript!</noscript>

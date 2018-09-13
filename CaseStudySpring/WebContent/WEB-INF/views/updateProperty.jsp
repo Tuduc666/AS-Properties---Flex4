@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>   
 <!DOCTYPE html>
+<%@ page errorPage="errorPage.jsp" %>
 <%@ page import="models.*,dao.*" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
@@ -13,7 +14,20 @@
 		<title>Update Property</title>
 	</head>
 <%
-	Property p = (Property) request.getAttribute("property");   
+User u = null; UserDAO uDAO = null;  
+Property p = null; 
+try {
+	p = (Property) request.getAttribute("property");   
+	u = (User) session.getAttribute("userkey");	
+	uDAO = new UserDAO();
+	u = uDAO.isValidAdmin(u.getEmail(), u.getUser_password());        // only admin is allowed to access this page
+	
+	if(u==null) 
+		throw new Exception("You need admin credentials to access this page.");
+}
+catch(Exception e) {  
+	throw new Exception("You need admin credentials to access this page.");
+}	
 %>                                                   
 <body>   <!-- NOTE: names below must match names in model class, not names in SQL table -->
 	<h1>ASP Update Property</h1>
@@ -113,7 +127,7 @@
 				<input type="text" id="specialo" name="specialo" value="<%=p.getSpecialo()%>" />
 			</div>		
 			<div class="sub_field">
-				<label>Display special text</label>
+				<label>Display special text - highlighted/blinking/none</label>
 				<input type="text" id="speciald" name="speciald" value="<%=p.getSpeciald()%>" />
 			</div>		
 			<div class="sub_field">

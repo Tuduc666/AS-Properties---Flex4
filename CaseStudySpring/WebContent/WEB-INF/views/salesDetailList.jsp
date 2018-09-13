@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>  
 <!DOCTYPE html>
+<%@ page errorPage="errorPage.jsp" %>
 <%@ page import="models.*,dao.*" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
@@ -12,7 +13,20 @@
 		<link rel="stylesheet" href="<spring:url value="/CSS/ulist.css" />">
 		<title>Salespersons Detail List</title>
 	</head>
-
+<%
+	User u = null; UserDAO uDAO = null;      
+	try {
+		u = (User) session.getAttribute("userkey");	
+		uDAO = new UserDAO();
+		u = uDAO.isValidAdmin(u.getEmail(), u.getUser_password());        // only admin is allowed to access this page
+		
+		if(u==null) 
+			throw new Exception("You need admin credentials to access this page.");
+	}
+	catch(Exception e) {  
+		throw new Exception("You need admin credentials to access this page.");
+	}	
+%> 
 	<body>
 			<h1>AS Properties</h1>
 			
@@ -34,8 +48,11 @@
 
 <!-- DETAIL LIST -->
 <%
- 	SalespersonDAO salespersonDAO= new SalespersonDAO();		
- 	List<Salesperson> l = new ArrayList<Salesperson>();
+SalespersonDAO salespersonDAO= null;		
+List<Salesperson> l = null;
+try {
+ 	salespersonDAO= new SalespersonDAO();		
+ 	l = new ArrayList<Salesperson>();
  	l = salespersonDAO.getSalespersonList();
  	for (Salesperson s : l){ %>
  		<div class="flexbox">
@@ -50,7 +67,12 @@
 			<a href="deleteSalesperson?id=<%=s.getId()%>" class="button">Delete</a>
 		</div>  
 	</div>
- <%	}  %>
+ <%	}  
+}
+catch(Exception e) {  
+	throw new Exception("Ooops. Something went wrong when the system was trying to display the salesperson detail list page.");
+}
+ %>
 
 	
 	<!-- ************* this is how to go to the login page ************** -->

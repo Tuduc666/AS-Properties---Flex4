@@ -147,8 +147,8 @@ public class ShowingDAO {
 		try {
 			conn = OracleConnection.getConnection();
 			stmt = conn.prepareStatement(OracleQueries.DISMISSSHOWING);    
-			stmt.setInt(1, property_id);          
-			stmt.setString(2, email);          
+			stmt.setInt(1, property_id);                  
+			stmt.setString(2, email);                  
 			result = stmt.executeUpdate();
 						
 		} catch (ClassNotFoundException e) {

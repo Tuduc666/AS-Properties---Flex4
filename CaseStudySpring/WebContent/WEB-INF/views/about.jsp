@@ -6,23 +6,23 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<meta name="description" content="NYC Real Estate Website by Ann Uduc, a NYS Licensed Real Estate Agent.  Homes for sale, buy, and rent.">
-  		<meta name="keywords" content="NYC,Real Estate,Ann Uduc,Licensed Real Estate Agent,Homes,Houses,Apartments,Sale,Buy,Rent">
+		<meta name="description" content="NYC Real Estate by Ann Uduc, a NYS Licensed Real Estate Agent.  Homes for sale and rental in Forest Hills Queens and New York City area.">
+  		<meta name="keywords" content="NYC,Real Estate,Ann Uduc,Licensed Real Estate Agent,Homes,Houses,Apartments,Sell,Buy,Rent">
   		<meta name="author" content="Ann Uduc">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="<spring:url value="/CSS/ulist.css" />">
-		<title>ASP About Page</title>
+		<title>AS Properties NYC - Homes for sale and rental in New York City - About Page</title>
 	</head>
                                                   
 <body>   <!-- NOTE: names below must match names in model class, not names in SQL table -->
-	<h1>ASP About Page</h1>
+	<h1>AS Properties NYC About Page</h1>
 			
 	<img alt="salesperson" src="IMAGES/HA.jpg" width="40%" height="60%" style="float:left; margin-right:5vw;" >
 
 	<p>Hi Everyone,</p><br>
 	
 	<p>My name is Ann Uduc.  I am a licensed real estate sales agent at Showcase Realty.  
-	I am specialized in sales and rentals in all of New York City, but especially in Queens NY.  
+	I am specialized in sales and rentals in all of New York City, but especially in Forest Hills Queens NY.  
 	I have created this web page to put together a list my favorite properties currently available 
 	on the market that I have personally selected.  
 	The name of my website AS Properties NYC stands for Ann&#39;s Selected Properties of New York City.</p><br>
