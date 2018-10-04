@@ -14,7 +14,7 @@
   		<meta name="author" content="Ann Uduc">		
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="<spring:url value="/CSS/showProperty.css" />">
-		<title>Showing Request</title>
+		<title>AS Properties NYC - Homes for sale and rental in New York City - Request a Showing</title>
 	</head>
 <%
 Integer p_id = null;   

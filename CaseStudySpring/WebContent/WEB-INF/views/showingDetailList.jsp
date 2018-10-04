@@ -25,6 +25,7 @@ try {
 	
 	if(u==null) 
 		throw new Exception("You need admin credentials to access this page.");
+	else uDAO.resetFailedLogin(u.getEmail());        // reset failed login count
 }
 catch(Exception e) {  
 	throw new Exception("You need admin credentials to access this page.");

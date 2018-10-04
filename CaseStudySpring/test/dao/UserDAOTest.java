@@ -53,7 +53,7 @@ public class UserDAOTest {
 	@Test
 	public void t3_testAddUser() throws IOException, SQLException {
 		String expectedEmail = "test@yahoo.com";
-		id = uDAO.addUser("tam", "1111", expectedEmail, "Customer", "tt");
+		id = uDAO.addUser("tam", "1111", expectedEmail, "Customer", "tt", 0, "N");
 		User u = uDAO.getUserById(id);		
 		assertEquals(expectedEmail, u.getEmail());
 	}
@@ -61,7 +61,7 @@ public class UserDAOTest {
 	@Test
 	public void t4_testUpdateUser() throws IOException, SQLException {
 		String expectedEmail = "testupdate@yahoo.com";
-		Boolean updt = uDAO.updateUser(id, "tam", "1111", expectedEmail, "Customer", "tt");
+		Boolean updt = uDAO.updateUser(id, "tam", "1111", expectedEmail, "Customer", "tt", 0, "N");
 		assertTrue(updt);
 		User u = uDAO.getUserById(id);		
 		assertEquals(expectedEmail, u.getEmail());

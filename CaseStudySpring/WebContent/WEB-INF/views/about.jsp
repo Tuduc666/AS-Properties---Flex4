@@ -21,8 +21,8 @@
 
 	<p>Hi Everyone,</p><br>
 	
-	<p>My name is Ann Uduc.  I am a licensed real estate sales agent at Showcase Realty.  
-	I am specialized in sales and rentals in all of New York City, but especially in Forest Hills Queens NY.  
+	<p>My name is Ann Uduc.  I am a licensed real estate agent at Showcase Realty.  
+	I am specialized in sales and rental in all of New York City, but especially in Forest Hills Queens NY.  
 	I have created this web page to put together a list my favorite properties currently available 
 	on the market that I have personally selected.  
 	The name of my website AS Properties NYC stands for Ann&#39;s Selected Properties of New York City.</p><br>

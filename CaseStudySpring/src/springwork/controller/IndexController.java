@@ -178,7 +178,8 @@ public class IndexController {
 //				"11374", "666-666-6666", "lee@gmail.com", "Customer", "leep");
 		String returnPage = "homePage";
 		try {	
-			userDAO.updateUser(u.getUser_id(), u.getUser_name(), u.getPhone(), u.getEmail(), u.getUser_type(), "Customer");
+			userDAO.updateUser(u.getUser_id(), u.getUser_name(), u.getPhone(), u.getEmail(), u.getUser_type(), "Customer",
+					0, "N");
 		}
 		catch(Exception e) {  
 			returnPage = "errorPageDisplay";
@@ -487,7 +488,7 @@ public class IndexController {
 			uNew = uDAO.isValidUser(u.getEmail());  
 			
 			if(uNew==null) {
-				Integer i  = uDAO.addUser(u.getUser_name(), u.getPhone(), u.getEmail(), "Customer", "Customer");
+				Integer i  = uDAO.addUser(u.getUser_name(), u.getPhone(), u.getEmail(), "Customer", "Customer", 0, "N");
 				uNew = uDAO.getUserById(i);
 			}
 		}
@@ -529,7 +530,7 @@ public class IndexController {
 			// check if user does already exist, then add user
 			UserDAO uDAO = new UserDAO();
 			User uNew = uDAO.isValidUser(s.getEmail());  
-			if(uNew==null) uDAO.addUser(s.getUser_name(), s.getPhone(), s.getEmail(), "Customer", "Customer");
+			if(uNew==null) uDAO.addUser(s.getUser_name(), s.getPhone(), s.getEmail(), "Customer", "Customer", 0, "N");
 		}
 		catch(Exception e) {  
 			returnPage = "errorPageDisplay";

@@ -7,6 +7,8 @@ public class User {
 	private String email;     
 	private String user_type;
 	private String user_password;
+	private int failed_login;
+	private String disabled;
 	
 	public int getUser_id() {
 		return user_id;
@@ -43,5 +45,17 @@ public class User {
 	}
 	public void setUser_password(String user_password) {
 		this.user_password = user_password;
+	}
+	public int getFailed_login() {
+		return failed_login;
+	}
+	public void setFailed_login(int failed_login) {
+		this.failed_login = failed_login;
+	}
+	public String getDisabled() {
+		return disabled;
+	}
+	public void setDisabled(String disabled) {
+		this.disabled = disabled;
 	}
 }

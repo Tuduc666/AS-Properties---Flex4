@@ -83,17 +83,24 @@ public class OracleQueries {
 			+ "where user_id = ?";
 	public final static String GETALLUSERS = "select * from p_user order by user_id";
 	public final static String ADDUSER = "insert into p_user "
-			+ "(user_name,phone,email,user_type,user_password) "
-			+ "values(?,?,?,?,?)";
+			+ "(user_name,phone,email,user_type,user_password,failed_login,disabled) "
+			+ "values(?,?,?,?,?,?,?)";
 	public final static String UPDATEUSER = "update p_user "
-			+ "set user_name=?, phone = ?, email = ?, user_type = ?, user_password = ? "
+			+ "set user_name=?,phone=?,email=?,user_type=?,user_password=?,failed_login=?,disabled=? "
 			+ "where user_id = ?";
 	public final static String DELETEUSER = "delete from p_user "
 			+ "where user_id = ?";
 	public final static String ISVALIDUSER = "select * from p_user " 
 			+ "where email = ? ";
 	public final static String ISVALIDADMIN = "select * from p_user " 
-			+ "where user_type='Admintandha' and email = ? and user_password = ? ";
+			+ "where user_type='Admintandha' and failed_login < 3 and disabled = 'N' "
+			+ "and email = ? and user_password = ? ";
+	public final static String ADDINVALIDLOGIN = "update p_user "
+			+ "set failed_login = failed_login + 1 where email=?";
+	public final static String RESETFAILEDLOGIN = "update p_user "
+			+ "set failed_login = 0 where email=?";
+	public final static String DISABLEUSER = "update p_user "
+			+ "set failed_login = 4, disabled = 'Y' where email=?";
 	
 	public final static String GETALLSTATES = "select * from p_state order by code";
 	

@@ -15,7 +15,7 @@
   		<meta name="author" content="Ann Uduc">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="<spring:url value="/CSS/displayProperty.css" />">
-		<title>Property Detail</title>
+		<title>AS Properties NYC - Homes for sale and rental in New York City - Property Detail</title>
 	</head>
 <%
 // check data entered.  No need to check each field as done above.  try-catch will catch all exceptions.
