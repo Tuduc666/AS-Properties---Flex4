@@ -7,7 +7,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<meta name="description" content="NYC Real Estate by Ann Uduc, a NYS Licensed Real Estate Agent.  Homes for sale and rental in Forest Hills Queens and New York City area.">
-  		<meta name="keywords" content="NYC,Real Estate,Ann Uduc,Licensed Real Estate Agent,Homes,Houses,Apartments,Sell,Buy,Rent">
+  		<meta name="keywords" content="NYC,Real Estate,Ann Uduc,Licensed Real Estate Agent,Homes,Houses,Apartments,Sell,Buy,Rent,Bed,Bedroom,Bath,Forest Hills,Queens,New York City,request,showing,realty,realtor ">
   		<meta name="author" content="Ann Uduc">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="<spring:url value="/CSS/ulist.css" />">
@@ -22,7 +22,8 @@
 	<p>Please contact me to schedule an appointment to view the property.</p><br>
 	
 	Ann Uduc of Showcase Realty Inc<br>
-	(a licensed real estate sales agent)<br>
+	(licensed real estate agent)<br>
+	113-25 Queens Blvd, Forest Hills, NY 11375<br>
 	Phone:  347-564-2460<br>
 	Email: Ann@showcaserealtynyc.com<br><br><br>
 

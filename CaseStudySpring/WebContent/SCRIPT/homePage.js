@@ -10,7 +10,8 @@ function showDropdown(id) {
 	
 	// this would crash the program when the user is already logged in, need try catch clause
 	try {
-	    document.getElementById('logindrop').style.display = "none";
+		// the following code is no longer needed since login dropdown menu has been replaced with a login button
+	    // document.getElementById('logindrop').style.display = "none";
 	}
 	catch(err) {                                          // catch handles the error
 	    // document.getElementById("demo").innerHTML = err.message;      // err.message ->  adddlert is not defined
