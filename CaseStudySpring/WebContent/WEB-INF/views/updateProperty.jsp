@@ -131,8 +131,8 @@ catch(Exception e) {
 				<input type="text" id="speciald" name="speciald" value="<%=p.getSpeciald()%>" />
 			</div>		
 			<div class="sub_field">
-				<label>Weblink</label>
-				<input type="text" id="weblink" name="weblink"  />
+				<label>Weblink/none</label>
+				<input type="text" id="weblink" name="weblink" value="<%=p.getWeblink()%>" required />
 			</div>		
 		
 			<div class="btn">

@@ -26,8 +26,8 @@ public class PropertyDAO {
 			stmt.setInt(1, id);
 			result = stmt.executeQuery();
 			if(result.next()) {
-				property = new Property();
-				property.setProperty_id(result.getInt(1));
+				property = new Property();                     // need to instantiate property because property is not declared 
+				property.setProperty_id(result.getInt(1));     // as static, so we can have multiple instances of property.
 				property.setAddress1(result.getString(2));
 				property.setAddress2(result.getString(3));
 				property.setCity(result.getString(4));

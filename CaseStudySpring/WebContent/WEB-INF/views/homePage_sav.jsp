@@ -11,7 +11,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<meta name="description" content="NYC Real Estate by Ann Uduc, a NYS Licensed Real Estate Agent.  Homes for sale and rental in Forest Hills Queens and New York City area.">
-  		<meta name="keywords" content="NYC,Real Estate,Ann Uduc,Licensed Real Estate Agent,Homes,Houses,Apartments,Sell,Buy,Rent">
+  		<meta name="keywords" content="NYC,Real Estate,Ann Uduc,Licensed Real Estate Agent,Homes,Houses,Apartments,Sell,Buy,Rent,Bed,Bedroom,Bath,Forest Hills,Queens,New York City,request,showing,realty,realtor ">
   		<meta name="author" content="Ann Uduc">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="<spring:url value="/CSS/ulist.css" />">
@@ -135,13 +135,7 @@ catch(Exception e) {
 	else {
 %>	
 <!-- login -->  <!-- added JavaScript onclick to solve the IOS hover issue on mobile devices -->
-	  	<li class="dropdown">
-		<a class="dropbtn" id="login" onclick="showDropdown('logindrop')">Login</a>
-		<div class="dropdown-content" id="logindrop">
-			<a href="login">Customer Login</a>
-			<a href="adminLogin">Admin Login</a>
-		</div>
-	    </li>
+	    <li><a href="login">Login</a></li>
 <%
 	}
 %>	

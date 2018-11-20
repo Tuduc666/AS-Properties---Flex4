@@ -169,6 +169,13 @@ try {
 		</div>
 		<div class="flexbutton">
 			<a href="displayProperty?id=<%=s.getProperty_id()%>" class="button">Detail</a>
+			<%
+			if(!s.getWeblink().equals("none")) {
+			%>	
+				<a href="<%=s.getWeblink()%>" class="button" target="_blank" style="background-color:orange" >Video</a>
+			<%
+			}
+			%>	
 			<a href="showProperty?id=<%=s.getProperty_id()%>" class="button">Request</a>
 				
 		

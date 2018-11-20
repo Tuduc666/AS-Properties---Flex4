@@ -139,8 +139,8 @@
 				</select>
 			</div>		
 			<div class="sub_field">
-				<label>Weblink</label>
-				<input type="text" id="weblink" name="weblink"  />
+				<label>Weblink/none</label>
+				<input type="text" id="weblink" name="weblink" value="none" required />
 			</div>			
 		
 			<div class="btn">
